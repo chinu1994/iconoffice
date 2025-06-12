@@ -201,7 +201,7 @@
                      <tbody>
                      % for sheet in object.sheet_ids:
                         <tr>
-                            <td style="border: 1px solid black;">${sheet.create_date.date().strftime("%d-%m-%Y")}</td>
+                            <td style="border: 1px solid black;">${sheet.create_date.date()}</td>
                             <td style="border: 1px solid black;">${sheet.sh_resolution}</td>
                          </tr>
                     % endfor
@@ -412,7 +412,7 @@
                      <tbody>
                      % for sheet in object.sheet_ids:
                         <tr>
-                            <td style="border: 1px solid black;">${sheet.create_date.date().strftime("%d-%m-%Y")}</td>
+                            <td style="border: 1px solid black;">${sheet.create_date.date()}</td>
                             <td style="border: 1px solid black;">${sheet.sh_resolution}</td>
                          </tr>
                     % endfor

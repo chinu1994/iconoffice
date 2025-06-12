@@ -1,0 +1,96 @@
+[2025-06-05 02:47:28] Found 5 products with images to sync.
+[2025-06-05 02:47:28] 
+
+[2025-06-05 02:49:47] Found 5 products with images to sync.
+[2025-06-05 02:49:47] 
+
+[2025-06-05 02:49:50] No image data for product name 11Oz Custom Neon Color Ceramic (ID: 30911), skipping.
+[2025-06-05 02:49:50] 
+
+[2025-06-05 02:49:50] No image data for product name 11Oz Custom Neon Color Ceramic (ID: 35662), skipping.
+[2025-06-05 02:49:50] 
+
+[2025-06-05 02:49:50] No image data for product name 11Oz Custom Neon Color Ceramic (ID: 35663), skipping.
+[2025-06-05 02:49:50] 
+
+[2025-06-05 02:50:43] Found 5 products with images to sync.
+[2025-06-05 02:50:43] 
+
+[2025-06-05 02:50:43] No image data for product name 11Oz Custom Neon Color Ceramic (ID: 30911), skipping.
+[2025-06-05 02:50:43] 
+
+[2025-06-05 02:50:43] No image data for product name 11Oz Custom Neon Color Ceramic (ID: 35662), skipping.
+[2025-06-05 02:50:43] 
+
+[2025-06-05 02:50:43] No image data for product name 11Oz Custom Neon Color Ceramic (ID: 35663), skipping.
+[2025-06-05 02:50:43] 
+
+[2025-06-05 02:50:55] Found 1 products with images to sync.
+[2025-06-05 02:50:55] 
+
+[2025-06-05 02:50:55] No image data for product name 11Oz Custom Neon Color Ceramic (ID: 30911), skipping.
+[2025-06-05 02:50:55] 
+
+[2025-06-05 02:51:17] Found 1 products with images to sync.
+[2025-06-05 02:51:17] 
+
+[2025-06-05 02:51:32] No image data for product name 11Oz Custom Neon Color Ceramic (ID: 30911), skipping.
+[2025-06-05 02:51:32] 
+
+[2025-06-05 02:52:13] Found 1 products with images to sync.
+[2025-06-05 02:52:13] 
+
+[2025-06-05 02:58:33] Found 1 products with images to sync.
+[2025-06-05 02:58:33] 
+
+[2025-06-05 03:00:07] Found 1 products with images to sync.
+[2025-06-05 03:00:07] 
+
+[2025-06-05 03:00:47] Found 1 products with images to sync.
+[2025-06-05 03:00:47] 
+
+[2025-06-05 03:01:13] Found 1 products with images to sync.
+[2025-06-05 03:01:13] 
+
+[2025-06-05 03:03:44] Found 1 products with images to sync.
+[2025-06-05 03:03:44] 
+
+[2025-06-05 03:07:35] Found 1 products with images to sync.
+[2025-06-05 03:07:35] 
+
+[2025-06-05 03:07:55] Updated image for product False (ID: 30911)
+[2025-06-05 03:07:55] 
+
+[2025-06-05 03:09:14] Found 4 products with images to sync.
+[2025-06-05 03:09:14] 
+
+[2025-06-05 03:09:14] Updated image for product False (ID: 30911)
+[2025-06-05 03:09:14] 
+
+[2025-06-05 03:09:15] Updated image for product False (ID: 35662)
+[2025-06-05 03:09:15] 
+
+[2025-06-05 03:09:15] Updated image for product False (ID: 35663)
+[2025-06-05 03:09:15] 
+
+[2025-06-05 03:09:16] Updated image for product False (ID: 35665)
+[2025-06-05 03:09:16] 
+
+[2025-06-05 03:11:13] Found 5 products with images to sync.
+[2025-06-05 03:11:13] 
+
+[2025-06-05 03:11:20] Updated image for product False (ID: 35187)
+[2025-06-05 03:11:20] 
+
+[2025-06-05 03:11:26] Updated image for product False (ID: 28837)
+[2025-06-05 03:11:26] 
+
+[2025-06-05 03:11:32] Updated image for product False (ID: 35309)
+[2025-06-05 03:11:32] 
+
+[2025-06-05 03:11:33] Updated image for product False (ID: 29044)
+[2025-06-05 03:11:33] 
+
+[2025-06-05 03:11:33] Updated image for product False (ID: 29045)
+[2025-06-05 03:11:33] 
+

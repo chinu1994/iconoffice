@@ -594,9 +594,9 @@ class HelpDeskTicket(models.Model):
 
                     count = 1
                     for categ_cc in rec_wr.customer.category_id:
-                        if count == 2:
+                        if count == 1:
                             email_cc += categ_cc.name
-                        elif count > 2:
+                        elif count > 1:
                             email_cc += "," + categ_cc.name
 
                         count += 1
