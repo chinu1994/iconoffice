@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="view_users_form" model="ir.ui.view">
+            <field name="name">res.users.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+<!--                    <field name="tf_user_code"/>-->
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

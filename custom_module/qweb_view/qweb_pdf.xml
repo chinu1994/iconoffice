@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <report
+                id="sltech_pos_excel_report_invoice_xlsx_helpdesk"
+                model="account.invoice"
+                string="Invoice Report EXCEL"
+                report_type="xlsx"
+                name="custom_module.print_sample_report"
+                file="custom_module.print_sample_report"
+                attachment_use="False"
+                menu="True"
+                print_report_name="'POS-Report'"/>
+
+<!--        <report id="sltech_pos_excel_report_invoice_xlsx"-->
+
+<!--                model="inventory.wizard"-->
+<!--                string="Sample Report"-->
+<!--                report_type="xlsx"-->
+<!--                name="sltech_menu_popup.print_sample_report"-->
+<!--                file="sltech_menu_popup.print_sample_report"-->
+<!--                menu="True"/>-->
+
+<!--        <template id="print_sample_report">-->
+<!--            <t t-call="web.html_container">-->
+<!--                <t t-call="web.external_layout">-->
+<!--                    <div class="page">-->
+<!--                        <h1 align="center">-->
+<!--                            Sample Report-->
+<!--                            <table class="table table-condensed" style=" border: 1px solid black; border-collapse: collapse;">-->
+<!--                                <thead>-->
+<!--                                    <tr>-->
+<!--                                        <th>product name</th>-->
+<!--                                        <th>qty invoiced</th>-->
+<!--                                        <th>free to sale</th>-->
+<!--                                        <th>date from so</th>-->
+<!--                                        <th>total sale count</th>-->
+<!--                                        <th>Sale Price</th>-->
+<!--                                        <th>Cost Price</th>-->
+<!--                                        <th>On hand</th>-->
+<!--                                        <th>Value</th>-->
+<!--                                    </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+
+<!--                                    <t t-foreach="docs.print_pdf_report()" t-as="line">-->
+<!--                                        <tr>-->
+<!--                                            <td>-->
+<!--                                                <t t-esc="line['product name']"/>-->
+<!--                                            </td>-->
+<!--                                            <td>-->
+<!--                                                <t t-esc="line['qty invoiced']"/>-->
+<!--                                            </td>-->
+<!--                                            <td>-->
+<!--                                                <t t-esc="line['free to sale']"/>-->
+<!--                                            </td>-->
+<!--                                            <td>-->
+<!--                                                <t t-esc="line['date from so']"/>-->
+<!--                                            </td>-->
+<!--                                            <td>-->
+<!--                                                <t t-esc="line['total sale count']"/>-->
+<!--                                            </td>-->
+<!--                                            <td>-->
+<!--                                                <t t-esc="line['Sale Price']"/>-->
+<!--                                            </td>-->
+<!--                                            <td>-->
+<!--                                                <t t-esc="line['Cost Price']"/>-->
+<!--                                            </td>-->
+<!--                                            <td>-->
+<!--                                                <t t-esc="line['On hand']"/>-->
+<!--                                            </td>-->
+<!--                                            <td>-->
+<!--                                                <t t-esc="line['Value']"/>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                    </t>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </h1>-->
+<!--                    </div>-->
+<!--                </t>-->
+<!--            </t>-->
+<!--        </template>-->
+    </data>
+</odoo>

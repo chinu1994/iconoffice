@@ -1,0 +1,154 @@
+$font-path-roboto: '../fonts/Roboto';
+
+@mixin gle-font($type, $weight, $style) {
+    @font-face {
+        font-family: 'roboto';
+	    font-weight: $weight;
+        font-style: $style;
+        src: url('#{$font-path-roboto}/Roboto-#{$type}-webfont.eot');
+        src: url('#{$font-path-roboto}/Roboto-#{$type}-webfont.eot?#iefix') format('embedded-opentype'),
+             url('#{$font-path-roboto}/Roboto-#{$type}-webfont.woff') format('woff'),
+             url('#{$font-path-roboto}/Roboto-#{$type}-webfont.ttf') format('truetype'),
+             url('#{$font-path-roboto}/Roboto-#{$type}-webfont.svg#Roboto') format('svg');
+    }
+
+    @font-face {
+        font-family: 'Roboto-#{$type}';
+        src: url('#{$font-path-roboto}/Roboto-#{$type}-webfont.eot');
+        src: url('#{$font-path-roboto}/Roboto-#{$type}-webfont.eot?#iefix') format('embedded-opentype'),
+             url('#{$font-path-roboto}/Roboto-#{$type}-webfont.woff') format('woff'),
+             url('#{$font-path-roboto}/Roboto-#{$type}-webfont.ttf') format('truetype'),
+             url('#{$font-path-roboto}/Roboto-#{$type}-webfont.svg#Roboto') format('svg');
+    }
+}
+
+
+@mixin gle-font-pair($type, $weight) {
+    @include gle-font('#{$type}', $weight, normal);
+    @include gle-font('#{$type}Italic', $weight, italic);
+}
+
+@include gle-font-pair('Thin', 100);
+@include gle-font-pair('Light', 300);
+@include gle-font-pair('Regular', 400);
+@include gle-font-pair('Medium', 500);
+@include gle-font-pair('Bold', 700);
+@include gle-font-pair('Black', 900);
+
+$font-path-lato: '../fonts/Lato';
+
+@mixin lato-font($type, $weight, $style){
+    @font-face{
+        font-family: 'lato';
+        font-weight: $weight;
+        font-style: $style;
+        src: url('#{$font-path-lato}/Lato-#{$type}.ttf') format('truetype');
+    }
+
+    @font-face{
+        font-family: 'Lato-#{$type}';
+        font-weight: $weight;
+        font-style: $style;
+        src: url('#{$font-path-lato}/Lato-#{$type}.ttf') format('truetype');
+    }
+}
+
+@mixin lato-font-pair($type, $weight){
+    @include lato-font('#{$type}', $weight, normal);
+    @include lato-font('#{$type}Italic', $weight, italic);
+}
+
+@include lato-font-pair('Thin', 100);
+@include lato-font-pair('Light', 300);
+@include lato-font-pair('Regular', 400);
+@include lato-font-pair('Bold', 700);
+@include lato-font-pair('Black', 900);
+
+
+$open_sans-font-path: '../fonts/Open_Sans';
+
+@mixin open_sans-font($type, $weight, $style){
+    @font-face{
+        font-family: 'open_sans';
+        src: url('#{$open_sans-font-path}/OpenSans-#{$type}.ttf') format('truetype');
+        font-weight: $weight;
+        font-style: $style;
+    }
+
+    @font-face{
+        font-family: 'Open Sans-#{$type}';
+        src: url('#{$open_sans-font-path}/OpenSans-#{$type}.ttf') format('truetype');
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
+
+@mixin open_sans-font-pair($type, $weight){
+    @include open_sans-font('#{$type}', $weight, normal);
+    @include open_sans-font('#{$type}Italic', $weight, italic);
+}
+
+@include open_sans-font-pair('Light', 300);
+@include open_sans-font-pair('Regular', 400);
+@include open_sans-font-pair('SemiBold', 600);
+@include open_sans-font-pair('Bold', 700);
+@include open_sans-font-pair('ExtraBold', 800);
+
+$alice-font-path: '../fonts/Alice';
+
+@mixin alice-font($type, $weight, $style){
+    @font-face{
+        font-family: 'alice';
+        src: url('#{$alice-font-path}/Alice-#{$type}.ttf') format('truetype');
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
+
+@include alice-font('Regular', 400, normal);
+
+$abel-font-path: '../fonts/Abel';
+
+@mixin abel-font($type, $weight, $style){
+    @font-face{
+        font-family: 'abel';
+        src: url('#{$abel-font-path}/Abel-#{$type}.ttf') format('truetype');
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
+
+@include abel-font('Regular', 400, normal);
+
+$montserrat-font-path: '../fonts/Montserrat';
+
+@mixin montserrat-font($type, $weight, $style){
+    @font-face{
+        font-family: 'montserrat';
+        src: url('#{$montserrat-font-path}/Montserrat-#{$type}.ttf') format('truetype');
+        font-weight: $weight;
+        font-style: $style;
+    }
+
+    @font-face{
+        font-family: 'Montserrat-@{type}';
+        src: url('#{$montserrat-font-path}/Montserrat-#{$type}.ttf') format('truetype');
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
+
+@mixin montserrat-font-pair($type, $weight){
+    @include montserrat-font('#{$type}', $weight, normal);
+    @include montserrat-font('#{$type}Italic', $weight, italic);
+}
+
+@include montserrat-font-pair('Thin', 100);
+@include montserrat-font-pair('ExtraLight', 200);
+@include montserrat-font-pair('Light', 300);
+@include montserrat-font-pair('Regular', 400);
+@include montserrat-font-pair('Medium', 500);
+@include montserrat-font-pair('SemiBold', 600);
+@include montserrat-font-pair('Bold', 700);
+@include montserrat-font-pair('ExtraBold', 800);
+@include montserrat-font-pair('Black', 900);

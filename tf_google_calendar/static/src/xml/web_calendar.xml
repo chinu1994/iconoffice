@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="Notification">
+        <t t-jquery="div[t-attf-class*='o_notification']" t-operation="before">
+<!--        <t t-jquery="//div[t-attf-class='o_notification #{widget.className}']" t-operation="before">-->
+            <t t-debug="pdb"></t>
+            <t t-if="widget.model == 'calendar.event'">
+                <style>
+                    .o_notification{
+                        display: none;
+                    }
+                </style>
+            </t>
+        </t>
+<!--        <t t-jquery=".o_calendar_button_month" t-operation="after">-->
+<!--            <button type="button"-->
+<!--                    class="o_google_sync_button oe_button btn btn-secondary">-->
+<!--                <img src="/google_calendar/static/src/img/calendar_32.png"/>-->
+<!--                Sync with <b>Google</b>-->
+<!--            </button>-->
+<!--        </t>-->
+    </t>
+
+</templates>

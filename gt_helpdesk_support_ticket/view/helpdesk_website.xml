@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <data>
+        <record id="menu_helpdesk" model="website.menu">
+            <field name="name">Service Desk</field>
+            <field name="url">/page/helpdesk_tickets/</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">15</field>
+        </record>
+
+        <record id="action_open_website" model="ir.actions.act_url">
+            <field name="name">Website Service Desk Form</field>
+            <field name="target">self</field>
+            <field name="url">/page/helpdesk_tickets/</field>
+        </record>
+        <record id="base.open_menu" model="ir.actions.todo">
+            <field name="action_id" ref="action_open_website"/>
+            <field name="state">open</field>
+        </record>
+
+
+    </data>
+    <data>
+        <record id="gt_helpdesk_support_ticket.model_helpdesk_ticket" model="ir.model">
+            <!--<field name="website_form_default_field_id" ref="gt_helpdesk_support_ticket.field_hr_applicant_description" />-->
+            <field name="website_form_access">True</field>
+            <field name="website_form_label">Apply for a Job</field>
+        </record>
+        <function model="ir.model.fields" name="formbuilder_whitelist">
+            <value>helpdesk.ticket</value>
+            <value eval="[
+                    'customer',
+                    'phone',
+                    'email_id',
+                    'category',
+                    'ticket_title',
+                    'description',
+                    'priority',
+
+                ]"/>
+        </function>
+    </data>
+
+    <template id="helpdesk_detail" name="Service Desk Detail">
+        <t t-call="website.layout">
+            <div class="team_data">
+                <title>Service Desk</title>
+                <div class="container">
+                    <style>
+                        .helpdesk .form-group .col-md-3.col-sm-4{ float:left;padding:5px; }
+                        .helpdesk .form-group .col-md-7.col-sm-8{ float:left; }
+                        .form-group.form-field.o_website_form_required_custom{ width:100%;float:left; }
+                        .btn-primary {margin-top: 15px;}
+                    </style>
+                    <div class="row">
+                        <center style="width:100%">
+                            <h1 style="padding-left:29px;color:black;">Ticket Registration</h1>
+                        </center>
+                        <center style="width:100%">
+                            <form action="/website_form/" method="post"
+                                  class="helpdesk s_website_form form-horizontal container-fluid mt32"
+                                  enctype="multipart/form-data" data-model_name="helpdesk.ticket"
+                                  data-success_page="/helpdesk_thanks">
+
+<!--                                <h1><t t-esc="tpartner_name"/></h1>-->
+<!--                                <div class="form-group form-field o_website_form_required_custom">-->
+<!--                                    <input type="hidden" class="form-control o_website_form_input"-->
+<!--                                          t-attf-value="#{partners.id}" name="customer" t-att-value="partners.id"/>-->
+<!--                                </div>-->
+
+
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <div class="col-md-3 col-sm-4 text-right">
+                                        <label class="control-label" for="tf_user_email">User Email</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" name="tf_user_email"
+                                               t-att-value="request.env.user.email" readonly="readonly" required="required"/>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <div class="col-md-3 col-sm-4 text-right">
+                                        <label class="control-label" for="tf_ticket_title">Ticket Title</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+<!--                                        by default set ticket title based on user partner tag-->
+                                        <input type="text" t-att-value="request.env.user.partner_id.category_id[0].tf_ticket_title if request.env.user.partner_id.category_id else ''" class="form-control o_website_form_input"
+                                           name="tf_ticket_title" readonly="readonly" required="required"/>
+
+                                    </div>
+                                </div>
+
+<!--                                <div class="form-group form-field o_website_form_required_custom">-->
+<!--                                    <div class="col-md-3 col-sm-4 text-right">-->
+<!--                                        <label class="control-label" for="customer">Customer</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-7 col-sm-8">-->
+<!--                                        <input type="text" class="form-control o_website_form_input"-->
+<!--                                               t-att-value="partners.name" name="customer_name"/>-->
+<!--                                        <input type="hidden" class="form-control o_website_form_input" required="True"-->
+<!--                                               t-attf-value="#{partners.id}" name="customer" t-att-value="partners.id"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="form-group form-field o_website_form_required_custom">-->
+<!--                                    <div class="col-md-3 col-sm-4 text-right">-->
+<!--                                        <label class="control-label" for="email_id">Email ID</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-7 col-sm-8">-->
+<!--                                        <input type="email" class="form-control o_website_form_input" name="email_id"-->
+<!--                                               required="True"-->
+<!--                                               t-att-value="partners.email"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <div class="col-md-3 col-sm-4 text-right">
+                                        <label class="control-label" for="tf_created_by">Created By</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" t-att-value="request.env.user.name"
+                                               name="tf_created_by" readonly="readonly" required="required"/>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <div class="col-md-3 col-sm-4 text-right">
+                                        <label class="control-label" for="tpartner_name">Customer Name</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" t-att-value="request.env.user.name"
+                                               name="tpartner_name" placeholder="YOUR CUSTOMER NAME" required="required"/>
+
+                                    </div>
+                                </div>
+
+                                 <div class="form-group form-field o_website_form_required_custom"  style="display:none;">
+                                    <div class="col-md-3 col-sm-4 text-right">
+                                        <label class="control-label" for="temail_from">Customer Email</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input"
+                                               name="temail_from"/>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <div class="col-md-3 col-sm-4 text-right">
+                                        <label class="control-label" for="tref">Customer Reference/PO</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" name="tref" placeholder="YOUR REFERENCE / TICKET NUMBER / PO NUMBER" required="required"/>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <div class="col-md-3 col-sm-4 text-right">
+                                        <label class="control-label" for="serial_no">Serial No</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" name="serial_no" placeholder="DEVICE SERIAL NUMBER" required="required"/>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <div class="col-md-3 col-sm-4 text-right">
+                                        <label class="control-label" for="model_no">Model No</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" name="model_no" placeholder="DEVICE MODEL NUMBER" required="required"/>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <div class="col-md-3 col-sm-4 text-right">
+                                        <label class="control-label" for="address">State</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <select class="form-control o_website_form_input" name="sltech_state_id">
+                                            <option value="">Select State</option>
+                                            <t t-foreach="request.env['res.country.state'].sudo().search([('country_id.code', '=', 'AU')])" t-as="state">
+                                                <option t-att-value="state.id" t-esc="state.display_name"
+                                                        required="required"/>
+                                            </t>
+                                    </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <div class="col-md-3 col-sm-4 text-right">
+                                        <label class="control-label" for="fault_area">Fault Area</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" name="fault_area" placeholder="FAULT DESCRIPTION" required="required"/>
+
+                                    </div>
+                                </div>
+
+                                <!--<div class="form-group form-field o_website_form_required_custom">-->
+                                <!--<div class="col-md-3 col-sm-4 text-right">-->
+                                <!--<label class="control-label" for="phone">Phone No</label>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-7 col-sm-8">-->
+                                <!--<input type="text" class="form-control o_website_form_input" name="phone"/>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="form-group form-field o_website_form_required_custom">-->
+                                <!--<div class="col-md-3 col-sm-4 text-right">-->
+                                <!--<label class="control-label" for="category">Category</label>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-7 col-sm-8">-->
+                                <!--<input type="text" class="form-control o_website_form_input" name="category"/>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="form-group form-field o_website_form_required_custom">-->
+                                <!--<div class="col-md-3 col-sm-4 text-right">-->
+                                <!--<label class="control-label" for="ticket_title">Subject</label>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-7 col-sm-8">-->
+                                <!--<input type="subject" class="form-control o_website_form_input" name="ticket_title"/>-->
+                                <!--</div>-->
+                                <!--</div>-->
+
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <div class="col-md-3 col-sm-4 text-right">
+                                        <label class="control-label" for="description">Description</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <textarea class="form-control o_website_form_input" name="description"
+                                        placeholder="1. DEVICE MAKE &amp; MODEL:&#10;2. SITE ADDRESS:&#10;3. SITE CONTACT NAME:&#10;4. SITE CONTACT NUMBER:&#10;&#10;5. ANY SPECIAL SERVICE INSTRUCTIONS:" required="required"></textarea>
+                                    </div>
+                                </div>
+
+                                <!--<div class="form-group form-field o_website_form_required_custom">-->
+                                <!--<div class="col-md-3 col-sm-4 text-right">-->
+                                <!--<label class="control-label" for="priority">Priority</label>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-7 col-sm-8">-->
+                                <!--<select class="form-control" name="priority">-->
+                                <!--<option>Low</option>-->
+                                <!--<option>Medium</option>-->
+                                <!--<option>High</option>-->
+                                <!--</select>-->
+                                <!--</div>-->
+                                <!--</div>-->
+
+                                <div class="form-group form-field o_website_form_custom">
+                                    <div class="col-md-3 col-sm-4 text-right">
+                                        <label class="control-label" for="Documents">Documents</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="file" class="form-control o_website_form_input" name="Documents"/>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                                        <span class="btn btn-primary btn-lg o_website_form_send">Submit</span>
+                                        <span id="o_website_form_result"></span>
+                                    </div>
+                                </div>
+                            </form>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+    <record id="helpdesk_thanks_page" model="website.page">
+        <field name="name">Thanks (Service Desk)</field>
+        <field name="type">qweb</field>
+        <field name="url">/helpdesk_thanks</field>
+        <field name="website_published">True</field>
+        <field name="key">gt_helpdesk_support_ticket.helpdesk_thanks_page</field>
+        <field name="arch" type="xml">
+            <t name="Thanks (Service Desk)" t-name="gt_helpdesk_support_ticket.helpdesk_thanks_page">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="oe_structure"/>
+                        <div class="container">
+                            <h1>We received your support request.</h1>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="alert alert-success">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <h4>Support Request Recived Thank you</h4>
+                                                </td>
+                                                <td>
+                                                    <img src="/gt_helpdesk_support_ticket/static/src/img/d.png"
+                                                         style="width:80px;margin:0px 0px 15px 10px;"></img>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+
+                                    </div>
+                                    <p>
+                                        We will get back to you shortly.
+                                    </p>
+                                    <p class="mt64">
+                                        If you have an emergency, do not hesitate to contact us by phone:
+                                    </p>
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <i class="fa fa-phone"></i>
+                                            :
+                                            <span t-field="res_company.phone"/>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-envelope"></i>
+                                            :
+                                            <span t-field="res_company.email"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <t t-call="website.company_description"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+
+    <template id="website_support_ticket" name="Website Support Ticket" inherit_id="web.assets_common">
+        <xpath expr="." position="inside">
+            <!--<script type="text/javascript" src="/gt_helpdesk_support_ticket/static/src/js/script.js"></script>-->
+
+            <script type="text/javascript" src="/gt_helpdesk_support_ticket/static/src/js/website_support.js"></script>
+            <script type="text/javascript" src="/gt_helpdesk_support_ticket/static/src/js/helpdesk.js"></script>
+            <link href="/gt_helpdesk_support_ticket/static/src/css/mycss.css" rel="stylesheet" type="text/css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <!--<link href="/gt_helpdesk_support_ticket/static/src/css/style.css" rel="stylesheet" type="text/css"/>-->
+        </xpath>
+    </template>
+
+</odoo>

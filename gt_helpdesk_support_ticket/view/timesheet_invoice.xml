@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+
+        <record id="helpdesk_team_tree_views" model="ir.ui.view">
+            <field name="name">helpdesk.team.tree.views.tree</field>
+            <field name="model">helpdesk.team</field>
+            <field name="arch" type="xml">
+                <tree string="Helpedesk Team">
+                    <field name="name"/>
+                    <field name="leader" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="helpdesk_team_form_views" model="ir.ui.view">
+                <field name="name">helpdesk.team.form.View</field>
+                <field name="model">helpdesk.team</field>
+                <field name="arch" type="xml">
+                    <form string="Service Desk Team Form Views">
+                        <sheet>
+                            <group>
+                                <group>
+                                    <field name="name" placeholder="Name" required="True"/>
+                                    <field name="is_default"/>
+                                </group>
+                                <group>
+                                    <field name="leader"/>
+                                </group>
+                                <field name="help_members_line">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="login_user"/>
+                                        <field name="language"/>
+                                        <field name="last_conn"/>
+                                    </tree>
+                                </field>
+
+                            </group>
+                        </sheet>
+
+                    </form>
+                </field>
+            </record>
+
+
+
+
+
+        <record model="ir.actions.act_window" id="helpdesk_team_action">
+            <field name="name">helpdesk team actiom</field>
+            <field name="res_model">helpdesk.team</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="helpdesk_team_tree_views" />
+        </record>
+
+
+        <menuitem id="helpdesk_menu_id" name="Service Desk"/>
+        <menuitem id="helpdesk_config_menu_id" name="Configuration" parent="helpdesk_menu_id" sequence="2" groups="gt_helpdesk_support_ticket.hd_support_manager_access"/>
+        <menuitem id="helpdesk_team_menu_id" name="Service Desk Team" parent="helpdesk_config_menu_id" action="helpdesk_team_action" groups="gt_helpdesk_support_ticket.hd_support_manager_access"/>
+
+
+
+
+</data>
+</openerp>

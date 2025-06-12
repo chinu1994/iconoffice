@@ -1,0 +1,183 @@
+<odoo>
+    <data>
+
+        <record id="service_desk_paperformat_invoices" model="report.paperformat">
+            <field name="name">Service Desk Report</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <template id="service_ticket_pdf">
+            <t t-call="web.html_container">
+                <!--<t t-set="data_report_margin_top" t-value="10"/>-->
+                <!--<t t-set="data_report_header_spacing" t-value="9"/>-->
+                <t t-foreach="docs" t-as="o">
+                    <div class="article">
+                        <table style="border:1px solid black;"
+                               width="100%">
+                            <thead>
+                                <tr style="border:1px solid black;">
+                                    <th style="border:1px solid black;width:8%;">Ticket No</th>
+                                    <th style="border:1px solid black;width:10%;">Assigned To</th>
+                                    <th style="border:1px solid black;width:8%;">Product</th>
+                                    <th style="border:1px solid black;width:20%;">Create Date</th>
+                                    <th style="border:1px solid black;width:6%;">Fault Area</th>
+                                    <th style="border:1px solid black;width:6%;">SO Number</th>
+                                    <th style="border:1px solid black;width:8%;">Ref</th>
+                                    <th style="border:1px solid black;width:16%;">Customer Name</th>
+                                    <th style="border:1px solid black;width:10%;">Resolution</th>
+                                    <th style="border:1px solid black;width:6%;">Status</th>
+                                    <th style="border:1px solid black;width:10%;">Closed Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <!--<t t-foreach="set([rec.assi_to.id for rec in o.get_ticket_ids()])" t-as="tkt">-->
+                                <t t-set="ticket_invoice_line_ids" t-value="o.get_ticket_ids()"/>
+                                <t t-foreach="ticket_invoice_line_ids" t-as="tkt_inv_line">
+                                    <!--<t t-if="tkt == ticket.assi_to.id">-->
+                                    <tr style="border:1px solid black;">
+                                        <td style="border:1px solid black;">
+                                            <t t-esc="tkt_inv_line.helpdesk_inv_ids.ticket_no"/>
+                                        </td>
+                                        <td style="border:1px solid black;">
+                                            <t t-esc="tkt_inv_line.assi_to.name"/>
+                                        </td>
+                                        <td style="border:1px solid black;">
+                                            <t t-esc="tkt_inv_line.product_id.name"/>
+                                        </td>
+                                        <td style="border:1px solid black;">
+                                            <t t-if="tkt_inv_line.ticket_create_date">
+                                                <t t-esc="str(tkt_inv_line.ticket_create_date).split('.')[0]"/>
+                                            </t>
+                                        </td>
+                                        <td style="border:1px solid black;">
+                                            <t t-esc="tkt_inv_line.ticket_fault_area"/>
+                                        </td>
+
+                                        <td style="border:1px solid black;">
+                                            <t t-esc="tkt_inv_line.serial_no"/>
+                                        </td>
+                                        <td style="border:1px solid black;">
+                                            <t t-esc="tkt_inv_line.tref"/>
+                                        </td>
+                                        <td style="border:1px solid black;">
+                                            <t t-esc="tkt_inv_line.tpartner_name"/>
+                                        </td>
+                                        <td style="border:1px solid black;">
+                                            <t t-esc="tkt_inv_line.resolution"/>
+                                        </td>
+                                        <td style="border:1px solid black;">
+                                            <t t-if="tkt_inv_line">
+                                                <t t-esc="[rec for rec in tkt_inv_line.helpdesk_inv_ids._fields['state'].selection if rec[0] == tkt_inv_line.helpdesk_inv_ids.state][0][1]"/>
+                                            </t>
+                                        </td>
+                                        <td style="border:1px solid black;">
+                                            <t t-if="tkt_inv_line.close_date">
+                                                <t t-esc="str(tkt_inv_line.close_date).split('.')[0]"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <!--</t>-->
+                                </t>
+                                <!--</t>-->
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+        <report
+                id="service_ticket_icon_pdf"
+                model="helpdesk.ticket.report"
+                string="Print To PDF"
+                report_type="qweb-pdf"
+                name="custom_invoice.service_ticket_pdf"
+                file="custom_invoice.service_ticket_pdf"
+        />
+        <record id="service_ticket_icon_pdf" model="ir.actions.report">
+            <field name="paperformat_id" eval="ref('custom_invoice.service_desk_paperformat_invoices')"/>
+        </record>
+
+        <report
+                id="service_ticket_icon_xlsx"
+                model="helpdesk.ticket"
+                string="Print to XLSX"
+                report_type="xlsx"
+                name="custom_invoice.service_ticket_xlsx"
+                file="custom_invoice.service_ticket_xlsx"
+                attachment_use="False"
+                menu="False"
+        />
+
+        <record id="service_ticket_report_xlsx_form" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.report.form</field>
+            <field name="model">helpdesk.ticket.report</field>
+            <field name="arch" type="xml">
+                <form string="Service Desk Report" create="false" edit="false">
+                    <group>
+                        <group>
+                            <field name="type"/>
+                            <field name="from_date" attrs="{'invisible': [('type', '!=', 'custom')]}"/>
+                            <field name="to_date" attrs="{'invisible': [('type', '!=', 'custom')]}"/>
+                            <field name="product_id" options="{'no_open': True, 'no_create': True}" string="Product"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <button name="generate_report_pdf" type="object" string="Download PDF"/>
+                            <button name="generate_report_xlsx" type="object" string="Download XLSX"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Service Tickets">
+                            <field name="ticket_inv_line_ids" readonly="1"
+                                   options='{"no_open": True, "no_quick_create": True}'>
+                                <tree string="ServiceDesk Invoice Line">
+                                    <field name="helpdesk_inv_ids"/>
+                                    <field name="assi_to"/>
+                                    <field name="product_id"/>
+                                    <field name="ticket_create_date"/>
+                                    <field name="ticket_fault_area"/>
+                                    <field name="serial_no"/>
+                                    <field name="tref"/>
+                                    <field name="tpartner_name"/>
+                                    <field name="resolution"/>
+                                    <field name="state"/>
+                                    <field name="close_date"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="service_ticket_report_xlsx_action">
+            <field name="name">Service Desk Report</field>
+            <field name="res_model">helpdesk.ticket.report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="context">{'default_name':'Reports'}</field>
+        </record>
+
+        <menuitem id="helpdesk_ticket_pivot_sub"
+                  name="Service Desk Report"
+                  parent="gt_helpdesk_support_ticket.helpdesk_ticket_report_id"
+                  action="service_ticket_report_xlsx_action"
+                  groups="base.group_system"/>
+    </data>
+</odoo>

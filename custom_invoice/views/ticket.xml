@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <report
+        id="ticket_icon_xlsx"
+        model="account.invoice"
+        string="Print to XLSX"
+        report_type="xlsx"
+        name="custom_invoice.ticket_xlsx"
+        file="custom_invoice.ticket_xlsx"
+        attachment_use="False"
+        menu="True"
+    />
+    </data>
+</odoo>

@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+
+        <record id="sltech_view_account_payment_tree" model="ir.ui.view">
+            <field name="name">account.payment.tree.with.onboarding</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="communication"/>
+                </field>
+                <field name="payment_method_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+
+        <report id="helpdesk_reports"
+                string="Service Desk"
+                model="helpdesk.ticket"
+                report_type="qweb-pdf"
+                name="gt_helpdesk_support_ticket.Helpdesk_report_template"
+                file="gt_helpdesk_support_ticket.Helpdesk_Report"
+        />
+
+
+
+
+    </data>
+</openerp>

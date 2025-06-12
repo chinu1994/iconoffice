@@ -1,0 +1,1119 @@
+@mixin night-border-animation() {
+    background: repeating-linear-gradient(to right, $border 0%, $border 100%) left bottom transparent no-repeat;
+    background-size: 100% 1px;
+    background-position: center bottom;
+    -webkit-animation: line-animate .5s 1;
+    -moz-animation: line-animate .5s 1;
+    animation: line-animate .5s 1;
+}
+
+// Function
+@mixin night-baner-layout(){
+    // Banner Layout [Start]
+    &.o_has_banner{
+        .o_onboarding_container{
+            .o_onboarding{
+                .o_onboarding_wrap{
+                    background-image: none;
+                    .o_onboarding_steps{
+                        .o_onboarding_step{
+                            .o_onboarding_progress{
+                                background-color: $night-border-color !important;
+                            }
+                            .o_onboarding_dot{
+                                border: 1px solid;
+                                border-radius: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // Banner Layout [Start]
+}
+@mixin night-list-layout(){
+    // list view [Start]
+    .table-responsive{
+        .o_list_view{
+            @include Bootstarap-color;
+            thead{
+                tr {
+                    & > th{
+                        background-color: transparent !important;
+                    }
+                }
+            }
+            tbody{
+                tr{
+                    background-color: transparent !important;
+                    & > td, & > th{
+                        background-color: transparent !important;
+                    }
+                }
+            }
+            tfoot{
+                background-color: transparent !important;
+                tr {
+                    background-color: transparent !important;
+                    & > td{
+                        background-color: transparent !important;
+                    }
+                }
+            }
+            input, textarea, select, .o_dropdown_button {
+                box-shadow: 0px 1px 0px 0px #c3c3c3, 0 1px 0 #d8d4d4 !important;
+            }
+        }
+    }
+    // list view [Stop]
+}
+@mixin night-activity-layout(){
+    .o_activity_view{
+        .table-bordered{
+            tbody{
+                & > .o_data_row{
+                    & > .o_activity_summary_cell{
+                        &.overdue *{
+                            background-color: $night-overdue !important;
+                        }
+                        &.today *{
+                            background-color: $night-today !important;
+                            color: $white !important;
+                        }
+                        &.planned *{
+                            background-color: $night-planned !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@mixin night-graph-layout(){
+    // Graph View [Start]
+    &.o_graph{
+        .o_graph_container{
+            .o_graph_svg_container{
+                .nvd3-svg{
+                    text{
+                        fill: $night-color;
+                    }
+                }
+            }
+        }
+    }
+    // Graph View [Stop]
+}
+@mixin night-pivot-layout(){
+    //pivot [start]
+    &.o_pivot {
+        table {
+            border-color: $night-background-color !important;
+            thead {
+                tr {
+                    th {
+                        &:last-child {
+                            box-shadow: inset -1px 0px $border;
+                        }
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td {
+                        &:last-child {
+                            box-shadow: inset -1px 0px $border;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //pivot [stop]
+}
+@mixin night-calendar-layout(){
+    .o_calendar_container{
+        .o_calendar_view{
+            .o_calendar_widget{
+                .fc-view-container{
+                    table{
+                        .fc-body{
+                            .fc-widget-content{
+                                .fc-content-skeleton{
+                                    background-color: transparent !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@mixin mobile-search() {
+    .o_mobile_search_header{
+        background-color: $brand-secondary !important;
+        & > span.o_mobile_search_close, span.o_mobile_search_clear_facets{
+            background-color: $brand-secondary !important;
+            & *{
+                background-color: $brand-secondary !important;
+            }
+        }
+    }
+    .o_searchview_input_container{
+        .o_searchview_facet{
+            background-color: transparent !important;
+            border-radius: 0;
+        }
+    }
+    .o_searchview_input_container {
+        .o_searchview_facet {
+            .o_searchview_facet_label {
+                border: 1px solid;
+            }
+            .o_facet_remove {
+                border: 1px solid;
+                border-left: 0;
+            }
+        }
+    }
+    .o_mobile_search_filter {
+        .o_dropdown {
+            .o_dropdown_menu {
+                .dropdown-item {
+                    &:before {
+                        border-color: $night-font;
+                        color: $night-font;
+                    }
+                }
+            }
+            .o_dropdown_toggler_btn {
+                border: 1px solid;
+            }
+        }
+    }
+}
+@mixin night-kanban-layout(){
+    // Kanban View [start]
+    .o_kanban_view{
+        @include Bootstarap-color;
+        .o_kanban_record{
+            .o_dropdown_kanban{
+                & > a{
+                    border: 0;
+                }
+            }
+            .o_kanban_image, .o_kanban_image_inner_pic{
+                background-color: $white !important;
+            }
+            .o_kanban_card_header{
+                .o_kanban_manage_button_section{
+                    .o_kanban_manage_toggle_button{
+                        border: none !important;
+                    }
+                }
+            }
+            .o_progress{
+                & > div.o_progressbar_complete{
+                    background-color: $brand-secondary !important;
+                }
+            }
+            .o_tag_color_1,.o_tag_color_2,.o_tag_color_3,.o_tag_color_4,.o_tag_color_5,.o_tag_color_6,.o_tag_color_7,.o_tag_color_8,.o_tag_color_9,.o_tag_color_10,.o_tag_color_11{
+                background-color: transparent !important;
+                color: $night-color !important;
+            }
+        }
+        .o_kanban_examples, .o_kanban_manage_toggle_button{
+            border: 0;
+        }
+        & > div.o_view_nocontent{
+            background-color: transparent !important;
+            & > div.o_nocontent_help{
+                background-color: transparent !important;
+                & > p.o_view_nocontent_smiling_face, & > p.oe_view_nocontent_alias{
+                    background-color: transparent !important;
+                }
+            }
+        }
+        .o_kanban_mobile_tabs {
+            border-bottom: 1px solid $border;
+            .o_kanban_mobile_tab {
+                background-color: transparent !important;
+            }
+        }
+    }
+    // Kanban View [Stop]
+}
+
+@mixin night-form-layout(){
+    .o_form_view{
+        .o_form_sheet_bg{
+            .o_form_statusbar{
+                .o_statusbar_status{
+                    button{
+                        color: $night-background-color !important;
+                        background-color: $night-color !important;
+                        &:before{
+                            border-color: $night-background-color transparent $night-background-color transparent;
+                        }
+                        &:after{
+                            border-color: transparent $night-background-color transparent $night-background-color;
+                        }
+                        &.btn-secondary{
+                            background-color: $border !important;
+                            color: $white !important;
+                        }
+                        &.btn-primary{
+                            background-color: $night-disable !important;
+                            color: $white !important;
+                        }
+                        &.disable{
+                            cursor: not-allowed;
+                        }
+                    }
+                }
+            }
+            .o_form_sheet{
+                .o_cu_panel{
+                    .o_field_image{
+                        & > img{
+                            background-color: $white !important;
+                        }
+                    }
+                    .o_full.oe_button_box{
+                        .o_dropdown_more{
+                            & > button{
+                                border: 1px solid;
+                            }
+                        }
+                    }
+                }
+                .o_notebook{
+                    .panel-ul{
+                        & > li{
+                            &:before{
+                                border-bottom-color: $night-background-color !important;
+                            }
+                            & > a{
+                                background-color: rgba(225,255,225,0.1) !important;
+                                &:before{
+                                    color: $night-disable !important;
+                                }
+                            }
+                        }
+                        .ace-view-editor{
+                            & *{
+                                background-color: transparent !important;
+                            }
+                        }
+                    }
+                }
+                &.o_timesheet_plan_content{
+                    background-color: red !important;
+                    .o_timesheet_plan_badge{
+                        .badge-pill{
+                            & > a{
+                                background-color: $brand-secondary !important;
+                            }
+                        }
+                    }
+                }
+            }
+            @include Bootstarap-color;
+        }
+        .o_field_x2many_list_row_add{
+            & > a{
+                padding-top: 3px !important;
+                padding-bottom: 3px !important;
+            }
+        }
+        & > div.toggle_btn_chatter:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color):not(.fc-time-grid-event):not(.fc-bg):not(.color_filter):not(.note-dimension-picker-mousecatcher){
+            background-color: $night-font !important;
+            border-color: $night-bg-color !important;
+            & > i.fa.fa-comments{
+                background-color: $night-font !important;
+                border-color: $night-bg-color !important;
+                &:before{
+                    color: $night-bg-color !important;
+                }
+            }
+        }
+        .o_chatter.oe_chatter{
+            .o_chatter_topbar{
+                button.btn, .o_followers.o_field_widget{
+                    border: 0;
+                }
+            }
+            .o_mail_activity{
+                .o_thread_message{
+                    .o_thread_message_sidebar{
+                        .o_avatar_icon{
+                            &.bg-success-full{
+                                background-color: $text-success !important;
+                            }
+                            &.bg-warning-full{
+                                background-color: $night-today !important;
+                                &:before{
+                                    color: $white !important;
+                                }
+                            }
+                            &.bg-danger-full{
+                                background-color: $night-overdue !important;
+                            }
+                        }
+                    }
+                    .o_thread_message_core{
+                        .o_mail_info{
+                            .o_activity_color_planned{
+                                color: $night-planned !important;
+                            }
+                            .o_activity_color_today{
+                                color: $night-today !important;
+                            }
+                            .o_activity_color_overdue{
+                                color: $night-overdue !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &.o_base_settings{
+            .o_setting_container{
+                .settings{
+                    & > .app_settings_block{
+                        h2{
+                            &:before{
+                                border-color: $brand-secondary;
+                                background-color: $brand-secondary;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin Bootstarap-color(){
+    .text-info{
+        & *:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color){
+            color: $text-info !important;
+        }
+    }
+    .text-success{
+        & *:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color){
+            color: $text-success !important;
+        }
+    }
+    .text-danger{
+        & *:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color){
+            color: $night-text-danger !important;
+        }
+    }
+
+    .text-warning{
+        & *:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color){
+            color: $text-warning !important;
+        }
+    }
+    .text-primary{
+        & *:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color){
+            color: $text-primary !important;
+        }
+    }
+    .text-muted{
+        & *:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color){
+            color: $night-text-muted !important;
+        }
+    }
+    .btn.btn-success, .btn-success{
+        background-color: $night-success !important;
+        border-color: $night-success-border !important;
+    }
+    .btn.btn-info, .btn-info{
+        background-color: $night-info !important;
+        border-color: $night-info-border !important;
+    }
+    .btn.btn-warning, .btn-warning{
+        background-color: $night-warning !important;
+        border-color: $night-warning-border !important;
+    }
+    .btn.btn-danger, .btn-danger{
+        background-color: $night-danger !important;
+        border-color: $night-danger-border !important;
+    }
+    .o_tag_color_1{
+        background-color: $night-tag1 !important;
+        color: $black !important;
+        & *{
+            background-color: $night-tag1 !important;
+            color: $black !important;
+        }
+    }
+    .o_tag_color_2{
+        background-color: $night-tag2 !important;
+        color: $black !important;
+        & *{
+            background-color: $night-tag2 !important;
+            color: $black !important;
+        }
+    }
+    .o_tag_color_3{
+        background-color: $night-tag3 !important;
+        color: $black !important;
+        & *{
+            background-color: $night-tag3 !important;
+            color: $black !important;
+        }
+    }
+    .o_tag_color_4{
+        background-color: $night-tag4 !important;
+        color: $black !important;
+        & *{
+            background-color: $night-tag4 !important;
+            color: $black !important;
+        }
+    }
+    .o_tag_color_5{
+        background-color: $night-tag5 !important;
+        color: $black !important;
+        & *{
+            background-color: $night-tag5 !important;
+            color: $black !important;
+        }
+    }
+    .o_tag_color_6{
+        background-color: $night-tag6 !important;
+        color: $black !important;
+        & *{
+            background-color: $night-tag6 !important;
+            color: $black !important;
+        }
+    }
+    .o_tag_color_7{
+        background-color: $night-tag7 !important;
+        color: $black !important;
+        & *{
+            background-color: $night-tag7 !important;
+            color: $black !important;
+        }
+    }
+    .o_tag_color_8{
+        background-color: $night-tag8 !important;
+        color: $black !important;
+        & *{
+            background-color: $night-tag8 !important;
+            color: $black !important;
+        }
+    }
+    .o_tag_color_9{
+        background-color: $night-tag9 !important;
+        color: $black !important;
+        & *{
+            background-color: $night-tag9 !important;
+            color: $black !important;
+        }
+    }
+    .o_tag_color_10{
+        background-color: $night-tag10 !important;
+        color: $black !important;
+        & *{
+            background-color: $night-tag10 !important;
+            color: $black !important;
+        }
+    }
+    .o_tag_color_11{
+        background-color: $night-tag11 !important;
+        color: $black !important;
+        & *{
+            background-color: $night-tag11 !important;
+            color: $black !important;
+        }
+    }
+}
+
+// Function
+html{
+    & > body.o_web_client.oe_night_mode{
+        & *:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color):not(.fc-time-grid-event):not(.fc-bg):not(.color_filter):not(.note-dimension-picker-mousecatcher):not(.o_sidebar_drw):not(.o_favorite):not(.o_progressbar_complete):not(.o_web_accesskey_overlay):not(.nav-link){
+            background-color: $night-background-color !important;
+            color: $night-color !important;
+            border-color: $night-border-color !important;
+        }
+        & > div.oe_cu_indicator_warning:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color):not(.fc-time-grid-event):not(.fc-bg):not(.color_filter):not(.note-dimension-picker-mousecatcher):not(.o_sidebar_drw):not(.oe_hr_attendance_status_red){
+            background-color: $border !important;
+            & > .fa.fa-refresh {
+                background-color: $border !important;
+            }
+        }
+        .o_reward:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color):not(.fc-time-grid-event):not(.fc-bg):not(.color_filter):not(.note-dimension-picker-mousecatcher){
+            background-color: transparent !important;
+            & *:not(.o_reward_msg){
+                background-color: transparent !important;
+            }
+        }
+        header{
+            nav.o_main_navbar{
+                border-right: 1px solid $night-border-color !important;
+                & > div.oe_menu_layout.oe_theme_menu_layout{
+                    div.o_menu_apps{
+                        .main_menu{
+                            background-image: none !important;
+                            .o_search_menu{
+                                box-shadow: $night-box-shadow !important;
+                            }
+                        }
+                    }
+                }
+                .o_toggle_menu{
+                    li{
+                        & > ul.o_menu_systray{
+                            & > .o_switch_company_menu{
+                                & > a{
+                                    & > span.oe_topbar_name{
+                                        &:before{
+                                            color: $night-color !important;
+                                        }
+                                    }
+                                }
+                            }
+                            &.show{
+                                &:before{
+                                    background-color: $night-color !important;
+                                    opacity: 0.3;
+                                }
+                            }
+                        }
+                    }
+                }
+                & > ul#av_full_view{
+                    background-color: transparent !important;
+                    & > i{
+                        background-color: transparent !important;
+                    }
+                }
+            }
+            .oe_menu_layout.oe_theme_menu_layout{
+                a#menu_toggle{
+                    .icon{
+                        &:after, &:before{
+                            border-color: $night-background-color !important;
+                        }
+                    }
+                }
+            }
+        }
+        .fa:before{
+            color: $night-color !important;
+        }
+        .btn.btn-primary{
+            background-color: $brand-secondary !important;
+            border-color: $brand-secondary !important;
+            & > *:not(.btn-primary):not(.oe_night_color):not(.fc-time-grid-event):not(.fc-bg):not(.color_filter){
+                background-color: transparent !important;
+                color: $white !important;
+            }
+            & > strong, span{
+                &:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color):not(.fc-time-grid-event):not(.fc-bg):not(.color_filter):not(.note-dimension-picker-mousecatcher):not(.o_sidebar_drw):not(.o_favorite):not(.o_progressbar_complete):not(.o_web_accesskey_overlay):not(.nav-link){
+                    background-color: transparent !important;
+                }
+            }
+        }
+        .o_label_help{
+            &:after{
+                color: $tooltip !important;
+            }
+        }
+        &.open_customize_theme {
+            .modal.o_technical_modal {
+                .modal-dialog {
+                    .modal-content {
+                        .uc_dashboard_image {
+                            border-right: 1px solid $night-border-color;
+                        }
+                        .o_cusomize_theme {
+                            .o_right_panel {
+                                .o_control_form {
+                                    .nav.nav-tabs {
+                                        .oe_teb_view {
+                                            nav-link.show {
+                                                background-color: $brand-secondary;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &.o_ui_blocked{
+            .blockUI.blockMsg.blockPage:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color):not(.fc-time-grid-event):not(.fc-bg):not(.color_filter):not(.note-dimension-picker-mousecatcher){
+                background-color: transparent !important;
+                .oe_blockui_spin_container {
+                    .oe_blockui_spin {
+                        & > svg {
+                            & > g:nth-child(1), g:nth-child(4) {
+                                & > rect {
+                                    fill: $night-font !important;
+                                }
+                            }
+                            & > g:nth-child(2), g:nth-child(3) {
+                                & > rect {
+                                    fill: $brand-secondary !important;
+                                }
+                            }
+                        }
+                    }
+                }
+                & *{
+                    background-color: transparent !important;
+                }
+            }
+        }
+        &.o_fullscreen{
+            header{
+                .o_main_navbar{
+                    left: -50px;
+                }
+                #av_full_view, .oe_full_button{
+                    display: none;
+                }
+            }
+        }
+        .o_main .o_main_content.ad_rightbar, &.modal-open .modal-dialog .modal-content, .modal-dialog .modal-content{
+            .custom-checkbox{
+                input[type="checkbox"]{
+                    & + label{
+                        &:before{
+                            background-color: transparent !important;
+                        }
+                    }
+                    &:checked{
+                        & + label{
+                            &:after{
+                                background-color: transparent !important;
+                                color: $night-bg-color !important;
+                            }
+                            &:before{
+                                background-color: $night-color !important;
+                            }
+                        }
+                    }
+                }
+            }
+            .custom-radio{
+                .o_radio_input{
+                    & + label{
+                        &:before{
+                            border-color: $night-font;
+                        }
+                    }
+                }
+            }
+            .o_modal_header{
+                .o_searchview{
+                    .o_searchview_input_container{
+                        .o_searchview_facet{
+                            border: 1px solid;
+                            .o_facet_values{
+                                border: 0;
+                            }
+                            .o_searchview_facet_label{
+                                border-right: 1px solid;
+                            }
+                        }
+                        .o_searchview_autocomplete:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color){
+                            & > li{
+                                &.o-selection-focus{
+                                    background-color: rgba(78, 104, 138, 0.44) !important;
+                                    & *{
+                                        background-color: rgba(78, 104, 138, 0.44) !important;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .o_search_rec_ul{
+                        & > .o_searchview_facet{
+                            border: 1px solid;
+                            .o_searchview_facet_label{
+                                border-right: 1px solid;
+                            }
+                            .o_facet_values{
+                                border: 0;
+                            }
+                        }
+                    }
+                    &.active{
+                        @include night-border-animation();
+                    }
+                }
+            }
+        }
+        & > .o_main:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color):not(.fc-time-grid-event):not(.fc-bg):not(.color_filter):not(.note-dimension-picker-mousecatcher):not(.o_sidebar_drw):not(.o_favorite):not(.o_progressbar_complete):not(.o_web_accesskey_overlay):not(.nav-link) {
+            & > main.o_main_content.ad_rightbar {
+                .o_control_panel {
+                    & > div.o_cp_searchview {
+                        & > div.o_searchview{
+                            .o_searchview_more{
+                                background-image: url('/allure_backend_theme/static/src/img/find_night_mode.svg');
+                                bottom: 2px;
+                            }
+                            & > div.o_searchview_input_container{
+                                .o_searchview_facet{
+                                    border: 1px solid;
+                                    .o_facet_values{
+                                        border: 0;
+                                    }
+                                    .o_searchview_facet_label{
+                                        border-right: 1px solid;
+                                    }
+                                }
+                                & > div.o_searchview_autocomplete:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color){
+                                    & > li{
+                                        &.o-selection-focus{
+                                            background-color: rgba(78, 104, 138, 0.44) !important;
+                                            & *{
+                                                background-color: rgba(78, 104, 138, 0.44) !important;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .o_search_rec_ul{
+                                & > .o_searchview_facet{
+                                    border: 1px solid;
+                                    .o_searchview_facet_label{
+                                        border-right: 1px solid;
+                                    }
+                                    .o_facet_values{
+                                        border: 0;
+                                    }
+                                }
+                            }
+                            & > .o_search_recs{
+                                right: 0px;
+                            }
+                            &.active{
+                                @include night-border-animation();
+                            }
+                            .o_mobile_search:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color):not(.fc-time-grid-event){
+                                @include mobile-search();
+                            }
+                        }
+                    }
+                    ol.breadcrumb {
+                        & > li.breadcrumb-item {
+                            &:before {
+                                color: $night-color;
+                            }
+                        }
+                    }
+                    .o_search_options{
+                        .ad_has_options{
+                            .o_dropdown{
+                                .dropdown-menu{
+                                    .o_menu_item{
+                                        .dropdown-item{
+                                            &:before{
+                                                color: $night-color;
+                                                border-color: $night-color;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    & > .o_cp_sidebar{
+                        .btn-group{
+                            & > span.o_sidebar_drw{
+                                background-color: $night-font !important;
+                                border-color: $night-bg-color !important;
+                                &:before{
+                                    color: $night-bg-color !important;
+                                }
+                            }
+                        }
+                    }
+                    .ad_bottom_panel{
+                        .o_cp_left{
+                            .btn-primary{
+                                background-color: $brand-secondary !important;
+                                border-color: $brand-secondary !important;
+                            }
+                        }
+                        .o_cp_right{
+                            nav.o_cp_pager {
+                                .o_calendar_button_today {
+                                    .o_calendar_text {
+                                        background-color: transparent !important;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                & > div.o_content{
+                    .o_view_controller {
+                        @include night-baner-layout;
+                        @include night-list-layout;
+                        @include night-graph-layout;
+                        @include night-pivot-layout;
+                        @include night-calendar-layout;
+                        @include night-kanban-layout;
+                        @include night-form-layout;
+                        @include Bootstarap-color;
+                        @include night-activity-layout;
+                        .o_required_modifier{
+                            .o_input{
+                                box-shadow: 0px 1px 0px 0px #c3c3c3, 0 1px 0 #d8d4d4 !important;
+                            }
+                        }
+                        .o_form_uri:first-line, .oe_link, .btn-link {
+                            color: $link !important;
+                            border: 0;
+                        }
+                        .o_view_nocontent ,.o_view_nocontent *{
+                            background-color: transparent !important;
+                        }
+                        .oe_hr_attendance_status_red{
+                            &:before{
+                                color: $night-overdue !important;
+                            }
+                        }
+                        .oe_hr_attendance_status_green{
+                            &:before{
+                                color: $night-planned !important;
+                            }
+                        }
+                        .o_chatter_attachment_form{
+                            .btn{
+                                border: 0;
+                            }
+                        }
+                    }
+                    div.o_hr_attendance_kiosk_mode_container.o_home_menu_background {
+                        & > div.o_hr_attendance_kiosk_mode:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color){
+                            background-color: $night-font !important;
+                            color: $night-bg-color !important;
+                            & > h1, & > h3, & > h2, & > div{
+                                background-color: transparent !important;
+                                color: $night-bg-color !important;
+                                & > b, & > small{
+                                    background-color: transparent !important;
+                                    color: $night-bg-color !important;
+                                }
+                            }
+                            & > .o_hr_attendance_kiosk_welcome_row{
+                                & > div{
+                                    background-color: transparent !important;
+                                    & > img, & > h5, & > h3{
+                                        background-color: transparent !important;
+                                        color: $night-bg-color !important;
+                                        & > i{
+                                            background-color: transparent !important;
+                                            color: $night-bg-color !important;
+                                        }
+                                    }
+                                }
+                            }
+                            &  > .o_hr_attendance_kiosk_company_image{
+                                background-color: transparent !important;
+                            }
+                            & > .o_hr_attendance_sign_in_out_icon{
+                                background-color: transparent !important;
+                                color: $night-bg-color !important;
+                                &:before{
+                                    color: $night-bg-color !important;
+                                }
+                            }
+                            & > div.o_hr_attendance_user_badge.o_home_menu_background{
+                                background: $brand-secondary !important;
+                            }
+                        }
+                    }
+                    .o_web_settings_dashboard{
+                        .form-row{
+                            .o_web_settings_dashboard_col{
+                                & > div{
+                                    border: 1px solid $border;
+                                    margin: 5px;
+                                }
+                            }
+                        }
+                        .o_web_settings_dashboard_invitations {
+                            border: 0 !important;
+                            & > .text-center , & > .o_web_settings_dashboard_invitation_form , & > .o_web_settings_dashboard_pending_users {
+                                border: 1px solid;
+                                margin-bottom: 5px;
+                            }
+                        }
+                    }
+                    .o_mail_discuss{
+                        .o_composer_send{
+                            .o_composer_button_send{
+                                background-color: transparent !important;
+                                &:before{
+                                    color: $night-font;
+                                }
+                            }
+                        }
+                        .o_mail_emoji_container{
+                            .o_mail_emoji{
+                                border: 0;
+                            }
+                        }
+                        &:not(.ad_chat){
+                            .o_mail_discuss_mobile_mailboxes_buttons{
+                                button{
+                                    background-color: transparent !important;
+                                    border-color: $night-border-color !important;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.ad_open_search{
+                    .o_search_options{
+                        .ad_has_options{
+                            & > .o_dropdown.ad_active{
+                                .o_dropdown_toggler_btn{
+                                    @include night-border-animation();
+                                }
+                            }
+                        }
+                    }
+                }
+                &:before{
+                    background-color: $night-color !important;
+                    opacity: 0.3;
+                }
+            }
+        }
+        & > div.message-box.animated.fadeIn#mb-signout{
+            background: rgba($night-color, .3) !important;
+        }
+        // Model View
+        & > div.modal.o_technical_modal.show[role="dialog"]:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color):not(.fc-time-grid-event):not(.fc-bg):not(.color_filter):not(.note-dimension-picker-mousecatcher):not(.o_sidebar_drw):not(.o_favorite):not(.o_progressbar_complete):not(.o_web_accesskey_overlay):not(.nav-link){
+            background-color: rgba(225,255,225,0.1) !important;
+            .modal-dialog{
+                background-color: transparent !important;
+                .modal-content{
+                    .modal-body{
+                        @include mobile-search();
+                        .o_view_controller{
+                            @include night-form-layout;
+                        }
+                    }
+                }
+            }
+        }
+        // Checkbox
+        .custom-checkbox{
+            .custom-control-label{
+                &:before{
+                    border-color: $night-color !important;
+                }
+            }
+        }
+        // Base menu[start]
+        &.oe_base_menu{
+            header{
+                nav.o_main_navbar{
+                    border-bottom: 1px solid;
+                    div#o_menu_apps.o_menu_apps{
+                        .main_menu{
+                            background: $night-background-color;
+                            .o_search_menu{
+                                box-shadow: $night-box-shadow !important;
+                            }
+                        }
+                    }
+                    a#menu_toggle{
+                        .icon{
+                            &:after, &:before{
+                                border-color: $night-background-color !important;
+                            }
+                        }
+                    }
+                    .o_mail_systray_item{
+                        .o_mail_systray_dropdown{
+                            .o_mail_systray_dropdown_top{
+                                .btn{
+                                    border: 0;
+                                    &.active{
+                                        @include border-animation();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    &:not(.oe_favorite_view){
+                        border-right: 0 !important;
+                    }
+                }
+            }
+        }
+        & > header{
+            nav.o_main_navbar{
+                div#o_menu_apps.o_menu_apps{
+                    .main_menu{
+                        & > .oe_apps_menu{
+                            & > a.menuitem_data.o_app, & > a.menuitem_data.menu_items{
+                                &:hover, &.active {
+                                    background-color: rgba(78, 104, 138, 0.44) !important;
+                                    & > img{
+                                        background-color: transparent !important;
+                                    }
+                                }
+                                &.ui-draggable-dragging{
+                                    &:hover, &.active {
+                                        background-color: transparent !important;
+                                        & > img{
+                                            background-color: transparent !important;
+                                        }
+                                    }
+                                }
+                                & > .o_menuitem_parents, & > .o_menuitem_child{
+                                    background-color: transparent !important;
+                                }
+                            }
+                        }
+                    }
+                }
+                .o_mail_systray_item{
+                    .o_mail_systray_dropdown{
+                        .o_mail_systray_dropdown_top, .o_mail_systray_dropdown_items{
+                            .btn{
+                                border: 0;
+                                &.active{
+                                    @include border-animation();
+                                }
+                            }
+                        }
+                    }
+                }
+                .o_menu_sections{
+                    & > li{
+                        .dropdown-menu{
+                            box-shadow: none;
+                        }
+                    }
+                }
+            }
+        }
+        span.badge.badge-pill:not(.minicolors-swatch-color):not(.minicolors-grid-inner):not(.btn-primary):not(.oe_night_color):not(.fc-time-grid-event):not(.fc-bg):not(.color_filter):not(.oe_hr_attendance_status_red){
+            background-color: $brand-secondary !important;
+            color: $night-font !important;
+            & > i{
+                background-color: transparent !important;
+            }
+        }
+        // Base menu[Stop]
+    }
+}

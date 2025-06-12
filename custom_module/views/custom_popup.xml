@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="custom_view_popup" model="ir.ui.view">
+            <field name="name">custom.popup.View</field>
+            <field name="model">custom.popup</field>
+            <field name="arch" type="xml">
+                <form>
+                    <span>Are you sure!</span>
+                    <field name="email_send_count" invisible="1"/>
+                    <br/>
+                    <span attrs="{'invisible': [('email_send_count', '=', 1)]}">You want to send email <field name="email_send_count_char" readonly="1"/> time!</span>
+                    <span attrs="{'invisible': [('email_send_count', '!=', 1)]}">You want to send email!</span>
+                    <footer>
+                        <button name="action_ok" string="Ok" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,433 @@
+<odoo>
+    <data>
+        <template id="brand_promotion" inherit_id="website_sale.brand_promotion">
+            <xpath expr="//div[hasclass('o_brand_promotion')]" position="replace">
+                <div class="o_brand_promotion">
+                </div>
+            </xpath>
+        </template>
+        <template id="qwerty">
+            google-site-verification: googlebabf6894e1562181.html
+        </template>
+
+    </data>
+
+    <data noupdate="0">
+        <record id="portal.mail_template_data_portal_welcome" model="mail.template">
+            <field name="name">Portal: new user</field>
+            <field name="model_id" ref="portal.model_portal_wizard_user"/>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <field name="subject">Your Odoo account at ${object.user_id.company_id.name}</field>
+            <field name="email_to">${object.user_id.email_formatted | safe}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0"
+                       style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                   style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                                <tbody>
+                                    <!-- HEADER -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="middle">
+                                                        <span style="font-size: 10px;">Your Account</span>
+                                                        <br/>
+                                                        <span style="font-size: 20px; font-weight: bold;">
+                                                            ${object.user_id.name}
+                                                        </span>
+                                                    </td>
+                                                    <td valign="middle" align="right">
+                                                        <img src="/logo.png?company=${object.user_id.company_id.id}"
+                                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                                             alt="${object.user_id.company_id.name}"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:center;">
+                                                        <hr width="100%"
+                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- CONTENT -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="top" style="font-size: 13px;">
+                                                        <div>
+                                                            Hi,
+                                                            <br/>
+                                                            <br/>
+                                                            You have been given access to
+                                                            ${object.user_id.company_id.name}'s portal.
+                                                            <br/>
+                                                            Your login account data is:
+                                                            <ul>
+                                                                <li>Username: ${object.user_id.login or ''}</li>
+                                                                <li>Portal:
+                                                                    <a href="${'portal_url' in ctx and ctx['portal_url'] or ''}">
+                                                                        ${'portal_url' in ctx and ctx['portal_url'] or ''}
+                                                                    </a>
+                                                                </li>
+                                                                <!--<li>Database:-->
+                                                                <!--${'dbname' in ctx and ctx['dbname'] or ''}-->
+                                                                <!--</li>-->
+                                                            </ul>
+                                                            You can set or change your password via the following url:
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="${object.user_id.signup_url}">
+                                                                        ${object.user_id.signup_url}
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                            ${object.wizard_id.welcome_message or ''}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align:center;">
+                                                        <hr width="100%"
+                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- FOOTER -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="middle" align="left">
+                                                        ${object.user_id.company_id.name}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td valign="middle" align="left" style="opacity: 0.7;">
+                                                        ${object.user_id.company_id.phone}
+                                                        % if object.user_id.company_id.email
+                                                        |
+                                                        <a href="'mailto:%s' % ${object.user_id.company_id.email}"
+                                                           style="text-decoration:none; color: #454748;">
+                                                            ${object.user_id.company_id.email}
+                                                        </a>
+                                                        % endif
+                                                        % if object.user_id.company_id.website
+                                                        |
+                                                        <a href="'%s' % ${object.user_id.company_id.website}"
+                                                           style="text-decoration:none; color: #454748;">
+                                                            ${object.user_id.company_id.website}
+                                                        </a>
+                                                        % endif
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- POWERED BY -->
+                    <!--<tr>-->
+                    <!--<td align="center" style="min-width: 590px;">-->
+                    <!--<table border="0" cellpadding="0" cellspacing="0" width="590"-->
+                    <!--style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">-->
+                    <!--<tr>-->
+                    <!--<td style="text-align: center; font-size: 13px;">-->
+                    <!--Powered by-->
+                    <!--<a target="_blank"-->
+                    <!--href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite"-->
+                    <!--style="color: #875A7B;">Odoo-->
+                    <!--</a>-->
+                    <!--</td>-->
+                    <!--</tr>-->
+                    <!--</table>-->
+                    <!--</td>-->
+                    <!--</tr>-->
+                </table>
+            </field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <record id="gt_helpdesk_support_ticket.ticket_closed" model="mail.template">
+            <field name="name">Ticket Close</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <field name="subject">Ticket State(Closed)</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <!--<field name="email_to">${(object.customer.email or '')|safe}</field>-->
+            <field name="email_to">${ctx.get('email_to')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Hi,</p>
+                    <p>
+                        % set website_url = object.env['ir.config_parameter'].sudo().get_param('web.base.url')
+                     ${object.ticket_no} has been Closed.
+                    </br>
+                    </p>
+
+
+                    <p>Customer Name : ${object.tpartner_name or ''}</p>
+                    <p>Ref : ${object.tref or ''}</p>
+                    <p>Serial No : ${object.serial_no or ''}</p>
+                    <p>Fault Area : ${object.fault_area or ''}</p>
+
+
+
+                    % if object.sheet_ids:
+                    <table class="table table-bordered" cellpadding = "5" cellspacing = "5">
+                    <thead>
+                     <tr>
+                        <th style="width: 10%;text-align: left;border: 1px solid black;">Date</th>
+                        <th style="width: 90%;border: 1px solid black;">Resolution</th>
+                     </tr>
+                     </thead>
+                     <tbody>
+                     % for sheet in object.sheet_ids:
+                        <tr>
+                            <td style="border: 1px solid black;">${sheet.create_date.date().strftime("%d-%m-%Y")}</td>
+                            <td style="border: 1px solid black;">${sheet.sh_resolution}</td>
+                         </tr>
+                    % endfor
+                     </tbody>
+                  </table>
+                  % endif
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+        <record id="gt_helpdesk_support_ticket.ticket_assigned_devloper" model="mail.template">
+            <field name="name">Ticket Assigned</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="subject">Ticket Assigned</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${(object.customer.email or '')|safe},${ctx.get('email_to')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Hi,</p>
+                    <p>
+                     ${object.ticket_no} has been assigned to ${object.assi_to.name} <br>
+                    </br>
+                    </p>
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+        <record id="gt_helpdesk_support_ticket.ticket_created_mail_customer" model="mail.template">
+            <field name="name">Service Desk Ticket Generated</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="subject">Service Desk Ticket Generated</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${ctx.get('email_to')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+
+                    <p>Hi,</p>
+                    <p>
+                     Your Service Desk ticket generated and your ticket number is ${ctx.get('ticket_nm')|safe}
+                    </br>
+                    </p>
+
+                    <p>Customer Name : ${object.tpartner_name or ''} </p>
+                    <p>Ref : ${object.tref or ''}</p>
+                    <p>Serial No.: ${object.serial_no or ''}</p>
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+        <record id="gt_helpdesk_support_ticket.ticket_devloper_inform" model="mail.template">
+            <field name="name">Ticket Developer Inform</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <field name="subject">Ticket Assigned to You</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${ctx.get('email_to')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Hi,</p>
+                    <p>
+                     ${object.ticket_no} has been assigned to technician. <br>
+                    </br>
+                    </p>
+                    <h3>Description : </h3>
+                        % if object.description:
+                            % for desc_line in object.description.splitlines():
+                                <p>${desc_line}</p>
+                            % endfor
+                        % endif
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+        <record id="ticket_unallocated_email_template" model="mail.template">
+            <field name="name">Ticket Unallocated</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <field name="subject">Ticket Unallocated</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${ctx.get('email_to')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Hi,</p>
+                    <p>
+                     ${object.ticket_no} has been unallocated <br>
+                    </br>
+
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+        <record id="ticket_website_ticket_email_template" model="mail.template">
+            <field name="name">Web Ticket</field>
+            <field name="email_from">${ctx.get('email_from')|safe}</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <field name="subject">Web Ticket</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${ctx.get('email_to')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+
+                    <h3>Description : </h3>
+                        % if object.description:
+                            % for desc_line in object.description.splitlines():
+                                <p>${desc_line}</p>
+                            % endfor
+                        % endif
+                    </br>
+
+                    <p>Customer Name : ${object.tpartner_name or ''}</p>
+                    <p>Ref : ${object.tref or ''}</p>
+                    <p>Serial No : ${object.serial_no or ''}</p>
+                    <p>Fault Area : ${object.fault_area or ''}</p>
+
+
+                    <p></br>Best Regards,    </p>
+                    <p></br>${ctx.get('user_name') or ''}</p>
+
+
+
+                    % if ctx.get('attachment_link') or '':
+                        <br/><br/>
+                        <a href="${ctx.get('attachment_link') or ''}">${ctx.get('attachment_link') or ''}</a>
+                    % endif
+
+                </div>
+            ]]>
+            </field>
+        </record>
+
+
+        <record id="gt_helpdesk_support_ticket.ticket_work_in" model="mail.template">
+            <field name="name">Ticket Status</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="subject">Ticket State(Work In Progress)</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${ctx.get('email_to' or '')|safe}</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Hi,</p>
+                    <p>
+                        % set website_url = object.env['ir.config_parameter'].sudo().get_param('web.base.url')
+                  Status of ticket number ${object.ticket_no} is "Work in Progress" now.
+                    </br>
+                    </p>
+
+
+                    <p>Customer Name : ${object.tpartner_name or ''}</p>
+                    <p>Ref : ${object.tref or ''}</p>
+                    <p>Serial No : ${object.serial_no or ''}</p>
+                    <p>Fault Area : ${object.fault_area or ''}</p>
+
+
+
+                    % if object.sheet_ids:
+                    <table class="table table-bordered" cellpadding = "5" cellspacing = "5">
+                    <thead>
+                     <tr>
+                        <th style="width: 10%;text-align: left;border: 1px solid black;">Date</th>
+                        <th style="width: 90%;border: 1px solid black;">Resolution</th>
+                     </tr>
+                     </thead>
+                     <tbody>
+                     % for sheet in object.sheet_ids:
+                        <tr>
+                            <td style="border: 1px solid black;">${sheet.create_date.date().strftime("%d-%m-%Y")}</td>
+                            <td style="border: 1px solid black;">${sheet.sh_resolution}</td>
+                         </tr>
+                    % endfor
+                     </tbody>
+                  </table>
+                  % endif
+                    </br>
+                    <p></br>Best Regards,
+                    <p>Team ICON</p>
+<!--                    <p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

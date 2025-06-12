@@ -1,0 +1,9 @@
+<odoo>
+    <template id="hide_archive_assets_backend" name="test modulo assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/custom_module/static/src/js/hide_archive.js"/>
+            <script type="text/javascript" src="/custom_module/static/src/js/basic_controller.js"/>
+            <link href="/custom_module/static/src/css/style.css" rel="stylesheet" type="text/css"/>
+        </xpath>
+    </template>
+</odoo>

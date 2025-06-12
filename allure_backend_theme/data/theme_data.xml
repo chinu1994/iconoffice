@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="theme_1" model="ir.web.theme">
+            <field name="leftbar_color">#0b2361</field>
+            <field name="buttons_color">#c6a0ab</field>
+            <field name="menu_color">#6c6692</field>
+            <field name="heading_color">#858585</field>
+            <field name="label_color">#858585</field>
+            <field name="label_value_color">#6c6692</field>
+            <field name="link_color">#c6a0ab</field>
+            <field name="panel_title_color">#858585</field>
+            <field name="tooltip_color">#0b2361</field>
+            <field name="button_box">#6c6692</field>
+            <field name="border_color">#c2c2c2</field>
+            <field name="base_form_tabs">vertical_tabs</field>
+            <field name="font_type_values">roboto</field>
+            <field name="base_menu_icon">base_icon</field>
+            <field name="tab_configration">open_tabs</field>
+            <field name="base_menu">theme_menu</field>
+            <field name="mode">normal_mode_on</field>
+        </record>
+        <record id="theme_2" model="ir.web.theme">
+            <field name="leftbar_color">#033629</field>
+            <field name="buttons_color">#6d8a5a</field>
+            <field name="menu_color">#2d4159</field>
+            <field name="heading_color">#59253a</field>
+            <field name="label_color">#2d4159</field>
+            <field name="label_value_color">#2d4159</field>
+            <field name="link_color">#59253a</field>
+            <field name="panel_title_color">#2d4159</field>
+            <field name="tooltip_color">#2d4159</field>
+            <field name="button_box">#2d4159</field>
+            <field name="border_color">#895061</field>
+            <field name="base_form_tabs">vertical_tabs</field>
+            <field name="font_type_values">roboto</field>
+            <field name="base_menu_icon">base_icon</field>
+            <field name="tab_configration">open_tabs</field>
+            <field name="base_menu">theme_menu</field>
+            <field name="mode">normal_mode_on</field>
+        </record>
+        <record id="theme_3" model="ir.web.theme">
+            <field name="leftbar_color">#1e3756</field>
+            <field name="buttons_color">#d3a722</field>
+            <field name="menu_color">#1a1a1d</field>
+            <field name="heading_color">#4e4e50</field>
+            <field name="label_color">#1a1a1d</field>
+            <field name="label_value_color">#1a1a1d</field>
+            <field name="link_color">#4e4e50</field>
+            <field name="panel_title_color">#1a1a1d</field>
+            <field name="tooltip_color">#22264b</field>
+            <field name="button_box">#241515</field>
+            <field name="border_color">#e8edf3</field>
+            <field name="base_form_tabs">vertical_tabs</field>
+            <field name="font_type_values">roboto</field>
+            <field name="base_menu_icon">base_icon</field>
+            <field name="tab_configration">open_tabs</field>
+            <field name="base_menu">theme_menu</field>
+            <field name="mode">normal_mode_on</field>
+        </record>
+        <record id="theme_4" model="ir.web.theme">
+            <field name="leftbar_color">#006347</field>
+            <field name="buttons_color">#8fa6d2</field>
+            <field name="menu_color">#116466</field>
+            <field name="heading_color">#6f2232</field>
+            <field name="label_color">#0b3a49</field>
+            <field name="label_value_color">#6f2232</field>
+            <field name="link_color">#116466</field>
+            <field name="panel_title_color">#6f2232</field>
+            <field name="tooltip_color">#6f2232</field>
+            <field name="button_box">#116466</field>
+            <field name="border_color">#cedade</field>
+            <field name="base_form_tabs">vertical_tabs</field>
+            <field name="font_type_values">roboto</field>
+            <field name="base_menu_icon">base_icon</field>
+            <field name="tab_configration">open_tabs</field>
+            <field name="base_menu">theme_menu</field>
+            <field name="mode">normal_mode_on</field>
+        </record>
+        <record id="theme_5" model="ir.web.theme">
+            <field name="leftbar_color">#383234</field>
+            <field name="buttons_color">#63ba97</field>
+            <field name="menu_color">#201c35</field>
+            <field name="heading_color">#5b5194</field>
+            <field name="label_color">#201c35</field>
+            <field name="label_value_color">#201c35</field>
+            <field name="link_color">#5b5194</field>
+            <field name="panel_title_color">#201c35</field>
+            <field name="tooltip_color">#181527</field>
+            <field name="button_box">#201c35</field>
+            <field name="border_color">#e7e7e9</field>
+            <field name="base_form_tabs">vertical_tabs</field>
+            <field name="font_type_values">roboto</field>
+            <field name="base_menu_icon">base_icon</field>
+            <field name="tab_configration">open_tabs</field>
+            <field name="base_menu">theme_menu</field>
+            <field name="mode">normal_mode_on</field>
+        </record>
+        <record id="theme_6" model="ir.web.theme">
+            <field name="leftbar_color">#0b2f6d</field>
+            <field name="buttons_color">#0091a0</field>
+            <field name="menu_color">#343a40</field>
+            <field name="heading_color">#128193</field>
+            <field name="label_color">#343a40</field>
+            <field name="label_value_color">#343a40</field>
+            <field name="link_color">#128193</field>
+            <field name="panel_title_color">#343a40</field>
+            <field name="tooltip_color">#1d2939</field>
+            <field name="button_box">#343a40</field>
+            <field name="border_color">#d1d4d7</field>
+            <field name="base_form_tabs">vertical_tabs</field>
+            <field name="font_type_values">roboto</field>
+            <field name="base_menu_icon">base_icon</field>
+            <field name="tab_configration">open_tabs</field>
+            <field name="base_menu">theme_menu</field>
+            <field name="mode">normal_mode_on</field>
+        </record>
+        <record id="theme_7" model="ir.web.theme">
+            <field name="leftbar_color">#482714</field>
+            <field name="buttons_color">#695b4e</field>
+            <field name="menu_color">#354052</field>
+            <field name="heading_color">#de8819</field>
+            <field name="label_color">#354052</field>
+            <field name="label_value_color">#354052</field>
+            <field name="link_color">#de8819</field>
+            <field name="panel_title_color">#354052</field>
+            <field name="tooltip_color">#1e3c72</field>
+            <field name="button_box">#354052</field>
+            <field name="border_color">#dde6f3</field>
+            <field name="base_form_tabs">vertical_tabs</field>
+            <field name="font_type_values">roboto</field>
+            <field name="base_menu_icon">base_icon</field>
+            <field name="tab_configration">open_tabs</field>
+            <field name="base_menu">theme_menu</field>
+            <field name="mode">normal_mode_on</field>
+        </record>
+        <record id="theme_8" model="ir.web.theme">
+            <field name="leftbar_color">#000000</field>
+            <field name="buttons_color">#7a8491</field>
+            <field name="menu_color">#4f5054</field>
+            <field name="heading_color">#993822</field>
+            <field name="label_color">#4f5054</field>
+            <field name="label_value_color">#4f5054</field>
+            <field name="link_color">#993822</field>
+            <field name="panel_title_color">#4f5054</field>
+            <field name="tooltip_color">#383d43</field>
+            <field name="button_box">#4f5054</field>
+            <field name="border_color">#dfe1e6</field>
+            <field name="base_form_tabs">vertical_tabs</field>
+            <field name="font_type_values">roboto</field>
+            <field name="base_menu_icon">base_icon</field>
+            <field name="tab_configration">open_tabs</field>
+            <field name="base_menu">theme_menu</field>
+            <field name="mode">normal_mode_on</field>
+        </record>
+        <record id="theme_9" model="ir.web.theme">
+            <field name="leftbar_color">#1d2536</field>
+            <field name="buttons_color">#45578a</field>
+            <field name="menu_color">#c04e55</field>
+            <field name="heading_color">#db9f70</field>
+            <field name="label_color">#db9f70</field>
+            <field name="label_value_color">#c04e55</field>
+            <field name="link_color">#45578a</field>
+            <field name="panel_title_color">#db9f70</field>
+            <field name="tooltip_color">#1d2536</field>
+            <field name="button_box">#c04e55</field>
+            <field name="border_color">#ead793</field>
+            <field name="base_form_tabs">vertical_tabs</field>
+            <field name="font_type_values">roboto</field>
+            <field name="base_menu_icon">base_icon</field>
+            <field name="tab_configration">open_tabs</field>
+            <field name="base_menu">theme_menu</field>
+            <field name="mode">normal_mode_on</field>
+        </record>
+        <record model="ir.config_parameter" id="default_theme">
+            <field name="key">allure_backend_theme.selected_theme</field>
+            <field name="value" ref="allure_backend_theme.theme_6"/>
+        </record>
+        <record model="ir.config_parameter" id="default_theme_font">
+            <field name="key">font_type_values</field>
+            <field name="value">roboto</field>
+        </record>
+        <record model="ir.config_parameter" id="default_theme_tab">
+            <field name="key">base_form_tabs</field>
+            <field name="value">vertical_tabs</field>
+        </record>
+        <record model="ir.config_parameter" id="default_theme_icon">
+            <field name="key">base_menu_icon</field>
+            <field name="value">base_icon</field>
+        </record>
+        <record model="ir.config_parameter" id="default_theme_tab_config">
+            <field name="key">tab_configration</field>
+            <field name="value">open_tabs</field>
+        </record>
+        <record id="sequence_favorite" model="ir.sequence">
+            <field name="name">Favorite Menu Sequence</field>
+            <field name="code">ir.favorite.menu</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="sequence"/>
+        </record>
+        <record model="ir.config_parameter" id="default_theme_menu_config">
+            <field name="key">base_menu</field>
+            <field name="value">theme_menu</field>
+        </record>
+        <record model="ir.config_parameter" id="default_theme_mode">
+            <field name="key">mode</field>
+            <field name="value">normal_mode_on</field>
+        </record>
+    </data>
+</odoo>

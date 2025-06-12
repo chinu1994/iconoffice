@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+            <template id="support_tickets_list" name="Support Tickets List">
+                    <t t-call="website.layout">
+                        <div class="team_data">
+                            <title>Support Ticket List Page</title>
+                            <div class="container">
+                                <style>
+                                    center { width: 100%; }
+                                    .panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
+}
+                                
+      .panel-primary {
+    border-color: #337ab7;
+}
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #337ab7;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+                          </style>
+
+                                <div class="row">
+                                    <center>
+                                        <h1>Ticket List </h1>
+                                        <div class="">
+                                        <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Total Number of Tickets ( <span t-esc="count_tickets"/> ) </h3>
+                                            <div class="pull-right">
+                                                <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                                                    <i class="glyphicon glyphicon-filter"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Developers" />
+                                        </div>
+                                        <table class="table table-hover" id="dev-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Ticket No</th>
+                                                    <th>Title</th>
+                                                    <th>Date</th>
+                                                    <th>Priority</th>
+                                                    <th>Stage</th>
+                                                    <th>Issue</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody t-foreach="ticket_lines" t-as="tc_line" >
+                                                <tr>
+                                                    <td><span t-esc="tc_line.ticket_no"/> </td>
+                                                    <td><span t-esc="tc_line.ticket_title"/></td>
+                                                    <td><span t-esc="tc_line.create_date"/></td>
+                                                    <td><span t-esc="tc_line.priority"/></td>
+                                                    <td><span t-esc="[tc for tc in tc_line._fields.get('state').selection if tc[0] == tc_line.state][0][1]"/></td>
+                                                    <td><a t-att-href="'/page/support_tickets_list/'+str(tc_line.id)"><button type="button" string="Go To">Send Issue</button></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </template>
+
+
+
+
+
+
+
+            <template id="issue_temp" name="Support Tickets">
+                    <t t-call="website.layout">
+                        <div class="team_data">
+                            <title>Support Tickets Page</title>
+                            <div class="container">
+                                <style>
+                         center { width: 100%; }
+                		.panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
+}
+                                
+      .panel-primary {
+    border-color: #337ab7;
+}
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #337ab7;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.table td{border-top:none;}
+textarea.form-control {height: 200px;width: 1000px;}
+                                </style>
+                                <div class="row" t-foreach="ticket_lines" t-as="tc_line">
+                                    <center>
+                                        <H1><span t-esc="ticket_lines.ticket_title"/> (<span t-esc="ticket_lines.ticket_no"/>)</H1>
+                                        <div class="">
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Ticket Details</h3>
+                                                    <div class="pull-right">
+                                                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                                                            <i class="glyphicon glyphicon-filter"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Developers" />
+                                                </div>
+                                                <table class="table table-hover" id="dev-table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <table class="table table-hover" id="dev-table1">
+
+                                                                    <tr>
+                                                                        <td><b>Customer Name :</b></td>
+                                                                        <td><span t-esc="tc_line.customer.name"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Email :</b></td>
+                                                                        <td><span t-esc="tc_line.email_id"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Contact No :</b></td>
+                                                                        <td><span t-esc="tc_line.phone"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Ticket Priority :</b></td>
+                                                                        <td><span t-esc="tc_line.priority"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Create Date :</b></td>
+                                                                        <td><span t-esc="tc_line.create_date"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Ticket Stage :</b></td>
+                                                                        <td><span t-esc="tc_line.state"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Ticket Closed? :</b></td>
+                                                                        <td><span t-esc="tc_line.ticket_close"/> </td>
+                                                                    </tr>
+                                                                </table>
+
+                                                            </td>
+                                                            <td>
+                                                                <table class="table table-hover" id="dev-table2">
+
+                                                                    <tr>
+                                                                        <td><b>Assigned to :</b></td>
+                                                                        <td><span t-esc="tc_line.assi_to.tf_user_code"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Department :</b></td>
+                                                                        <td><span t-esc="tc_line.department.name"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Support Team :</b></td>
+                                                                        <td><span t-esc="tc_line.helpdesk_team.name"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Team Leader :</b></td>
+                                                                        <td><span t-esc="tc_line.team_leader.name"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Analytic Account :</b></td>
+                                                                        <td><span t-esc="tc_line.analytic_account.name"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Closed Date :</b></td>
+                                                                        <td><span t-esc="tc_line.close_date"/> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>Total Hours :</b></td>
+                                                                        <td><span t-esc="tc_line.total_hours"/> </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+
+                                            </div>
+                                        </div>
+
+                                    </center>
+                                    <div>
+                                        <section id="discussion" class="hidden-print">
+                                          <h1 class="page-header">History</h1>
+                                          <!-- Options:Quotation Chatter: user can reply -->
+
+                                        <t t-call="portal.message_thread">
+                                            <t t-set="object" t-value="tc_line"/>
+                                            <t t-set="token_field" t-value="'access_token'"/>
+                                            <t t-set="chatter_mode" t-value="'json'"/>
+                                        </t>
+
+
+                                      </section>
+
+
+
+                                        <!--<table class="table table-condensed">-->
+                                        <!--<form method="post" action="/page/tickets_msg/">-->
+                                            <!--<tr>-->
+                                                <!--<td>-->
+                                                <!--<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>-->
+                                                <!--<input type="hidden" name="rc_id" t-att-value="tc_line.id"/>-->
+                                                <!--<input type="text" name="cust_id" t-att-value="tc_line.customer.id"/>-->
+                                                <!--<textarea name="msg" id="dev_msg" placeholder="Issue Details"/>-->
+                                                <!--</td>-->
+                                            <!--</tr>-->
+                                            <!--<tr>-->
+                                                <!--<td>-->
+                                                <!--<button class="btn btn-primary" type="submit">-->
+                                                    <!--Send Message-->
+                                                <!--</button>-->
+                                                <!--</td>-->
+                                            <!--</tr>-->
+
+                                        <!--</form>-->
+                                        <!--</table>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </template>
+
+
+
+                    <template id="tickets_msg" name="Tickets Updated">
+                    <t t-call="website.layout">
+                        <div class="team_data">
+                            <title>Support Tickets Page</title>
+                            <div class="container">
+                                <style>
+                                </style>
+
+                                <div class="row">
+                                    <center>
+
+                                        <H1>Your message has been sent successfully </H1>
+
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </template>
+
+
+
+
+
+</odoo>
+
+

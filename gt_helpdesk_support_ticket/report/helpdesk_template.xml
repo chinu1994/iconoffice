@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+
+
+
+        <template id="Helpdesk_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+
+
+                    <div class="page">
+
+
+                        <t t-foreach="docs" t-as="sp">
+                            <style>
+                                td, th {
+                                padding: 8px;
+                                }
+
+
+                            </style>
+
+                            <h2><center><span t-esc="sp.ticket_no"/>-<span t-esc="sp.ticket_title"/></center></h2>
+
+                            <table style="border-style: solid;border-width: medium;" width="100%">
+
+                                <tr style="border-style: solid;border-width: medium;">
+                                    <h3>Customer Details</h3>
+                                </tr>
+                                <tr style="border-style: solid;border-width: medium;">
+                                    <td><span><b>Customer Name:</b></span></td>
+                                    <td><span t-field="sp.customer"></span></td>
+                                    <td><span><b>Phone No:</b></span></td>
+                                    <td><span t-field="sp.phone"></span></td>
+                                </tr>
+
+                                <tr style="border-style: solid;border-width: medium;">
+                                    <td><span><b>Email ID:</b></span></td>
+                                    <td><span t-field="sp.email_id"></span></td>
+                                    <!--<td><span><b>Analytic Account:</b></span></td>-->
+                                    <!--<td><span t-field="sp.analytic_account"></span></td>-->
+                                </tr>
+                            </table>
+
+
+
+
+
+
+
+                            <table style="border-style: solid;border-width: medium;" width="100%">
+                                <tr style="border-style: solid;border-width: medium;">
+                                    <h3>Ticket Details</h3>
+                                </tr>
+                                <tr style="border-style: solid;border-width: medium;">
+                                    <td><span><b>Ticket No:</b></span></td>
+                                    <td><span t-field="sp.ticket_no"></span></td>
+                                    <td><span><b>Ticket Title:</b></span></td>
+                                    <td><span t-field="sp.ticket_title"></span></td>
+                                </tr>
+                                <tr style="border-style: solid;border-width: medium;">
+                                    <td><span><b>Create Date:</b></span></td>
+                                    <td><span t-field="sp.create_date"></span></td>
+                                    <td><span><b>Close Date:</b></span></td>
+                                    <td><span t-field="sp.close_date"></span></td>
+                                </tr>
+                                <tr style="border-style: solid;border-width: medium;">
+                                    <td><span><b>Is Ticket Closed?</b></span></td>
+                                    <td><span t-field="sp.ticket_close"></span></td>
+                                    <td><span><b>Priority:</b></span></td>
+                                    <td><span t-field="sp.priority"></span></td>
+                                </tr>
+                            </table>
+
+
+
+
+                            <table style="border-style: solid;border-width: medium;" width="100%">
+
+                                <tr style="border-style: solid;border-width: medium;">
+                                    <h3>Devloper Details</h3>
+                                </tr>
+                                <tr style="border-style: solid;border-width: medium;">
+                                    <td><span><b>Assigned To:</b></span></td>
+                                    <td><span t-field="sp.assi_to"></span></td>
+                                    <td><span><b>Department:</b></span></td>
+                                    <td><span t-field="sp.department"></span></td>
+
+                                </tr>
+                                <tr style="border-style: solid;border-width: medium;">
+                                    <td><span><b>Support Team:</b></span></td>
+                                    <td><span t-field="sp.helpdesk_team"></span></td>
+                                    <td><span><b>Team Leader:</b></span></td>
+                                    <td><span t-field="sp.team_leader"></span></td>
+                                </tr>
+
+                                <tr style="border-style: solid;border-width: medium;">
+                                    <td><span><b>Project Name:</b></span></td>
+                                    <td><span t-field="sp.project"></span></td>
+                                    <td><span><b>Total Hours Spent:</b></span></td>
+                                    <td><span t-field="sp.total_hours"></span></td>
+                                </tr>
+                            </table>
+                            <br/>
+
+                            <table class="table table-condensed">
+                                <h3>Timesheet Details</h3>
+                                <thead>
+                                    <th class="text-left">Date</th>
+                                    <th class="text-left">Users</th>
+                                    <th class="text-left">Project</th>
+                                    <th class="text-left">Billable</th>
+                                    <th class="text-left">Description</th>
+                                    <th class="text-left">Hours</th>
+                                </thead>
+                                <tbody class="invoice_tbody">
+                                    <tr t-foreach="sp.sheet_ids" t-as="l">
+                                        <td><span t-field="l.timesheet_date"/></td>
+                                        <td><span t-field="l.users"/></td>
+                                        <td><span t-field="l.project"/></td>
+                                        <td><span t-field="l.bil_lable"/></td>
+                                        <td><span t-field="l.timesheet_description"/></td>
+                                        <td><span t-field="l.hours"/></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <br/>
+                            <table width="100%">
+                                <tr>
+                                    <td><span><b>About Project</b></span></td>
+                                    <td><span t-field="sp.description"></span></td>
+                                </tr>
+                            </table>
+                        </t>
+                    </div>
+
+                </t>
+            </t>
+        </template>
+
+
+
+
+
+        <record id="multi_invoice_view_helpdesk" model="ir.ui.view">
+            <field name="name">Service Desk Invoice</field>
+            <field name="model">multi.invoice</field>
+            <field name="arch" type="xml">
+                <form string="Service Desk Multi Invoice">
+                    <p class="oe_grey">
+                        Multiple Invoice for helpdesk
+                    </p>
+
+                    <footer>
+                        <!--<button name="create_invoices" string="Create and View Invoices" type="object"-->
+                            <!--context="{'open_invoices': True}" class="btn-primary"/>-->
+                        <button name="active_count" string="Create Invoices" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_multi_helpdesk_inv" model="ir.actions.act_window">
+            <field name="name">Multi Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">multi.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="groups_id" eval="[(4, ref('account.group_account_manager')), (4, ref('account.group_account_invoice'))]"/>
+            <field name="binding_model_id" ref="model_helpdesk_ticket" />
+        </record>
+
+
+
+        <!--<record model="ir.values" id="helpdesk_line_make_invoice">-->
+            <!--<field name="model_id" ref="sale.model_sale_order_line" />-->
+            <!--<field name="name">Service Desk Line</field>-->
+            <!--<field name="key2">client_action_multi</field>-->
+            <!--<field name="value" eval="'ir.actions.act_window,' + str(ref('action_multi_helpdesk_inv'))" />-->
+            <!--<field name="key">action</field>-->
+            <!--<field name="model">helpdesk.ticket</field>-->
+        <!--</record>-->
+
+
+
+
+    </data>
+</openerp>

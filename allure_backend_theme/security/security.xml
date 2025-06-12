@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="module_theme_category">
+            <field name="name">Allure Theme Settings</field>
+            <field name="sequence">100</field>
+        </record>
+
+        <record model="res.groups" id="group_theme_setting_user">
+            <field name="name">Theme Configuration</field>
+            <field name="category_id" ref="module_theme_category"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+        <record model="res.groups" id="group_display_density">
+            <field name="name">Display Density</field>
+            <field name="category_id" ref="module_theme_category"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+    </data>
+</odoo>

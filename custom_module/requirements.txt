@@ -1,0 +1,77 @@
+1. Change the name of Helpdesk to Service Desk
+2. In iconoffice/gt_helpdesk_support_ticket/view/helpdesk_website.xml file, remove noupdate="1" must do it
+3. In "gt_helpdesk_support_ticket/email_notification.xml" file REPLACE ".login" to ".email"
+4. In "gt_helpdesk_support_ticket/helpdesk_support_ticket.py" file add this line in create function of helpdesk.ticket :
+            if not vals.get('parent_ticket', False):
+                vals['ticket_no'] = self.env['ir.sequence'].next_by_code('ticket.no') or '0'
+5. Replace this one the sequence of helpdesk.ticket model :
+            <record id="seq_ticket_no" model="ir.sequence">
+                <field name="name">TICKET No</field>
+                <field name="code">ticket.no</field>
+                <field name="prefix">SR-</field>
+                <field name="padding">6</field>
+            </record>
+
+
+
+
+
+
+#############
+1. put ass_to and customer same as parent ticket while creating sub-ticket
+2. rewrite support user record rule
+3. Make "create task" button invisible
+4. "Create Invoice" and "Create Sub Ticket" button show only in closed state
+5. Remove Database name and Powered By odoo from portal email template
+6. Add Australian accounting and portal module dependency in my custom_module
+7. Give sudo permission to all search query in controllers in helpdesk tickets
+8. Change login_user.id to login_user.partner_id.id in gt_helpdesk_support_ticket module's controller's main.py file
+9. Fixed bugs in multi invoice(Comment "dt_date = str(hp_line.create_date)" and change from "desk_lines.customer.partner_id.id" to "desk_lines.customer.id"
+10. Prevent from sending invoice in email to customers and also make the invoice only in draft state(previously invoice created are going to be validated)
+##############
+
+
+
+
+
+
+
+
+https://github.com/odoo/odoo/issues/25828
+
+
+
+
+
+
+
+
+
+
+
+Important to note :
+I have added in a file in addons:   addons/google_calendar/static/src/js/google_calendar.js
+line number 142 that is function _onSyncCalendar in CalendarRenderer
+i have added this only "document.location.reload();"
+
+I have updated a some code in addons: addons/google_calendar/models/google_calendar.py
+line number 351 changes from "'showDeleted': True," to "'showDeleted': False, #True,"
+
+
+Delete permission of internal user from front-end in Calendar, Contacts, Website, Employees under access rights
+
+Hide many2one field to add calendar contact in addons:    addons/web/static/src/js/views/calendar/calendar_renderer.js
+line 69 changes from "if (this.write_model || this.write_field) {" to
+ "if (session.is_admin && (this.write_model || this.write_field)) {"
+
+
+Remove powered by odoo from these two templates, actually it is commented
+1. mail_notification_borders
+2. mail_notification_light
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="Loan_Pull_Machine" model="product.category">
+            <field name="name">Loan Pool Machine</field>
+            <field name="property_cost_method">standard</field>
+            <field name="property_valuation">manual_periodic</field>
+            <field name="parent_id" ref="product.product_category_all"/>
+        </record>
+        <record id="New_Machine" model="product.category">
+            <field name="name">New Machine</field>
+            <field name="property_cost_method">standard</field>
+            <field name="property_valuation">manual_periodic</field>
+            <field name="parent_id" ref="product.product_category_all"/>
+        </record>
+    </data>
+</odoo>

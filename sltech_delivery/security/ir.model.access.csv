@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sltech_machines,access_sltech_machines,model_sltech_machines,,1,1,1,1
+access_sltech_purchase_vendor,access_sltech_purchase_vendor,model_sltech_purchase_vendor,,1,1,1,1

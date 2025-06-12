@@ -1,0 +1,109 @@
+// body View -start
+body {
+    font-family: roboto;
+    font-size: $font-size-1;
+    font-weight: $font-weight-4;
+    color: $Label-value;
+}
+
+// body View - stop
+
+body.o_web_client {
+    background-color: $white;
+    overflow: hidden;
+    @include left-menu();
+    @include kanban_model_open();
+    & > .o_main {
+        & > .o_main_content {
+            & > .o_control_panel {
+                @include control-panel();
+                .o_cp_searchview{
+                    & > .sd_datepickers_searchview{
+                        top: 18px;
+                        max-height: 22px;
+                        .sd_update_cp{
+                            padding: 0 6px;
+                        }
+                    }
+                }
+            }
+            &.ad_rightbar {
+                max-width: 100%;
+                & > .o_content {
+                    margin-right: 0px;
+                    @include slide-animation();
+                    @include pivot_view();
+                    @include graph_view();
+                    @include import_view();
+                    .o_view_controller {
+                        @include slide-animation();
+                        @include list-view();
+                        @include calendar-view();
+                        @include kanban_view();
+                        @include activity_view();
+                        .o_kanban_view.o_kanban_grouped {
+                            margin-right: 260px;
+                        }
+                    }
+                }
+                &.ad_open_search, &.o_open_sidebar {
+                    & > .o_content {
+                            margin-right: 260px;
+                            border-right: 1px solid $border;
+                            @include slide-animation();
+                    }
+                    .o_control_panel.o_hidden + .o_content{
+                        margin-right: 0px;
+                    }
+                }
+                &:not(.ad_open_search) {
+                    .o_control_panel {
+                        .o_search_options:not(.o_mobile_search_filter) {
+                            display: flex;
+                            left: auto;
+                            flex-wrap: wrap;
+                            flex-flow: row-reverse;
+                            @include slide-animation();
+                            .ad_has_options{
+                                right: -260px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .modal-dialog{
+        .modal-content{
+            .modal-body{
+                &.o_act_window{
+                    .o_modal_header{
+                        @include search-view();
+                    }
+                }
+            }
+        }
+    }
+    &.oe_base_menu{
+        .o_main{
+            & > .o_main_content.ad_rightbar{
+                .o_control_panel{
+                    @include base_menu_control_panel();
+                }
+            }
+        }
+    }
+    .modal.o_modal_fullscreen {
+        .o_viewer_content {
+            .o_viewer-header ,.o_viewer_toolbar , .o_viewer_img_wrapper , .o_viewer_toolbar_btn{
+                background-color: $bg-light;
+            }
+            .o_viewer_toolbar {
+                justify-content: center;
+            }
+        }
+        .arrow {
+            background-color: $bg-light;
+        }
+    }
+}

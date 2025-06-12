@@ -1,0 +1,38 @@
+@mixin search-menu() {
+    .o_search_menu {
+        flex: 0 0 auto;
+        display: flex;
+        width: 90%;
+        max-width: 850px;
+        height: 34px;
+        background-color: rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(0, 0, 0, 0.1);
+        margin-bottom: 8px;
+        margin-top: 15px;
+        align-items: center;
+        border-radius: 4px;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+        padding: 6px 8px;
+        .o_search_icon {
+            -webkit-box-flex: 0;
+            -webkit-flex: 0 0 auto;
+            flex: 0 0 auto;
+            font-size: 20px;
+            color: white;
+            margin-right: 15px;
+        }
+        .o_search_input{
+            background-color: transparent;
+            color: rgb(255, 255, 255);
+            border: 0;
+        }
+    }
+    .selected {
+        background-color: rgba(146, 155, 160, 0.2);
+    }
+    .menu_item_list{
+        width: 100%;
+        overflow-y: auto;
+        height:80%;
+    }
+}

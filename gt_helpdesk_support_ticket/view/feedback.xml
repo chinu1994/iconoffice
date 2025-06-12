@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+                    <template id="feedback_msg" name="Feedback">
+                    <t t-call="website.layout">
+                        <div class="team_data">
+                            <title>Feedback Page</title>
+                            <div class="container">
+                                <style>
+                                </style>
+
+                                <div class="row">
+                                    <center>
+                                        <H1>Your Feedback </H1>
+                                        <input type="hidden" id="rc" t-att-value="id" widget="priority"/>
+                                        <link rel="stylesheet" type="text/css" href="/gt_helpdesk_support_ticket/static/src/css/style.css"/>
+
+
+                                            <div id="wrapper">
+                                                <div id="content">
+                                                    <ul class="dk" id="rating">
+                                                        <li><a id="rate_des" href="#">This is just a piece of crap</a></li>
+                                                        <li><a id="rate_des" href="#">Nothing too new or interesting</a></li>
+                                                        <li><a id="rate_des" href="#">Not bad, I like it</a></li>
+                                                        <li><a id="rate_des" href="#">I would like to see more of this</a></li>
+                                                        <li><a id="rate_des" href="#">This is the best thing I've seen</a></li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+
+
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </template>
+
+
+
+
+                <template id="feedback_thanks" name="Thank You">
+                    <t t-call="website.layout">
+                        <div class="team_data">
+                            <title>Thank You</title>
+                            <div class="container">
+                                <style>
+                                </style>
+
+                                <div class="row">
+
+                                    <center>
+                                        <H1>Thank you for your feedback </H1>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </template>
+</odoo>
+
+

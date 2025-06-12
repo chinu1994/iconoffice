@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_support,request.customer.ticket,model_helpdesk_ticket,,1,1,1,1
+access_helpdesk_team,request.team,model_helpdesk_team,,1,1,1,1
+access_helpdesk_timesheet,request.timesheet,model_helpdesk_timesheet,,1,1,1,1
+access_helpdesk_invoice_line,request.invoice.line,model_helpdesk_invoice_line,,1,1,1,1
+access_helpdesk_team_lines,access_helpdesk_team_lines,model_helpdesk_team_lines,base.group_user,1,1,1,1

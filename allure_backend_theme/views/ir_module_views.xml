@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="base.menu_module_updates" parent="base.menu_management" sequence="20"
+              action="base.modules_updates_act_cl" groups="base.group_system"/>
+
+    <record id="module_view_kanban_inherit" model="ir.ui.view">
+        <field name="name">Apps Kanban View</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_view_kanban"/>
+        <field name="arch" type="xml">
+            <field name="icon" position="after">
+                <field name="theme_icon"/>
+            </field>
+            <xpath expr="//img" position="after">
+                <t t-if="record.theme_icon.value">
+                    <img t-attf-src="#{record.theme_icon.value}" class="oe_module_icon" alt="Icon"/>
+                </t>
+                <t t-else="">
+                    <img t-attf-src="#{record.icon.value}" class="oe_module_icon" alt="Icon"/>
+                </t>
+            </xpath>
+            <xpath expr="//img" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_base_module_uninstall_inherit" model="ir.ui.view">
+        <field name="name">Uninstall module</field>
+        <field name="model">base.module.uninstall</field>
+        <field name="inherit_id" ref="base.view_base_module_uninstall"/>
+        <field name="arch" type="xml">
+            <field name="icon" position="after">
+                <field name="theme_icon"/>
+            </field>
+            <xpath expr="//img" position="after">
+                <t t-if="record.theme_icon.value">
+                    <img t-attf-src="#{record.theme_icon.value}" class="oe_module_icon" alt="Icon"
+                         style="width: 60px; height: 60px"/>
+                </t>
+                <t t-else="">
+                    <img t-attf-src="#{record.icon.value}" class="oe_module_icon" alt="Icon"
+                         style="width: 60px; height: 60px"/>
+                </t>
+            </xpath>
+            <xpath expr="//img" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

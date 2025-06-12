@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ks_website_configuration_load_landing_page_new" model="ir.ui.view">
+        <field name="name">add.landing.page.website.configuration</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+                <xpath expr="//div[@id='website_settings']" position="after">
+                        <h2>Load Landing Pages</h2>
+                         <div class="row mt16 o_settings_container">
+                             <div class="col-xs-12 col-md-12 o_setting_box">
+                                <group>
+                                    <group>
+                                         <field name="module_ks_fitness_page" />
+                                         <field name="module_ks_corporate_page" />
+                                         <field name="module_ks_pet_shop_page" />
+                                         <field name="module_ks_furniture_page" />
+                                         <field name="module_ks_food_shop_page" />
+                                         <field name="module_ks_book_shop_page" />
+                                    </group>
+                                    <group>
+                                         <field name="module_ks_jewellery_page" />
+                                         <field name="module_ks_hotel_page" />
+                                         <field name="module_ks_christmas_page" />
+                                         <field name="module_ks_new_year_page" />
+                                         <field name="module_ks_home_decor_page" />
+                                    </group>
+                                </group>
+                            </div>
+                        </div>
+                </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,454 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ks_theme_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-22 21:51+0000\n"
+"PO-Revision-Date: 2020-07-22 17:52-0400\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_CL\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#. module: ks_theme_base
+#: model:ir.model,name:ks_theme_base.model_product_template
+#, fuzzy
+msgid "Adding users to products"
+msgstr "Adición de usuarios a productos"
+
+#. module: ks_theme_base
+#: model:ir.ui.menu,name:ks_theme_base.ks_product_slider
+msgid "All Sliders"
+msgstr "Todos los sliders"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__ks_auto_slide
+#, fuzzy
+msgid "Automatic Slide"
+msgstr "Diapositiva automática"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_main_slider__ks_main_slider_img
+msgid "Banner Image"
+msgstr "Imagen de Banner"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_main_slider__ks_main_slider_link
+msgid "Banner Link"
+msgstr "Enlace  del Anuncio"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__ks_product_blogs_ids
+#: selection:ks_product.slider,ks_item_selection_method:0
+msgid "Blogs"
+msgstr "Blogs"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__ks_product_brand_ids
+msgid "Brand"
+msgstr "Marca"
+
+#. module: ks_theme_base
+#: selection:ks_product.slider,ks_item_selection_method:0
+msgid "Brands"
+msgstr "Marcas"
+
+#. module: ks_theme_base
+#: model:ir.ui.menu,name:ks_theme_base.ks_brands_and_products
+#, fuzzy
+msgid "Brands with Product"
+msgstr "Marcas con producto"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_product_public_category__ks_categ_background
+msgid "Breadcrumb Image"
+msgstr "Imagen del breadcrumb"
+
+#. module: ks_theme_base
+#: selection:ks_product.slider,ks_item_selection_method:0
+msgid "Categories"
+msgstr "Categorías"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__ks_product_cat_ids
+#: model_terms:ir.ui.view,arch_db:ks_theme_base.inherits_product_public_category_form_view
+msgid "Category"
+msgstr "Categoría"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_product_public_category__category_url
+#, fuzzy
+msgid "Category Url"
+msgstr "Url de categoría"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_product_public_category__child_id
+msgid "Child Category"
+msgstr "Categoría infantil"
+
+#. module: ks_theme_base
+#: model:ks_theme.tags,name:ks_theme_base.ks_products_tags_Classics
+#, fuzzy
+msgid "Clásicas"
+msgstr "Clásicas"
+
+#. module: ks_theme_base
+#: selection:product.attribute,type:0
+msgid "Color"
+msgstr "Color"
+
+#. module: ks_theme_base
+#: model:ir.actions.act_window,name:ks_theme_base.ks_product_slider_action_window
+#, fuzzy
+msgid "Configure Slider"
+msgstr "Configurar Slider"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_grid__create_uid
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_main_slider__create_uid
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__create_uid
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_products_track_tags_rel__create_uid
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_theme_tags__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_grid__create_date
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_main_slider__create_date
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__create_date
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_products_track_tags_rel__create_date
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_theme_tags__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_product_brand__ks_brand_discount
+msgid "Discount Percentage"
+msgstr "Porcentaje de descuento"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_grid__display_name
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_main_slider__display_name
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__display_name
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_products_track_tags_rel__display_name
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_theme_tags__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_product_product__ks_product_tags
+#: model:ir.model.fields,field_description:ks_theme_base.field_product_template__ks_product_tags
+msgid "Featured Tags"
+msgstr "Etiquetas destacadas"
+
+#. module: ks_theme_base
+#: selection:product.attribute,type:0
+msgid "Hidden"
+msgstr "Oculto"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_grid__id
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_main_slider__id
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__id
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_products_track_tags_rel__id
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_theme_tags__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_product_brand__ks_image
+msgid "Image"
+msgstr "Imagen"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__ks_items_per_slide
+msgid "Items Per Slide"
+msgstr "Elementos por Diapositiva"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_product_brand__ks_brand_url
+#, fuzzy
+msgid "Ks Brand Url"
+msgstr "Url de la marca Ks"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_product_brand__ks_is_checked_on_shop
+msgid "Ks Is Checked On Shop"
+msgstr "Ks se Comprueba en la Tienda"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_main_slider__ks_main_slider_animate_in
+#, fuzzy
+msgid "Ks Main Slider Animate In"
+msgstr "Ks Main Slider Animate In"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_main_slider__ks_main_slider_animate_out
+#, fuzzy
+msgid "Ks Main Slider Animate Out"
+msgstr "Ks Main Slider Animate Out"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_products_track_tags_rel__ks_source
+#, fuzzy
+msgid "Ks Source"
+msgstr "Fuente de Ks"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_theme_tags__ks_state
+#, fuzzy
+msgid "Ks State"
+msgstr "Estado de Ks"
+
+#. module: ks_theme_base
+#: model:ir.ui.menu,name:ks_theme_base.ks_theme_customization_menu
+msgid "Ksolves's Theme Configuration"
+msgstr "Configuración del Tema de Ksolves"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_grid____last_update
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_main_slider____last_update
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider____last_update
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_products_track_tags_rel____last_update
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_theme_tags____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_grid__write_uid
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_main_slider__write_uid
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__write_uid
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_products_track_tags_rel__write_uid
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_theme_tags__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_grid__write_date
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_main_slider__write_date
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__write_date
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_products_track_tags_rel__write_date
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_theme_tags__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: ks_theme_base
+#: model:ks_theme.tags,name:ks_theme_base.ks_products_tags_new_arrival
+#, fuzzy
+msgid "Lo más Nuevo"
+msgstr "Lo más Nuevo"
+
+#. module: ks_theme_base
+#: model:ir.ui.menu,name:ks_theme_base.ks_product_main_slider
+msgid "Main Slider"
+msgstr "Control deslizante principal"
+
+#. module: ks_theme_base
+#: model:ir.actions.act_window,name:ks_theme_base.ks_product_main_slider_action_window
+msgid "Main Slider Images"
+msgstr "Imágenes Principales de Slider"
+
+#. module: ks_theme_base
+#: model:ir.model,name:ks_theme_base.model_product_brand
+msgid "Marca de Productos"
+msgstr "Marca de productos"
+
+#. module: ks_theme_base
+#: model:ir.ui.menu,name:ks_theme_base.ks_brand_menu
+#, fuzzy
+msgid "Marcas de Productos"
+msgstr "Marcas de Productos"
+
+#. module: ks_theme_base
+#: model:ks_theme.tags,name:ks_theme_base.ks_products_tags_Most_popular
+#, fuzzy
+msgid "Más popular"
+msgstr "Más popular"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_grid__name
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_main_slider__name
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__name
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_products_track_tags_rel__name
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_theme_tags__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__ks_nav_links
+msgid "Navigation Buttons"
+msgstr "Botones de navegación"
+
+#. module: ks_theme_base
+#: model_terms:ir.ui.view,arch_db:ks_theme_base.ks_slider_form
+#, fuzzy
+msgid "Please use 3:1 ratio image for best result"
+msgstr "Utilice la imagen de relación 3:1 para obtener el mejor resultado"
+
+#. module: ks_theme_base
+#: model:ir.model,name:ks_theme_base.model_product_attribute
+msgid "Product Attribute"
+msgstr "Atributo de producto"
+
+#. module: ks_theme_base
+#: model:ir.actions.act_window,name:ks_theme_base.ks_product_grid_action_window_id
+#: model:ir.ui.menu,name:ks_theme_base.ks_product_grid_id
+#: model_terms:ir.ui.view,arch_db:ks_theme_base.ks_product_grid_form
+msgid "Product Grid"
+msgstr "Grilla de Productos"
+
+#. module: ks_theme_base
+#: model:ir.actions.act_window,name:ks_theme_base.ks_products_tags_action_window
+#: model:ir.ui.menu,name:ks_theme_base.ks_products_tags_menu_root
+msgid "Product Tags"
+msgstr "Etiquetas de Producto"
+
+#. module: ks_theme_base
+#: model:ir.actions.act_window,name:ks_theme_base.ks_brand_filter_view
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_grid__ks_product_template_grid
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__ks_product_template_slider
+#: model_terms:ir.ui.view,arch_db:ks_theme_base.ks_slider_multi_form
+#: selection:ks_product.slider,ks_item_selection_method:0
+msgid "Products"
+msgstr "Productos"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_theme_tags__ks_product_ids
+#: model_terms:ir.ui.view,arch_db:ks_theme_base.ks_products_tags_form
+msgid "Products Tags"
+msgstr "Etiquetas de productos"
+
+#. module: ks_theme_base
+#: selection:product.attribute,type:0
+msgid "Radio"
+msgstr "Radio"
+
+#. module: ks_theme_base
+#: model:ir.ui.menu,name:ks_theme_base.ks_rating_menu
+msgid "Rating and Review"
+msgstr "Calificación y Revisión"
+
+#. module: ks_theme_base
+#: model_terms:ir.ui.view,arch_db:ks_theme_base.ks_slider_multi_form
+#, fuzzy
+msgid "Recommended Maximum 6 items only"
+msgstr "Máximo recomendado 6 artículos solamente"
+
+#. module: ks_theme_base
+#: model:ir.model,name:ks_theme_base.model_ks_products_track_tags_rel
+#, fuzzy
+msgid "Relation of products and tags"
+msgstr "Relación de productos y etiquetas"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__ks_loop
+#, fuzzy
+msgid "Repeat Items"
+msgstr "Repetir elementos"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,help:ks_theme_base.field_product_brand__website_id
+msgid "Restrict publishing to this website."
+msgstr "Restringir publicar a este sitio web."
+
+#. module: ks_theme_base
+#: selection:product.attribute,type:0
+msgid "Select"
+msgstr "Seleccionar"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_main_slider__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__ks_Speed
+msgid "Slide Speed"
+msgstr "Velocidad del slide"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_ks_product_slider__ks_item_selection_method
+msgid "Slider Type"
+msgstr "Tipo de slider"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_product_public_category__ks_product_category_slogan
+msgid "Slogan"
+msgstr "Slogan"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,help:ks_theme_base.field_product_public_category__category_url
+#, fuzzy
+msgid "So each category can have their urls"
+msgstr "Así que cada categoría puede tener sus URL"
+
+#. module: ks_theme_base
+#: model_terms:ir.ui.view,arch_db:ks_theme_base.inherits_product_template_form_view
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. module: ks_theme_base
+#: model:ir.model,name:ks_theme_base.model_ks_theme_tags
+#, fuzzy
+msgid "Tags for the products and categories"
+msgstr "Etiquetas para los productos y categorías"
+
+#. module: ks_theme_base
+#: model:ks_theme.tags,name:ks_theme_base.ks_products_tags_trendy
+#, fuzzy
+msgid "Tendencias principales"
+msgstr "Tendencias principales"
+
+#. module: ks_theme_base
+#: model:ir.model,name:ks_theme_base.model_ks_product_grid
+#, fuzzy
+msgid "This is used for product slider"
+msgstr "Esto se utiliza para el control deslizante del producto"
+
+#. module: ks_theme_base
+#: model:ir.model,name:ks_theme_base.model_ks_product_slider
+#, fuzzy
+msgid "This is used for product slider snippet"
+msgstr "Esto se utiliza para el fragmento de control deslizante del producto"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_product_public_category__ks_categ_tag
+msgid "Trendy"
+msgstr "Trendy"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_product_attribute__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: ks_theme_base
+#: model:ir.model.fields,field_description:ks_theme_base.field_product_brand__website_id
+msgid "Website"
+msgstr "Sitio Web"
+
+#. module: ks_theme_base
+#: model:ir.model,name:ks_theme_base.model_ks_product_main_slider
+msgid "Website Main Slider"
+msgstr "Deslizador Principal del Sitio Web"
+
+#. module: ks_theme_base
+#: model:ir.model,name:ks_theme_base.model_product_public_category
+msgid "Website Product Category"
+msgstr "Categoría del Producto"
+
+#. module: ks_theme_base
+#: selection:ks_product_main.slider,ks_main_slider_animate_in:0
+msgid "fadeInUp"
+msgstr "fadeInUp"
+
+#. module: ks_theme_base
+#: selection:ks_product_main.slider,ks_main_slider_animate_out:0
+msgid "fadeOutUp"
+msgstr "fundido hacia afuera en la parte superior"

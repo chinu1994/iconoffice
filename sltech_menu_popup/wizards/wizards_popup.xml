@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <record id="create_invoice_wizard_from" model="ir.ui.view">
+            <field name="name">create.invoice.wizard</field>
+            <field name="model">invoice.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Service Ticket Invoice Line ">
+                    <group>
+                    <group>
+                        <field name="from_date" required="1"/>
+
+                    </group>
+                    <group>
+
+                        <field name="to_date" required="1"/>
+                    </group>
+                    </group>
+                    <footer>
+                        <button string="Cancel" class="oe_highlight" special="cancel"/>
+                        or
+                        <button name="generate_service_lines" string="Submit" type="object" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+<record id="action_invoice_menu_popup" model="ir.actions.act_window">
+            <field name="name">Service Ticket Invoice Line</field>
+            <field name="res_model">invoice.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    <record id="custom_module.service_ticket_invoice_line" model="ir.ui.menu">
+            <field name="action" ref="action_invoice_menu_popup"></field>
+        </record>
+
+<!--        <menuitem id="menu_invoice_popup"-->
+<!--                  name="Service Ticket Invoice Line"-->
+<!--                  parent="custom_module.service_ticket_invoice_line"-->
+<!--                  action="action_invoice_menu_popup"/>-->
+</odoo>

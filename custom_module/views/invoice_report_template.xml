@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="source_report_invoice_document" inherit_id="account.report_invoice_document_with_payments">
+            <xpath expr="//t[@t-foreach='payments_vals']" position='replace'>
+                    <t t-foreach="payments_vals" t-as="payment_vals">
+                    <tr>
+                        <td>
+                            <i class="oe_form_field text-right oe_payment_label">Paid on <t t-esc="payment_vals['date'].strftime('%d-%m-%Y')"/></i>
+                        </td>
+                        <td class="text-right">
+                            <span t-esc="payment_vals['amount']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                        </td>
+                    </tr>
+                </t>
+            </xpath>
+        </template>
+        <template id="custom_report_invoice_document" inherit_id="account.report_invoice_document">
+
+            <!--            <xpath expr='//t[@t-set="address"]' position='after'>-->
+            <!--                <t t-set="address">-->
+            <!--                    <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />-->
+            <!--                    <div t-if="o.partner_id.vat" class="mt16"><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="o.partner_id.vat"/></div>-->
+            <!--                </t>-->
+            <!--            </xpath>-->
+
+            <xpath expr='//div[@name="reference"]' position='replace'>
+                <!--                                    <div class="col-auto mw-100 mb-2" t-if="o.sltech_months" name="sltech_months">-->
+                <!--                                        <strong>Month:</strong>-->
+                <!--                                        <p class="m-0" t-field="o.sltech_months"/>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="col-auto mw-100 mb-2" t-if="o.sltech_years" name="sltech_years">-->
+                <!--                                        <strong>Year:</strong>-->
+                <!--                                        <p class="m-0" t-field="o.sltech_years"/>-->
+                <!--                                    </div>-->
+            </xpath>
+
+            <xpath expr="//table[@name='invoice_line_table']" position='replace'>
+                <table class="table table-sm o_main_table" name="invoice_line_table"
+                       style="border-bottom:3px solid #2e549a !important;">
+                    <thead>
+                        <tr>
+                            <!-- TODO: remove in master -->
+                            <t t-set="colspan" t-value="6"/>
+                            <th name="th_description" class="text-left"
+                                style="color:#2e549a !important;border-top:3px solid #2e549a !important;">
+                                <span>Description</span>
+                            </th>
+                            <!--                            <th name="th_source" class="d-none text-left">-->
+                            <!--                                <span>Source Document</span>-->
+                            <!--                            </th>-->
+                            <th name="th_quantity" class="text-right"
+                                style="color:#2e549a !important;border-top:3px solid #2e549a !important;">
+                                <span>Unit</span>
+                            </th>
+                            <!--                                <th name="th_rate" class="text-right"><span>Rate</span></th>-->
+                            <th name="th_priceunit"
+                                style="color:#2e549a !important;border-top:3px solid #2e549a !important;"
+                                t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                <span>Amount</span>
+                            </th>
+                            <th name="th_price_unit" t-if="display_discount"
+                                style="color:#2e549a !important;border-top:3px solid #2e549a !important;"
+                                t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                <span>Disc.(%)</span>
+                                <!-- TODO: remove in master -->
+                                <t t-set="colspan" t-value="colspan+1"/>
+                            </th>
+                            <th name="th_taxes"
+                                style="color:#2e549a !important;border-top:3px solid #2e549a !important;"
+                                t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                <span>GST</span>
+                            </th>
+                            <th name="th_subtotal" class="text-right"
+                                style="color:#2e549a !important;border-top:3px solid #2e549a !important;">
+                                <span groups="account.group_show_line_subtotals_tax_excluded">Net Amount</span>
+                                <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="invoice_tbody">
+                        <t t-set="current_subtotal" t-value="0"/>
+
+
+                        <tr>
+                            <td name="account_invoice_line_name">
+                                <span t-field="o.consolidated_invoice_line"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="1"/>
+                            </td>
+                            <td t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                <span t-field="o.amount_untaxed"/>
+                            </td>
+                            <td t-if="display_discount"
+                                t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                            </td>
+                            <td t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                <span t-field="o.amount_tax"/>
+                            </td>
+                            <td class="text-right o_price_total">
+                                <span t-field="o.amount_untaxed"
+                                      groups="account.group_show_line_subtotals_tax_excluded"/>
+                            </td>
+                        </tr>
+                        <tr class="alternet_color">
+                            <td style="border:none;">
+                                <!--                                                <t t-esc="row.date"/>-->
+                                <b style="text-decoration:underline;">FOR THE MONTH OF:</b>
+                                <br/>
+                                <b>
+                                    <t t-esc="dict(o._fields['sltech_months'].selection).get(o.sltech_months)"/>
+                                </b>
+                                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                                <b>
+                                    <t t-esc="o.sltech_years"/>
+                                </b>
+                            </td>
+                            <td style="border:none;"></td>
+                            <td style="border:none;"></td>
+                            <td style="border:none;"></td>
+                            <td style="border:none;"></td>
+                        </tr>
+                        <tr class="alternet_color">
+                            <td style="border:none;">
+                                <t t-esc="o.consolidated_invoice_note"/>
+                                <br/>
+                            </td>
+                            <td style="border:none;"></td>
+                            <td style="border:none;"></td>
+                            <td style="border:none;"></td>
+                            <td style="border:none;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </xpath>
+            <xpath expr="//div[hasclass('clearfix')]" position='replace'>
+                <div class="clearfix">
+                    <div id="total" class="row">
+                        <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                            <table class="table table-sm" style="page-break-inside: avoid;">
+                                <tr class="border-#fff o_subtotal" style="border-bottom:1px solid #2e549a !important;">
+                                    <td style="border-bottom:1px solid #2e549a !important;">
+                                        <strong>Total (Ex GST)</strong>
+                                    </td>
+                                    <td style="border-bottom:1px solid #2e549a !important;" class="text-right">
+                                        <span t-field="o.amount_untaxed"/>
+                                    </td>
+                                </tr>
+                                <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                    <tr>
+                                        <t t-if="len(o.tax_line_ids) == 1 and o.amount_untaxed == amount_by_group[2]">
+                                            <td style="border-bottom:1px solid #2e549a !important;">
+                                                <strong t-esc="amount_by_group[0]"/>
+                                            </td>
+                                            <td style="border-bottom:1px solid #2e549a !important;"
+                                                class="text-right o_price_total">
+                                                <span t-esc="amount_by_group[3]"/>
+                                            </td>
+                                        </t>
+                                        <t t-else="">
+                                            <td style="border-bottom:1px solid #2e549a !important;">
+                                                <strong t-esc="amount_by_group[0]"/>
+                                                <span>&amp;nbsp;
+                                                    <span>on</span>
+                                                    <t t-esc="amount_by_group[4]"/>
+                                                </span>
+                                            </td>
+                                            <td style="border-bottom:1px solid #2e549a !important;"
+                                                class="text-right o_price_total">
+                                                <span t-esc="amount_by_group[3]"/>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                                <tr class="border-#fff o_total" style="border-top:1px solid #2e549a !important;">
+                                    <td style="border-top:1px solid #2e549a !important;border-bottom:3px solid #2e549a !important;">
+                                        <strong>Total Amount Payable</strong>
+                                    </td>
+                                    <td style="border-top:1px solid #2e549a !important;border-bottom:3px solid #2e549a !important;"
+                                        class="text-right">
+                                        <span t-field="o.amount_total"/>
+                                    </td>
+                                </tr>
+                                <t t-set="payments_vals" t-value="o._get_payments_vals()"/>
+                                <t t-foreach="payments_vals" t-as="payment_vals">
+                                    <tr>
+                                        <td>
+                                            <i class="oe_form_field text-right oe_payment_label">Paid on
+                                                <t t-esc="payment_vals['date'].strftime('%d-%m-%Y')"/>
+                                            </i>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="payment_vals['amount']"
+                                                  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-if="len(payments_vals) > 0">
+                                    <tr class="border-black">
+                                        <td>
+                                            <strong>Amount Due</strong>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="o.residual"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </xpath>
+
+        </template>
+
+
+        <template id="custom_report_invoice_with_payments">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang"
+                       t-value="o.user_id.sudo().lang if o.type in ('in_invoice', 'in_refund') else o.partner_id.lang"/>
+
+                    <t t-call="custom_module.custom_report_invoice_document" t-lang="lang"/>
+                </t>
+            </t>
+        </template>
+
+        <report
+                id="custom_account_invoices_without_payment"
+                model="account.invoice"
+                string="Consolidated Invoice"
+                report_type="qweb-pdf"
+                name="custom_module.custom_report_invoice_with_payments"
+                file="custom_module.custom_report_invoice_with_payments"
+                menu="True"
+
+        />
+
+        <!--        <record id="paperformat_sltech_quote_report_invoice" model="report.paperformat">-->
+        <!--            <field name="name">Custom Report A4 invoice</field>-->
+        <!--            <field name="default" eval="False"/>-->
+        <!--            <field name="format">A4</field>-->
+        <!--            <field name="orientation">Portrait</field>-->
+        <!--            <field name="margin_top">5</field>-->
+        <!--            <field name="margin_bottom">0</field>-->
+        <!--            <field name="margin_left">7</field>-->
+        <!--            <field name="margin_right">7</field>-->
+        <!--            <field name="header_line" eval="False"/>-->
+        <!--            <field name="header_spacing">50</field>-->
+        <!--            <field name="dpi">90</field>-->
+        <!--            <field name="report_ids" eval="[(4, ref('custom_account_invoices_without_payment'))]"/>-->
+        <!--        </record>-->
+
+
+        <!--        <template id="print_inventory_sample_report">-->
+        <!--            <t t-call="web.external_layout">-->
+        <!--                <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>-->
+        <!--                <div class="page">-->
+        <!--                    <style>-->
+        <!--                        .alternet_color_table {-->
+        <!--                        font-family: arial, sans-serif;-->
+        <!--                        border-collapse: collapse;-->
+        <!--                        width: 100%;-->
+        <!--                        }-->
+
+        <!--                        .alternet_color_table td {-->
+        <!--                        border-color: transparent;-->
+        <!--                        }-->
+        <!--                        .alternet_color_table td {-->
+        <!--                        line-height:5px;-->
+        <!--                        }-->
+        <!--&lt;!&ndash;                        .alternet_color_table tr:nth-child(even) {&ndash;&gt;-->
+        <!--&lt;!&ndash;                        background-color: #ebebeb;&ndash;&gt;-->
+        <!--&lt;!&ndash;                        }&ndash;&gt;-->
+        <!--                    </style>-->
+        <!--                    <div class="div1" style="padding:20px 0 0;">-->
+        <!--                        <img t-if="request.env.user.company_id.logo"-->
+        <!--                             t-att-src="image_data_uri(request.env.user.company_id.logo)"-->
+        <!--                             class="float-right"-->
+        <!--                             width="200px;"-->
+        <!--                             height="200px;"-->
+        <!--                             alt="Logo"/>-->
+        <!--                    </div>-->
+        <!--                    <div class="div2">-->
+        <!--                        <div style="float: left;/* font-weight: 700; *//* font-weight: bolder; */text-shadow: 1px 1px, 1px 1px, 1px 1px;">-->
+        <!--                            <h3 style="font-size: 2.4rem;font-weight: 700;">TAX INVOICE</h3>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <table class="sltech_class" width="100%" style="border-bottom:0;">-->
+        <!--                        <tr class="sltech_class">-->
+        <!--                            <td class="sltech_class"-->
+        <!--                                style="vertical-align:middle;font-size:20px;">-->
+        <!--                                <b>Attention:</b>-->
+        <!--                            </td>-->
+        <!--                            <td class="sltech_class"-->
+        <!--                                style="vertical-align:middle;font-size:20px;font-weight:600;">-->
+        <!--                                &lt;!&ndash;                                    <i t-field="doc.partner_id.name"/>&ndash;&gt;-->
+        <!--                                <b>ACCOUNTS PAYABLE</b>-->
+        <!--                            </td>-->
+        <!--                            <td class="sltech_class" width="200px"-->
+        <!--                                style="vertical-align:middle;font-size:20px;font-weight:600;">-->
+        <!--                            </td>-->
+        <!--                            <td class="sltech_class" style="vertical-align:middle;font-size:20px;">-->
+        <!--                                <b>ABN:</b>-->
+        <!--                            </td>-->
+        <!--                            <td class="sltech_class"-->
+        <!--                                style="vertical-align:middle;font-size:20px;text-align-center;font-weight:600;">-->
+        <!--                                <b>-->
+        <!--                                    <t t-esc="request.env.user.company_id.vat"/>-->
+        <!--                                </b>-->
+        <!--                            </td>-->
+        <!--                        </tr>-->
+        <!--                        <tr class="sltech_class">-->
+        <!--                            <td class="sltech_class"-->
+        <!--                                style="vertical-align:middle;font-size:20px;">-->
+        <!--                                <b>Company:</b>-->
+        <!--                            </td>-->
+        <!--                            <td class="sltech_class"-->
+        <!--                                style="vertical-align:middle;font-size:20px;text-transform:uppercase;">-->
+        <!--&lt;!&ndash;                                <b>&ndash;&gt;-->
+        <!--                                    <t t-esc="doc.partner_id.name"/>-->
+        <!--&lt;!&ndash;                                </b>&ndash;&gt;-->
+        <!--                            </td>-->
+        <!--                            <td class="sltech_class" width="200px"-->
+        <!--                                style="vertical-align:middle;font-size:20px;font-weight:600;">-->
+        <!--                            </td>-->
+        <!--                            <td class="sltech_class" style="vertical-align:middle;font-size:20px;">-->
+        <!--                                <b>Invoice Date:</b>-->
+        <!--                            </td>-->
+        <!--                            <td class="sltech_class"-->
+        <!--                                style="vertical-align:middle;font-size:20px;font-weight:600;">-->
+        <!--                                <b t-if="doc.date_invoice">-->
+        <!--                                    <t t-esc="doc.date_invoice.strftime('%d.%m.%Y')"/>-->
+        <!--                                </b>-->
+        <!--                            </td>-->
+        <!--                        </tr>-->
+        <!--                        <tr class="sltech_class" style="border-bottom:0;">-->
+        <!--                            <td class="sltech_class"-->
+        <!--                                style="vertical-align:top;font-size:20px;">-->
+        <!--                                <b>Address:</b>-->
+        <!--                            </td>-->
+        <!--                            <td class="sltech_class"-->
+        <!--                                style="vertical-align:top;font-size:20px;text-transform:uppercase;" width="250px;">-->
+        <!--                                <t t-esc="doc.partner_id.contact_address"/>-->
+        <!--&lt;!&ndash;                                <b>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    <t t-esc="request.env.user.company_id.street"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    <t t-esc="request.env.user.company_id.street2"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    <t t-esc="request.env.user.company_id.city"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    <br/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    <t t-esc="request.env.user.company_id.state_id.name"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    <t t-esc="request.env.user.company_id.country_id.name"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    <t t-esc="request.env.user.company_id.zip"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                </b>&ndash;&gt;-->
+        <!--                            </td>-->
+        <!--                            <td class="sltech_class" width="200px"-->
+        <!--                                style="vertical-align:middle;font-size:20px;font-weight:600;">-->
+        <!--                            </td>-->
+        <!--                            <td class="sltech_class" style="vertical-align:top;font-size:20px;">-->
+        <!--                                <b>Invoice No:</b>-->
+        <!--                            </td>-->
+        <!--                            <td class="sltech_class"-->
+        <!--                                style="vertical-align:top;font-size:20px;font-weight:600;">-->
+        <!--                                <b>-->
+        <!--                                    &lt;!&ndash;                                                                                <t t-esc="doc.job_card.name"/>&ndash;&gt;-->
+        <!--                                    <t t-esc="doc.number"/>-->
+        <!--                                </b>-->
+        <!--                            </td>-->
+        <!--                        </tr>-->
+
+        <!--                    </table>-->
+        <!--                    <br/>-->
+        <!--                    <table class="table table-condensed alternet_color_table" style=" border-bottom: 3px solid #2f549a;border-top:0;" >-->
+        <!--                        <thead style="border-top:0;">-->
+        <!--                            <tr style="border-bottom: 2px solid #2f549a;border-top:0,font-size:25px;" >-->
+        <!--                                <td style="border-top:0;font-size:20px;">Description</td>-->
+        <!--                                <td style="border-top:0;font-size:20px;">Quantity</td>-->
+        <!--                                <td style="border-top:0;font-size:20px;">Unit Price</td>-->
+        <!--                                <td style="border-top:0;font-size:20px;">Taxes</td>-->
+        <!--&lt;!&ndash;                                <td style="border-tofont-size:20px;p:0;">GST</td>&ndash;&gt;-->
+        <!--                                <td style="border-top:0;font-size:20px;">Amount</td>-->
+        <!--                                &lt;!&ndash;                                        <th>QUANTITY OUTWARD</th>&ndash;&gt;-->
+        <!--                                &lt;!&ndash;                                        <th>AVAIL STOCK</th>&ndash;&gt;-->
+        <!--                            </tr>-->
+        <!--                        </thead>-->
+        <!--                        <tbody>-->
+
+        <!--&lt;!&ndash;                            <tr class="alternet_color" height="20px;" >&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    <b>STORAGE &amp; HANDLING</b>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                </td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;                            </tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <tr class="alternet_color" height="20px;">&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    <b>GL CODE</b>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    <b>3570</b>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                </td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;                            </tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <tr height="20px;">&ndash;&gt;-->
+        <!--&lt;!&ndash;                                  <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            </tr>&ndash;&gt;-->
+        <!--                            <tr class="alternet_color" >-->
+        <!--                                    <td style="text-decoration:underline;text-transform:uppercase;vertical-align:middle;vertical-align:middle;">-->
+        <!--                                        <b><t t-esc="doc.consolidated_invoice_line"/></b>-->
+        <!--                                    </td>-->
+        <!--                                    <td style="text-align:center;vertical-align:middle;">1-->
+        <!--                                    </td>-->
+        <!--                                    <td style="text-align:center;vertical-align:middle;">-->
+        <!--                                        <t t-esc="doc.amount_untaxed"/>-->
+        <!--                                    </td>-->
+        <!--                                    <td style="text-align:center;vertical-align:middle;">-->
+        <!--                                        <t t-esc="doc.amount_tax"/>-->
+        <!--                                    </td>-->
+        <!--                                    <td style="text-align:right;vertical-align:middle;">-->
+        <!--                                        <t t-esc="doc.amount_total"/>-->
+        <!--                                    </td>-->
+        <!--                                </tr>-->
+        <!--                            <tr class="alternet_color" height="20px;">-->
+        <!--                                <td style="text-decoration:underline;">-->
+        <!--                                    &lt;!&ndash;                                                <t t-esc="row.date"/>&ndash;&gt;-->
+        <!--                                    <b>FOR THE MONTH OF:</b>-->
+        <!--                                </td>-->
+        <!--                                <td></td>-->
+        <!--                                <td></td>-->
+        <!--                                <td></td>-->
+        <!--                                <td></td>-->
+        <!--                            </tr>-->
+        <!--                            <tr class="alternet_color" height="20px;">-->
+        <!--                                <td style="text-transform:uppercase;">-->
+        <!--                                    <b><t t-esc="dict(doc._fields['sltech_months'].selection).get(doc.sltech_months)"/> </b>-->
+        <!--                                    &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;-->
+        <!--                                    <b><t t-esc="doc.sltech_years"/></b>-->
+        <!--                                </td>-->
+        <!--                                <td></td>-->
+        <!--                                <td></td>-->
+        <!--                                <td></td>-->
+        <!--                                <td></td>-->
+
+        <!--                            </tr>-->
+        <!--&lt;!&ndash;                            <tr class="alternet_color" height="20px;">&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td style="text-decoration:underline;">&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    &lt;!&ndash;                                                <t t-esc="row.date"/>&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    <b>AS PER LIST</b>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                </td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            </tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <tr height="20px;">&ndash;&gt;-->
+        <!--&lt;!&ndash;                                 <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            </tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <t t-foreach="docs.invoice_line_ids" t-as="row">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;                            </t>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <tr height="20px;">&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td><b>( AS PER AGREED PROCESS)</b>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                </td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;                            </tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <tr class="alternet_color" height="20px;">&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td style="text-decoration:underline;">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;                                    <b>STORAGE CHARGES</b>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                </td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            </tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <tr class="alternet_color" height="20px;">&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;                                    <b>50 PALLETS</b>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                </td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            </tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <tr class="alternet_color" height="20px;">&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;                                    <b>RC PARTS SUPPLIED</b>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                </td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                <td></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            </tr>&ndash;&gt;-->
+        <!--                        </tbody>-->
+        <!--                    </table>-->
+        <!--                    <table width="100%">-->
+        <!--                        <tr width="100%">-->
+        <!--                            <th width="10%" style="padding:0 10px 0;">-->
+        <!--                            </th>-->
+        <!--                            <th style="float:right;text-align:right;" width="80%">-->
+        <!--                                <b>Total (Ex GST)</b>-->
+        <!--                            </th>-->
+        <!--                            <th style="text-align:right;vertical-align:top;" width="10%">-->
+        <!--                                <t t-esc="doc.amount_untaxed"/>-->
+        <!--                            </th>-->
+        <!--                        </tr>-->
+        <!--                        <tr width="100%">-->
+        <!--                            <th width="10%" style="padding:0 10px 0;">-->
+        <!--                            </th>-->
+        <!--                            <th style="float:right;text-align:right;vertical-align:top;" width="80%">-->
+        <!--                                <b>GST Amount</b>-->
+        <!--                            </th>-->
+        <!--                            <th style="text-align:right;vertical-align:top;border-bottom:1px solid #2f549a;" width="10%" >-->
+        <!--                                <t t-esc="doc.amount_tax"/>-->
+        <!--                            </th>-->
+        <!--                        </tr>-->
+        <!--                        <tr width="100%">-->
+        <!--                            <th width="10%" style="padding:0 10px 0;">-->
+        <!--                            </th>-->
+        <!--                            <th style="float:right;text-align:right;vertical-align:top;" width="80%">-->
+        <!--                                <b>Total Amount Payable</b>-->
+        <!--                            </th>-->
+        <!--                            <th style="text-align:right;vertical-align:top;border-bottom:double #2f549a;" width="10%">-->
+        <!--                                <t t-esc="doc.amount_total"/>-->
+        <!--                            </th>-->
+        <!--                        </tr>-->
+
+
+        <!--                    </table>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+
+
+        <!--                            <table width="100%">-->
+        <!--                            <tr>-->
+        <!--                            <td style="vertical-align:middle;font-size:18px;">-->
+        <!--                                Payment Terms:-->
+        <!--                            </td>-->
+        <!--                            <td style="vertical-align:middle;font-size:18px;float:left;">-->
+        <!--                                <t t-esc="doc.payment_term_id.name"/>-->
+        <!--                            </td>-->
+        <!--                                <td width="60%"></td>-->
+        <!--                        </tr>-->
+        <!--                    </table>-->
+        <!--                    <br/>-->
+        <!--                    <br/>-->
+
+        <!--                    <table width="100%" style="border-top:2px solid #2f549a;">-->
+        <!--                        <tr>-->
+        <!--                            <td style="vertical-align:bottom;font-size:20px;"><pre style="font-family: 'Poppins', sans-serif;" ><t t-esc="doc.comment"/></pre></td>-->
+        <!--                               <td style="vertical-align:middle;font-size:20px;font-weight:600;text-align:center;padding-right:150px;">-->
+        <!--                                <b>THANK YOU</b><br/>-->
+        <!--                                   <b>www.iconofficesolutions.com.au</b>-->
+        <!--                            </td>-->
+        <!--                            <td style="vertical-align:middle;font-size:18px;padding-top:28px;">Page 1 of 1</td>-->
+        <!--                        </tr>-->
+        <!--                    </table>-->
+        <!--                </div>-->
+        <!--            </t>-->
+        <!--        </template>-->
+
+        <!--        <template id="sltech_report_saleorder_invoice">-->
+        <!--            <t t-call="web.html_container">-->
+        <!--                <t t-foreach="docs" t-as="doc">-->
+        <!--                    <t t-call="custom_module.print_inventory_sample_report"-->
+        <!--                       t-lang="doc.partner_id.lang"/>-->
+        <!--                </t>-->
+        <!--            </t>-->
+        <!--        </template>-->
+
+
+    </data>
+</odoo>

@@ -1,0 +1,146 @@
+@media only screen and (max-width: 600px) {
+
+
+
+  /*  Hide Priority  */
+/*     .tf_custom_hide_column_tf_tree > table >thead > tr > th:nth-child(4){
+        display: none;
+    }
+    .tf_custom_hide_column_tf_tree > table > tbody > tr > td:nth-child(4){
+        display: none;
+    }
+
+  .advance_search_row > td:nth-child(4){
+    display: none;
+  }
+*/
+
+   /* Hide Close date  */
+   .tf_custom_hide_column_tf_tree > table >thead > tr > th:nth-child(12){
+        display: none;
+    }
+    .tf_custom_hide_column_tf_tree > table > tbody > tr > td:nth-child(12){
+        display: none;
+    }
+
+  .advance_search_row > td:nth-child(12){
+    display: none;
+  }
+
+
+    .tf_custom_hide_column_tf_tree > table > tbody > tr > td:nth-child(9){
+      max-width: 150px !important;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+
+    /* Limit characters to show in mobile devices    */
+    .tf_custom_hide_column_adjust_letter{
+        max-width: 40px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .tf_custom_tref{
+        text-align: center;
+    }
+
+    .tf_custom_hide_column_tf_tree > table >thead > tr > th:nth-child(8){
+        text-align: center;
+    }
+
+    .tf_custom_hide_column_tf_tree > table >thead > tr > th:nth-child(7){
+        vertical-align: inherit;
+        text-align: center;
+    }
+
+    .o_date_cell {
+      text-align: center !important;
+    }
+
+    span[name='date_time_assigned_date']{
+      vertical-align: middle;
+    }
+
+
+}
+
+::-webkit-scrollbar {
+  height: 12px !important;              /* height of horizontal scrollbar ← You're missing this */
+  /*width: 4px;               /* width of vertical scrollbar */
+  /*border: 1px solid #d5d5d5;*/
+}
+
+/* shorten the assigned date field in tree view */
+.tf_custom_hide_column_tf_tree > table >thead > tr > th:nth-child(6){
+    max-width: 135px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.tf_custom_hide_column_tf_tree > table > thead > tr:nth-child(2) > td:nth-child(6){
+    max-width: 135px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.tf_custom_date_column_short{
+    max-width: 135px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+td.o_data_cell.o_readonly_modifier:last-child {
+    text-align: center;
+}
+th.o_column_sortable:last-child {
+    text-align: center;
+}
+
+.o_date_cell {
+    text-align: center;
+}
+.o_date_cell span {
+    vertical-align: middle;
+}
+
+.o_data_row.text-bf{
+    font-style:italic !important
+}
+
+button[name="action_closed_ticket_email_mobile"] {
+            display: none;
+    }
+/* Media query for tablets */
+@media only screen and (max-width: 768px) {
+    button[name="action_closed_ticket_email_mobile"] {
+            position: absolute;
+            top: 10px;
+            left: 44vw;
+    }
+    button[name="action_closed_ticket_email"] {
+            display: none;
+    }
+    button[name="action_closed_ticket_email_mobile"] {
+            display: block;
+    }
+}
+
+/* Media query for mobile phones */
+@media only screen and (max-width: 480px) {
+    button[name="action_closed_ticket_email_mobile"] {
+            position: absolute;
+            top: 10px;
+            left: 38vw;
+    }
+    button[name="action_closed_ticket_email"] {
+            display: none;
+    }
+    button[name="action_closed_ticket_email_mobile"] {
+            display: block;
+    }
+}

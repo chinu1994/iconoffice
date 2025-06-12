@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="helpdesk_tickets" name="Service Desk Detail">
+        <t t-call="website.layout">
+            <div class="team_data">
+                <title>Service Desk Sub Page</title>
+                <!--                <div class="container">-->
+                <!--                    <style>-->
+                <!--                        .hd_mg{-->
+
+                <!--                        width:90px;-->
+                <!--                        padding-right:1px;-->
+
+                <!--                        }-->
+                <!--                    </style>-->
+                <!--                    <div class="row">-->
+                <!--                        <center style="width: 100%;">-->
+                <!--                            <div class="row">-->
+                <!--                                <div class="col-md-4 col-md-offset-4" style="margin-left: 33.33333333%;">-->
+                <!--                                    <div class="material-button-anim">-->
+                <!--                                        <ul class="list-inline" id="options">-->
+                <!--                                            <li class="option"-->
+                <!--                                                style="display: inline-block;padding-left: 5px;padding-right: 5px;">-->
+                <!--                                                <a href="/page/helpdesk_detail/">-->
+                <!--                                                    <button class="material-button option1" type="button"-->
+                <!--                                                            title="Ticket Booking">-->
+                <!--                                                        <img src="/gt_helpdesk_support_ticket/static/src/img/ticket_bk.png"-->
+                <!--                                                             style="width:60px; padding-right:6px;"/>-->
+                <!--                                                    </button>-->
+                <!--                                                </a>-->
+                <!--                                            </li>-->
+                <!--                                            <li class="option"-->
+                <!--                                                style="display: inline-block;padding-left: 5px;padding-right: 5px;">-->
+                <!--                                                <a href="/page/support_tickets/">-->
+                <!--                                                    <button class="material-button option2" type="button"-->
+                <!--                                                            title="Support Ticket Status">-->
+                <!--                                                        <img src="/gt_helpdesk_support_ticket/static/src/img/ticket.png"-->
+                <!--                                                             style="width:60px; padding-right:6px;"/>-->
+                <!--                                                    </button>-->
+                <!--                                                </a>-->
+
+                <!--                                            </li>-->
+                <!--                                            <li class="option"-->
+                <!--                                                style="display: inline-block;padding-left: 5px;padding-right: 5px;">-->
+                <!--                                                <a href="/page/support_tickets_list/">-->
+                <!--                                                    <button class="material-button option3" type="button"-->
+                <!--                                                            title="Issues">-->
+                <!--                                                        &lt;!&ndash;<span class="fa fa-pencil" aria-hidden="true">&ndash;&gt;-->
+                <!--                                                        <img src="/gt_helpdesk_support_ticket/static/src/img/issue.png"-->
+                <!--                                                             class="hd_mg" style="width:60px; padding-right:6px;"/>-->
+                <!--                                                        &lt;!&ndash;</span>&ndash;&gt;-->
+                <!--                                                    </button>-->
+                <!--                                                </a>-->
+                <!--                                            </li>-->
+                <!--                                        </ul>-->
+                <!--                                        <button class="material-button material-button-toggle" type="button"-->
+                <!--                                                t-att-title="partners.name">-->
+                <!--                                            &lt;!&ndash;<span class="fa fa-plus" aria-hidden="true">&ndash;&gt;-->
+                <!--                                            <img src="/gt_helpdesk_support_ticket/static/src/img/hd.png" class="hd_mg"/>-->
+                <!--                                            &lt;!&ndash;<h6><span t-esc="partners.name"/> </h6>&ndash;&gt;-->
+                <!--                                            &lt;!&ndash;</span>&ndash;&gt;-->
+                <!--                                        </button>-->
+
+                <!--                                    </div>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </center>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <section class="body">
+                    <div class="container">
+                        <a href="/page/helpdesk_detail/">
+                            <div class="circle-wrapper">
+                                <div class="circle">
+                                    <i class="fa-solid fa-file"
+                                       style="font-size: 40px; color: grey;"></i> <!-- Icon for third circle -->
+                                    <span class="hover-text">Ticket Booking</span>
+                                </div>
+                                <div class="below-text">Ticket Booking</div>
+                            </div>
+                        </a>
+                        <a href="/page/support_tickets/">
+                            <div class="circle-wrapper">
+                                <div class="circle">
+                                    <i class="fa-solid fa-ticket"
+                                       style="font-size: 40px; color: grey;"></i> <!-- Icon for second circle -->
+                                    <span class="hover-text">Support Ticket Status</span>
+                                </div>
+                                <div class="below-text">Support Ticket Status</div>
+                            </div>
+                        </a>
+                        <a href="/page/support_tickets_list/">
+                            <div class="circle-wrapper">
+                                <div class="circle">
+                                    <i class="fa-solid fa-exclamation" style="font-size: 40px; color: grey;"></i>
+                                    <span class="hover-text">Issues</span>
+                                </div>
+                                <div class="below-text">Issues</div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="support_tickets" name="Support Tickets">
+        <t t-call="website.layout">
+            <div class="team_data">
+                <title>Support Tickets Page</title>
+                <div class="container">
+                    <script>
+                        $(document).ready(function(){
+                        $("#myInput").on("keyup", function() {
+                        var value = $(this).val().toLowerCase();
+                        $("#myTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                        });
+                        });
+                        });
+                    </script>
+                    <style>
+                        center { width: 100%; }
+                        .panel-primary > .panel-heading {
+                        color: #fff;
+                        background-color: #337ab7;
+                        border-color: #337ab7;
+                        }
+                        .panel-heading {
+                        padding: 10px 15px;
+                        border-bottom: 1px solid transparent;
+                        border-top-right-radius: 3px;
+                        border-top-left-radius: 3px;
+                        }
+                        .panel-title {
+                        margin-top: 0;
+                        margin-bottom: 0;
+                        font-size: 16px;
+                        color: inherit;
+                        }
+
+                        .panel-primary {
+                        border-color: #337ab7;
+                        }
+                        .panel {
+                        margin-bottom: 20px;
+                        background-color: #fff;
+                        border: 1px solid #337ab7;
+                        border-radius: 4px;
+                        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+                        }
+                    </style>
+
+                    <div class="row">
+                        <center>
+
+                            <H1>Support Tickets</H1>
+
+                            <div class="">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Total Number of Tickets (
+                                            <span t-esc="count_tickets"/>
+                                            )
+                                        </h3>
+                                        <div class="pull-right">
+                                            <span class="clickable filter" data-toggle="tooltip"
+                                                  title="Toggle table filter" data-container="body">
+                                                <i class="glyphicon glyphicon-filter"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <!--                                        <input type="text" class="form-control" id="dev-table-filter"-->
+                                        <!--                                               data-action="filter" data-filters="#dev-table"-->
+                                        <!--                                               placeholder="Filter Developers"/>-->
+                                        <input id="myInput" type="text" placeholder="Search.."
+                                               style="width: -webkit-fill-available;"/>
+                                    </div>
+                                    <table class="table table-hover" id="dev-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Ticket No</th>
+                                                <th>Reference</th>
+                                                <th>Title</th>
+                                                <th>Date</th>
+                                                <!--                                                <th>Priority</th>-->
+                                                <th>Stage</th>
+                                                <th>Ticket Details</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="myTable" t-foreach="ticket_lines" t-as="tc_line">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="tc_line.ticket_no"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="tc_line.tref"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="tc_line.ticket_title"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="tc_line.compute_website_datetime(tc_line.create_date).strftime('%d-%m-%Y %H:%M:%S')"/>
+                                                    <!--                                                    <span t-esc="tc_line.create_date.strftime('%d-%m-%Y %H:%M:%S')"/>-->
+                                                </td>
+                                                <!--                                                <td>-->
+                                                <!--                                                    <span t-esc="tc_line.priority"/>-->
+                                                <!--                                                </td>-->
+                                                <td>
+                                                    <span t-esc="tc_line.tf_get_exact_status_name(tc_line.state)"/>
+                                                </td>
+                                                <td>
+                                                    <a t-att-href="'/page/support_tickets/'+str(tc_line.id)">
+                                                        <button type="button" string="Go To">View Ticket</button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="support_tickets_box" name="Support Tickets">
+
+        <t t-call="website.layout">
+            <div class="message_preloader"/>
+            <div class="team_data">
+                <title>Support Tickets Page</title>
+                <div class="container">
+                    <style>
+                        center { width: 100%; }
+                        .panel-primary > .panel-heading {
+                        color: #fff;
+                        background-color: #337ab7;
+                        border-color: #337ab7;
+                        }
+                        .panel-heading {
+                        padding: 10px 15px;
+                        border-bottom: 1px solid transparent;
+                        border-top-right-radius: 3px;
+                        border-top-left-radius: 3px;
+                        }
+                        .panel-title {
+                        margin-top: 0;
+                        margin-bottom: 0;
+                        font-size: 16px;
+                        color: inherit;
+                        }
+
+                        .panel-primary {
+                        border-color: #337ab7;
+                        }
+                        .panel {
+                        margin-bottom: 20px;
+                        background-color: #fff;
+                        border: 1px solid #337ab7;
+                        border-radius: 4px;
+                        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+                        }
+                        .table td{border-top:none;}
+                    </style>
+
+                    <!-- Begin emoji-picker Stylesheets -->
+                    <link href="/gt_helpdesk_support_ticket/static/src/lib/css/emoji.css" rel="stylesheet"/>
+                    <input type="hidden" t-att-value="ticket_lines.id" id="ticket_id"/>
+                    <div class="row" t-foreach="ticket_lines" t-as="tc_line">
+
+                        <center>
+                            <div>
+                                <span style="position: absolute;top: 55px;left: 384px;">
+                                    <a href="/page/support_tickets" class="fa fa-3x fa-arrow-left mr4"
+                                       title="Back Button"/>
+                                </span>
+                                <span>
+                                    <H1>
+                                        <span t-esc="ticket_lines.ticket_title"/>
+                                        (<span t-esc="ticket_lines.ticket_no"/>)
+                                    </H1>
+                                </span>
+                            </div>
+
+
+                            <div class="">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Ticket Details</h3>
+                                        <div class="pull-right">
+                                            <span class="clickable filter" data-toggle="tooltip"
+                                                  title="Toggle table filter" data-container="body">
+                                                <i class="glyphicon glyphicon-filter"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <input type="text" class="form-control" id="dev-table-filter"
+                                               data-action="filter" data-filters="#dev-table"
+                                               style="display: none"
+                                               placeholder="Filter Developers"/>
+                                    </div>
+                                    <table class="table table-hover" id="dev-table">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <table class="table table-hover" id="dev-table1" style="width:128%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Ticket Information</th>
+                                                                <th>Customer Information</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <table class="table table-hover">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <b>Serial No :</b>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span t-esc="tc_line.serial_no"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <b>Ref :</b>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span t-esc="tc_line.tref"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <b>Fault Area :</b>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span t-esc="tc_line.fault_area"/>
+                                                                            </td>
+                                                                        </tr>
+
+
+
+                                                                        <tr>
+                                                                            <td>
+                                                                                <b>Create Date :</b>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span t-esc="tc_line.compute_website_datetime(tc_line.create_date).strftime('%d-%m-%Y %H:%M:%S')"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <b>Created By :</b>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span t-esc="tc_line.tf_created_by"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                                 <tr>
+                                                                            <td>
+                                                                                <b>Ticket Stage :</b>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span t-esc="[tc for tc in tc_line._fields.get('state').selection if tc[0] == tc_line.state][0][1]"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <b>Is Submitted :</b>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span t-esc="'YES' if tc_line.email_send_count &gt; 1 else 'NO'"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <b>Closed Date :</b>
+                                                                            </td>
+                                                                            <td t-if="tc_line.close_date">
+                                                                                <span t-esc="tc_line.compute_website_datetime(tc_line.close_date).strftime('%d-%m-%Y %H:%M:%S')"/>
+                                                                            </td>
+                                                                            <td t-else=""></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <b>Total Hours :</b>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span t-esc="tc_line.total_hours"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                                <td>
+                                                                    <table class="table table-hover" id="dev-table2">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <b>Customer Name :</b>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span t-esc="tc_line.tpartner_name"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <b>Customer From :</b>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span t-esc="tc_line.temail_from"/>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </table>
+                                                                      <b>Assignment Information</b>
+                                                                    <table class="table table-hover">
+                                                                         <tr>
+                                                                            <td>
+                                                                                <b>Assigned Date :</b>
+                                                                            </td>
+                                                                            <td>
+                                                                               <span t-esc="tc_line.date_time_assigned_date"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <b>Resolution :</b>
+                                                                    <div style="width: 558px;word-wrap: break-word;">
+                                                                        <table class="table table-bordered"
+                                                                               cellpadding="5" cellspacing="5">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th style="width: 33%;text-align: left;">
+                                                                                        Date
+                                                                                    </th>
+                                                                                    <th style="width: 67%;">Resolution
+                                                                                    </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <t t-foreach="tc_line.sheet_ids"
+                                                                                   t-as="sheet">
+                                                                                    <tr>
+                                                                                        <td style="">
+                                                                                            <t t-escc="sheet.create_date.date().strftime('%d-%m-%Y')"/>
+                                                                                        </td>
+                                                                                        <td style="">
+                                                                                            <t t-esc="sheet.sh_resolution"/>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </t>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <hr/>
+                                                    <div>
+                                                        <div class="o_composer_input">
+                                                            <p class="lead emoji-picker-container">
+                                                                <textarea class="form-control textarea-control" rows="3"
+                                                                          id="customer_message"
+                                                                          placeholder="Write something..."
+                                                                          data-emojiable="true"
+                                                                          data-emoji-input="unicode"></textarea>
+                                                            </p>
+                                                            <button tabindex="3"
+                                                                    class="btn btn-secondary fa fa-paper-plane-o send_customer_message"
+                                                                    type="button" title="Send" aria-label="Send"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="o_mail_thread">
+                                                        <t t-foreach="data_message" t-as="msg">
+                                                            <hr/>
+                                                            <div class="o_thread_message  o_mail_discussion">
+                                                                <div class="o_thread_message_core">
+                                                                    <p class="o_mail_info text-muted">
+                                                                        <strong class="o_thread_author ">
+                                                                            <!--                                                                            <t t-esc="msg.get('email_from', '')"/>-->
+                                                                            <t t-esc="'Technician'"/>
+                                                                        </strong>
+                                                                        -
+                                                                        <small class="o_mail_timestamp"
+                                                                               t-att-title="tc_line.compute_website_datetime_string(msg.get('create_date', ''))">
+                                                                            <t t-esc="tc_line.compute_website_datetime_string(msg.get('create_date', ''))"/>
+                                                                        </small>
+                                                                    </p>
+                                                                    <div class="o_thread_message_content">
+                                                                        <p t-raw="msg.get('body', '')"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </t>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <hr/>
+                                                    <div>
+
+                                                        <!--<form action="/website_form/" method="post"-->
+                                                        <!--class="helpdesk s_website_form form-horizontal container-fluid mt32"-->
+                                                        <!--enctype="multipart/form-data"-->
+                                                        <!--data-model_name="ir.attachment"-->
+                                                        <!--t-att-data-success_page="'/page/support_tickets/'+str(ticket_lines.id)">-->
+
+
+                                                        <!--<input type="text" style="display:none;"-->
+                                                        <!--t-att-value="ticket_lines.id"-->
+                                                        <!--class="form-control o_website_form_input"-->
+                                                        <!--name="res_id"/>-->
+                                                        <!--<input type="text" style="display:none;"-->
+                                                        <!--t-att-value="ticket_lines.ticket_no"-->
+                                                        <!--class="form-control o_website_form_input"-->
+                                                        <!--name="res_name"/>-->
+                                                        <!--<input type="text" style="display:none;"-->
+                                                        <!--value="helpdesk.ticket"-->
+                                                        <!--class="form-control o_website_form_input"-->
+                                                        <!--name="res_model"/>-->
+                                                        <!--<input type="text" style="display:none;" id="doc_name"-->
+                                                        <!--class="form-control o_website_form_input"-->
+                                                        <!--name="name"/>-->
+
+
+                                                        <!--<div class="form-group form-field o_website_form_custom">-->
+                                                        <!--<div class="col-md-3 col-sm-4 text-right">-->
+                                                        <!--<label class="control-label" for="Documents">-->
+                                                        <!--Documents-->
+                                                        <!--</label>-->
+                                                        <!--</div>-->
+                                                        <!--<div class="col-md-7 col-sm-8">-->
+                                                        <!--<input type="file" id="attachment_tdocs"-->
+                                                        <!--class="form-control o_website_form_input"-->
+                                                        <!--name="datas"/>-->
+                                                        <!--</div>-->
+                                                        <!--</div>-->
+
+
+                                                        <!--<div class="form-group">-->
+                                                        <!--<div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">-->
+                                                        <!--<button tabindex="5"-->
+                                                        <!--class="btn btn-secondary fa fa-paperclip o_website_form_send"-->
+                                                        <!--type="button" aria-label="Add attachment"-->
+                                                        <!--title="Add attachment"/>-->
+                                                        <!--&lt;!&ndash;<span class="btn btn-primary btn-lg o_website_form_send">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;Submit&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                                        <!--<span id="o_website_form_result"></span>-->
+                                                        <!--</div>-->
+                                                        <!--</div>-->
+                                                        <!--</form>-->
+
+
+                                                        <form action="/send/attachment" method="post"
+                                                              class="form-horizontal container-fluid mt32"
+                                                              enctype="multipart/form-data">
+                                                            <input type="hidden" name="csrf_token"
+                                                                   t-att-value="request.csrf_token()"/>
+
+                                                            <input type="text" style="display:none;"
+                                                                   t-att-value="ticket_lines.id"
+                                                                   class="form-control o_website_form_input"
+                                                                   name="res_id"/>
+                                                            <input type="text" style="display:none;"
+                                                                   t-att-value="ticket_lines.ticket_no"
+                                                                   class="form-control o_website_form_input"
+                                                                   name="res_name"/>
+                                                            <input type="text" style="display:none;"
+                                                                   value="helpdesk.ticket"
+                                                                   class="form-control o_website_form_input"
+                                                                   name="res_model"/>
+
+
+                                                            <div class="form-group form-field o_website_form_custom">
+                                                                <div class="col-md-3 col-sm-4 text-right">
+                                                                    <label class="control-label" for="Documents">
+                                                                        Documents
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-md-7 col-sm-8">
+                                                                    <input type="file" id="attachment_tdocs"
+                                                                           class="form-control o_website_form_input"
+                                                                           name="datas"/>
+                                                                </div>
+                                                            </div>
+                                                            <!---->
+                                                            <!---->
+                                                            <div class="form-group">
+                                                                <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                                                                    <!--<button tabindex="5"-->
+                                                                    <!--class="btn btn-secondary fa fa-paperclip o_website_form_send"-->
+                                                                    <!--type="button" aria-label="Add attachment"-->
+                                                                    <!--title="Add attachment"/>-->
+                                                                    <button tabindex="5"
+                                                                            type="submit"
+                                                                            name="submit"
+                                                                            class="btn btn-secondary fa fa-paperclip o_website_attachment_message"
+                                                                            aria-label="Add attachment"
+                                                                            title="Add attachment"/>
+                                                                    <!--<span class="btn btn-primary btn-lg o_website_form_send">-->
+                                                                    <!--Submit-->
+                                                                    <!--</span>-->
+                                                                    <span id="o_website_form_result"></span>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+
+
+                                                        <!--<div class="form-group form-field o_website_form_custom">-->
+                                                        <!--<div class="col-md-3 col-sm-4 text-right">-->
+                                                        <!--<label class="control-label" for="Documents">-->
+                                                        <!--Documents-->
+                                                        <!--</label>-->
+                                                        <!--</div>-->
+                                                        <!--<div class="col-md-7 col-sm-8">-->
+                                                        <!--<input type="file" id="attachment_tdocs"-->
+                                                        <!--name="Documents"/>-->
+                                                        <!--<textarea id="base64" style="display:none;"-->
+                                                        <!--rows="5"></textarea>-->
+                                                        <!--</div>-->
+                                                        <!--</div>-->
+
+
+                                                        <!--<div class="form-group">-->
+                                                        <!--<div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">-->
+                                                        <!--<button tabindex="5"-->
+                                                        <!--class="btn btn-secondary fa fa-paperclip o_website_attachment_message"-->
+                                                        <!--type="button" aria-label="Add attachment"-->
+                                                        <!--title="Add attachment"/>-->
+                                                        <!--</div>-->
+                                                        <!--</div>-->
+
+
+                                                    </div>
+                                                    <div class="attchmntsLinks">
+                                                        <t t-foreach="attachment_links" t-as="attchmnt">
+                                                            <a t-att-href="attchmnt" target="_blank">
+                                                                <t t-esc="attchmnt"/>
+                                                            </a>
+                                                            <br/>
+                                                        </t>
+                                                        <!--<t t-esc="attachment_links"/>-->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Begin emoji-picker JavaScript -->
+            <script src="/gt_helpdesk_support_ticket/static/src/lib/js/config.js"></script>
+            <script src="/gt_helpdesk_support_ticket/static/src/lib/js/util.js"></script>
+            <script src="/gt_helpdesk_support_ticket/static/src/lib/js/jquery.emojiarea.js"></script>
+            <script src="/gt_helpdesk_support_ticket/static/src/lib/js/emoji-picker.js"></script>
+            <!-- End emoji-picker JavaScript -->
+
+            <script>
+                $(function() {
+                // Initializes and creates emoji set from sprite sheet
+                window.emojiPicker = new EmojiPicker({
+                emojiable_selector: '[data-emojiable=true]',
+                assetsPath: '/gt_helpdesk_support_ticket/static/src/lib/img/',
+                popupButtonClasses: 'fa fa-smile-o'
+                });
+                // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+                // You may want to delay this step if you have dynamically created input fields that appear later in the
+                //loading process
+                // It can be called as many times as necessary; previously converted input fields will not be converted
+                //again
+                window.emojiPicker.discover();
+                });
+            </script>
+            <script>
+                // Google Analytics
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-49610253-3', 'auto');
+                ga('send', 'pageview');
+            </script>
+
+
+        </t>
+    </template>
+
+
+    <!--<template id="my_helpdesk_account" name="Portal layout : helpdesk menu entries" inherit_id="website_portal.portal_layout" priority="25">-->
+    <!--<xpath expr="//ul[contains(@class,'o_portal_submenu')]" position="inside">-->
+    <!--<li>-->
+    <!--<a href="/page/my_account_helpdesk/">My Tickets</a>-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--<a href="/page/my_account_helpdesk/">My Issue</a>-->
+    <!--</li>-->
+
+    <!--</xpath>-->
+    <!--</template>-->
+
+
+</odoo>
+
+

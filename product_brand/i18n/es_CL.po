@@ -1,0 +1,261 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_brand
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-11 15:49+0000\n"
+"PO-Revision-Date: 2019-02-11 13:06-0300\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_CL\n"
+"X-Generator: Poedit 2.2.1\n"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__message_needaction
+msgid "Action Needed"
+msgstr "Acción Necesaria"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__active
+msgid "Activo?"
+msgstr "Activo?"
+
+#. module: product_brand
+#: model_terms:ir.ui.view,arch_db:product_brand.product_brand_search_form_view
+msgid "Archivados"
+msgstr "Archivados"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteo de archivos adjuntos"
+
+#. module: product_brand
+#: model:ir.actions.act_window,name:product_brand.action_product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_template__product_brand_id
+#: model_terms:ir.ui.view,arch_db:product_brand.product_template_form_brand_add
+#: model_terms:ir.ui.view,arch_db:product_brand.view_product_template_search_brand
+msgid "Brand"
+msgstr "Marca"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__name
+#: model_terms:ir.ui.view,arch_db:product_brand.view_product_brand_form
+msgid "Brand Name"
+msgstr "Nombre de la marca"
+
+#. module: product_brand
+#: model:ir.actions.act_window,name:product_brand.action_open_brand_products
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__product_ids
+msgid "Brand Products"
+msgstr "Marca de Productos"
+
+#. module: product_brand
+#: model_terms:ir.actions.act_window,help:product_brand.action_product_brand
+msgid "Click para crear una nueva marca."
+msgstr "Haga clic para crear una nueva marca."
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__description
+#: model_terms:ir.ui.view,arch_db:product_brand.view_product_brand_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: product_brand
+#: model_terms:ir.ui.view,arch_db:product_brand.product_brand_search_form_view
+msgid "Filtros"
+msgstr "Filtros"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Seguidores (Canales)"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Empresas)"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_brand
+#: model:ir.model.fields,help:product_brand.field_product_brand__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
+
+#. module: product_brand
+#: model:ir.model.fields,help:product_brand.field_product_brand__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#. module: product_brand
+#: model:ir.model.fields,help:product_brand.field_product_brand__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__message_is_follower
+msgid "Is Follower"
+msgstr "Es un seguidor"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__logo
+msgid "Logo File"
+msgstr "Archivo de Logo"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjuntos principales"
+
+#. module: product_brand
+#: model:ir.model,name:product_brand.model_product_brand
+msgid "Marca de Productos"
+msgstr "Marca de productos"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío de Mensaje"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__message_has_error_counter
+msgid "Number of error"
+msgstr "Número de error"
+
+#. module: product_brand
+#: model:ir.model.fields,help:product_brand.field_product_brand__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: product_brand
+#: model:ir.model.fields,help:product_brand.field_product_brand__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__products_count
+msgid "Number of products"
+msgstr "Número de productos"
+
+#. module: product_brand
+#: model:ir.model.fields,help:product_brand.field_product_brand__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leidos"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__partner_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: product_brand
+#: model:ir.actions.act_window,name:product_brand.action_open_single_product_brand
+#: model_terms:ir.ui.view,arch_db:product_brand.product_brand_search_form_view
+msgid "Product Brand"
+msgstr "Marca de producto"
+
+#. module: product_brand
+#: model:ir.ui.menu,name:product_brand.menu_product_brand
+msgid "Product Brands"
+msgstr "Marcas de productos"
+
+#. module: product_brand
+#: model:ir.model,name:product_brand.model_product_template
+msgid "Product Template"
+msgstr "Plantilla producto"
+
+#. module: product_brand
+#: model_terms:ir.ui.view,arch_db:product_brand.view_product_brand_form
+#: model_terms:ir.ui.view,arch_db:product_brand.view_product_brand_kanban
+msgid "Products"
+msgstr "Productos"
+
+#. module: product_brand
+#: model:ir.model.fields,help:product_brand.field_product_template__product_brand_id
+msgid "Select a brand for this product"
+msgstr "Seleccione una marca para este producto"
+
+#. module: product_brand
+#: model:ir.model.fields,help:product_brand.field_product_brand__partner_id
+msgid "Select a partner for this brand if any."
+msgstr "Seleccione un socio para esta marca si existe."
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes por leer"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de mensajes sin leer"
+
+#. module: product_brand
+#: model:ir.model.fields,field_description:product_brand.field_product_brand__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: product_brand
+#: model:ir.model.fields,help:product_brand.field_product_brand__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+#. module: product_brand
+#: model_terms:ir.ui.view,arch_db:product_brand.view_product_brand_tree
+msgid "product.brand"
+msgstr "product.brand"

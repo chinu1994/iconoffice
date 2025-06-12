@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--        <record id="gt_helpdesk_product_template_timesheet_list" model="ir.ui.view">-->
+<!--            <field name="name">product.template.views.form</field>-->
+<!--            <field name="model">product.template</field>-->
+<!--            <field name="inherit_id" ref="product.product_template_only_form_view"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='barcode']" position="after">-->
+<!--                    <field name="is_install"/>-->
+<!--                    <field name="is_rent"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+        <record id="sltech_generate_invoice_action" model="ir.ui.view">
+            <field name="name">Sltech Generate Invoice</field>
+            <field name="model">sltech.generate.invoice</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                            <field name="sltech_months"/>
+                        </group>
+                        <group>
+                            <field name="sltech_years"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                        or
+                        <button name="generate_invoice"  class="oe_highlight" string="Generate Invoice" type="object"/>
+
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Generate Invoice"
+            id="sltech_generate_invoice_action_menu"
+            res_model="sltech.generate.invoice"
+            src_model="helpdesk.invoice.line"
+            view_mode="form"
+            view_id="sltech_generate_invoice_action"
+            view_type="form"
+            multi="True"
+            key2="client_action_multi"
+            target="new"
+        />
+
+    </data>
+</odoo>

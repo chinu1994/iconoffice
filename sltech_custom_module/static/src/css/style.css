@@ -1,0 +1,41 @@
+.username {
+    display: none;
+}
+.product-name{
+    font-size: 16px;
+    display: block;
+    width: 160px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.product-name:hover{
+    overflow: visible;
+    white-space: normal;
+}
+
+
+
+.pos .product {
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    line-height: 100px;
+    font-size: 11px;
+    margin: 8px !important;
+    width: 160px;
+    height: 140px;
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    border-bottom-width: 3px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.product-name{
+    text-align: center !important;
+}
+
+.pos .product .product-img {
+    width: 160px;
+}

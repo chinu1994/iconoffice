@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_common" inherit_id="web.assets_common">
+        <xpath expr="//script[contains(@src, '/web/static/src/js/services/config.js')]"
+               position="replace">
+            <script src="/allure_backend_theme/static/src/js/freamwork/config.js"/>
+        </xpath>
+    </template>
+    <template id="assets_backend" name="Allure theme assets"
+              inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <!-- Layout File - Start-->
+            <link rel="stylesheet"
+                  href="/allure_backend_theme/static/src/lib/minicolors/jquery.minicolors.css"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/variables.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/other_variable.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/animation.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/chart_of_account_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/fonts.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/light_mode.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/search.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/left_menu.scss"/>
+            <link rel="stylesheet"
+                  href="/allure_backend_theme/static/src/scss/dashboard.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/control_panel.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/list_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/pivot_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/calendar_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/graph_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/kanban_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/web_client.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/chat_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/form_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/mailbox_mail.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/import_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/setting_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/error_message_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/hr_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/web_calender.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/activity_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/loading.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/layout.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/layout/nocontent_view.scss"/>
+
+            <!-- Responsive -->
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/responsive/chat_view.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/responsive/control_panel_view.scss"/>
+            <link rel="stylesheet"
+                  href="/allure_backend_theme/static/src/scss/responsive/left_menu.scss"/>
+            <link rel="stylesheet"
+                  href="/allure_backend_theme/static/src/scss/responsive/kanban_view.scss"/>
+            <link rel="stylesheet"
+                  href="/allure_backend_theme/static/src/scss/responsive/list_view.scss"/>
+            <link rel="stylesheet"
+                  href="/allure_backend_theme/static/src/scss/responsive/form_view.scss"/>
+            <link rel="stylesheet"
+                  href="/allure_backend_theme/static/src/scss/responsive/configration.scss"/>
+            <link rel="stylesheet"
+                  href="/allure_backend_theme/static/src/scss/responsive/mail_view.scss"/>
+            <link rel="stylesheet"
+                  href="/allure_backend_theme/static/src/scss/responsive/pivot_view.scss"/>
+            <link rel="stylesheet"
+                  href="/allure_backend_theme/static/src/scss/responsive/base_settings.scss"/>
+            <link rel="stylesheet"
+                  href="/allure_backend_theme/static/src/scss/responsive/responsive_xs.scss"/>
+            <!-- Rtl -->
+            <link rel="stylesheet" type="text/css"
+                  href="/allure_backend_theme/static/src/scss/rtl/rtl.scss"/>
+            <!-- css -->
+            <link rel="stylesheet" type="text/css"
+                  href="/allure_backend_theme/static/src/css/calc_view.css"/>
+            <!-- Lib -->
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/lib/custom_radiobutton.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/lib/custom_checkbox.scss"/>
+            <!-- JS Path - start -->
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/lib/minicolors/jquery.minicolors.min.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/abstract_controller.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/main_view.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/favorite_menu.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/quick_menu.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/apps_menu.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/res_config_settings.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/menu.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/search_view.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/freamwork/controlpanel.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/freamwork/crash_manager.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/form/form_renderer.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/list/list_model.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/list/list_controller.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/list/list_renderer.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/list/list_view.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/kanban/kanban_controller.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/graph/graph_renderer.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/discuss.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/systray_activity_menu.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/freamwork/dashboard.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/import_action.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/views/sidebar.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/freamwork/chat_window.js"/>
+            <script type="text/javascript"
+                    src="/allure_backend_theme/static/src/js/responsive/breadcrumb.js"/>
+        </xpath>
+    </template>
+    <template id="night_mode_on" name="night_mode_on"
+              inherit_id="web.assets_backend" active="True">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/night_variables.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/allure_backend_theme/static/src/scss/night_other_variable.scss"/>
+            <link rel="stylesheet" type="text/less"
+                  href="/allure_backend_theme/static/src/scss/night_mode.scss"/>
+        </xpath>
+    </template>
+    <!-- Left Menu View -[start] -->
+    <template id="allure_backend_theme.webclient_bootstrap"
+              inherit_id="web.webclient_bootstrap">
+        <xpath expr="//div[hasclass('o_main')]" position="replace">
+            <div class="o_main">
+                <main class="o_main_content ad_rightbar"/>
+            </div>
+        </xpath>
+    </template>
+    <template id="allure_backend_theme.layout" inherit_id="web.layout">
+        <xpath expr="//body" position="attributes">
+            <attribute name="t-attf-class">#{body_classname} uc_theme_#{request.env.user.font_type_values}</attribute>
+        </xpath>
+    </template>
+</odoo>

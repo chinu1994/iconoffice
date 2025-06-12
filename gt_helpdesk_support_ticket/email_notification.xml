@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="ticket_created_mail_customer" model="mail.template">
+            <field name="name">Service Desk Ticket Generated</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <field name="subject">Service Desk Ticket Generated</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${ctx.get('email_to')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                 <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+
+                    <p>Dear ${ctx.get('email_to')|safe},</p>
+                    <p>
+                     Your Service Desk ticket generated and your ticket number is ${ctx.get('ticket_nm')|safe}
+                    </br>
+                    </p>
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+
+        <record id="ticket_assigned_devloper" model="mail.template">
+            <field name="name">Ticket Assigned</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <field name="subject">Ticket Assigned</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <!--<field name="email_to">${(object.customer.email or '')|safe}</field>-->
+            <field name="email_to">${ctx.get('email_to')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                 <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Dear ${object.customer.name},</p>
+                    <p>
+                     ${object.ticket_no} has been assigned to ${object.assi_to.name} <br>
+                    </br>
+                    </p>
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+        <record id="ticket_devloper_inform" model="mail.template">
+            <field name="name">Ticket Developer Inform</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <field name="subject">Ticket Assigned You</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${ctx.get('email_to')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                 <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Dear ${object.assi_to.name},</p>
+                    <p>
+                     ${object.ticket_no} has been assigned to you by ${user.name} <br>
+                    </br>
+                    </p>
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+
+        <record id="ticket_work_in" model="mail.template">
+            <field name="name">Ticket Status</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="subject">Ticket State(Work In Progress)</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${(object.customer.email or '')|safe}</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                 <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Dear ${object.customer.name},</p>
+                    <p>
+                     ${object.ticket_no} has been working in process state which is handel by ${object.assi_to.name} <br>
+                    </br>
+                    </p>
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+
+
+
+        <record id="ticket_need_info" model="mail.template">
+            <field name="name">Ticket Need Info</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="subject">Ticket State(Need Info)</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${(object.customer.email or '')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                 <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Dear ${object.customer.name},</p>
+                    <p>
+                     ${object.ticket_no} has been Need Info state which is handel by ${object.assi_to.name} <br>
+                    </br>
+                    </p>
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+
+
+        <record id="ticket_needs_reply" model="mail.template">
+            <field name="name">Ticket Needs Reply</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <field name="subject">Ticket State(Needs Reply)</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${(object.customer.email or '')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                 <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Dear ${object.customer.name},</p>
+                    <p>
+                     ${object.ticket_no} has been Needs Reply state which is handel by ${object.assi_to.name} <br>
+                    </br>
+                    </p>
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+
+
+
+
+
+        <record id="ticket_reopend" model="mail.template">
+            <field name="name">Ticket Reopen</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="subject">Ticket State(Reopen)</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${(object.customer.email or '')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                 <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Dear ${object.customer.name},</p>
+                    <p>
+                     ${object.ticket_no} has been Reopen state which is handel by ${object.assi_to.name} <br>
+                    </br>
+                    </p>
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+
+
+
+
+        <record id="ticket_reopend" model="mail.template">
+            <field name="name">Ticket Reopen</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <field name="subject">Ticket State(Reopen)</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${(object.customer.email or '')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                 <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Dear ${object.customer.name},</p>
+                    <p>
+                     ${object.ticket_no} has been Reopen state which is handel by ${object.assi_to.name} <br>
+                    </br>
+                    </p>
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+
+
+        <record id="ticket_solution" model="mail.template">
+            <field name="name">Ticket Solution</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="subject">Ticket State(Solution)</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${(object.customer.email or '')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                 <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Dear ${object.customer.name},</p>
+                    <p>
+                     ${object.ticket_no} has been Solution state which is handel by ${object.assi_to.name} <br>
+                    </br>
+                    </p>
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+
+
+        <record id="ticket_closed" model="mail.template">
+            <field name="name">Ticket Close</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="subject">Ticket State(Close)</field>
+            <field name="email_cc">${ctx.get('email_cc' or '')|safe}</field>
+            <!--<field name="email_to">${object.department_manager.work_email|safe}</field>-->
+            <field name="email_to">${(object.customer.email or '')|safe}</field>
+            <field name="model_id" ref="gt_helpdesk_support_ticket.model_helpdesk_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                 <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                    <p>Dear ${object.customer.name},</p>
+                    <p>
+                     ${object.ticket_no} has been Closed. Please give your feedback
+                     <a href="http://localhost:8069/page/feedback_msg/${object.id}" style="color: blue;">Click here</a><br/>
+                    </br>
+                    </p>
+                    </br>
+                    <p></br>Best Regards,    </p>
+                    <p>Team ICON</p>
+                    <!--<p></br>${user.name}    </p>-->
+                </div>
+            ]]>
+            </field>
+        </record>
+
+
+
+
+    </data>
+</openerp>

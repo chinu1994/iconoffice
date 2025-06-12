@@ -1,0 +1,10 @@
+<odoo>
+    <template id="hide_archive_assets_backend" name="test modulo assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+<!--            <link type="text/css" rel="stylesheet" href="/tf_google_calendar/static/src/css/style.css"/>-->
+<!--            <script type="text/javascript" src="/custom_module/static/src/js/hide_archive.js"/>-->
+            <script type="text/javascript" src="/tf_google_calendar/static/src/js/google_calendar.js"/>
+
+        </xpath>
+    </template>
+</odoo>

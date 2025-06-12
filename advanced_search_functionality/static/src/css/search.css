@@ -1,0 +1,22 @@
+input[type="date"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+}
+
+input[type="date"]:focus:before,
+input[type="date"]:valid:before {
+    content: "";
+}
+.odoo_field_search_expan {
+    padding-bottom: 0;
+    padding-top: 0;
+    border: 0;
+    height: 18px;
+}
+.select2-container .select2-choice {
+    display: block;
+    height: 21px !important;
+}
+.select2-container .select2-choice {
+    line-height: 20px !important;
+}

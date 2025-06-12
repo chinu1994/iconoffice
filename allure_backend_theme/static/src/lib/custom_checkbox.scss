@@ -1,0 +1,170 @@
+body.o_web_client {
+    .o_main .o_main_content.ad_rightbar, &.modal-open .modal-dialog .modal-content, .modal-dialog .modal-content {
+        // custom-checkbox - start
+        .custom-checkbox {
+            padding-left: 26px;
+            margin: 2px 0px;
+            input[type="checkbox"] {
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                height: 20px;
+                width: 20px;
+                & + label {
+                    &:before {
+                        border: 2px solid $Label;
+                        background-color: transparent;
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 0px;
+                        top: 2.5px;
+                        left: -26px;
+                        outline: none !important;
+                    }
+                    &:after {
+                        top: 2.5px;
+                        left: -26px;
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 0;
+                    }
+                }
+                &:checked + label:after {
+                    background-image: none;
+                    content: "\f00c";
+                    display: inline-block;
+                    font: normal normal normal 14px/1 FontAwesome;
+                    font-size: inherit;
+                    text-rendering: auto;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    background-color: $Label;
+                    color: $white;
+                    top: 2px;
+                    left: -27px;
+                    width: 15px;
+                    height: 15px;
+                    padding: 2px;
+                }
+            }
+        }
+        // custom-checkbox with toggle - [stop]
+        // bool
+        .o_boolean_toggle_cell{
+            .o_boolean_toggle.o_field_boolean.custom-checkbox{
+                .custom-control-label{
+                    &:before{
+                        outline: none !important;
+                        border: 0;
+                        border-radius: 16px;
+                        width: 2.4375rem;
+                        left: -2.6875rem;
+                        height: 100%;
+                    }
+                    &:after{
+                        top: 2px;
+                        content: "";
+                        left: -2.6875rem;
+                        border-radius: 100px;
+                        height: 12px;
+                        width: 12px;
+                        background-color: $white !important;
+                    }
+                }
+                input:checked + label.custom-control-label{
+                    &:before{
+                        background-color: $brand-primary !important;
+                    }
+                }
+                input:not(:checked) + label.custom-control-label{
+                    &:before{
+                        background-color: $text-muted !important;
+                    }
+                }
+            }
+        }
+        // bool
+    }
+}
+
+body.o_web_client {
+    .oe_import {
+        // o_checkbox - start
+        .o_checkbox:not(.o_boolean_toggle) {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            font-size: 13px;
+            vertical-align: middle;
+            text-align: center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            &:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+            // Create the checkmark/indicator (hidden when not checked) - stop
+            // When the checkbox is checked, add a blue background - start
+            & > input:checked ~ span {
+                background-color: transparent;
+                // Show the checkmark when checked - start
+                &:after {
+                    content: "\f00c";
+                    display: inline-block;
+                    font: normal normal normal 14px/1 FontAwesome;
+                    font-size: inherit;
+                    text-rendering: auto;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    color: $Label-value;
+                }
+                // Show the checkmark when checked - stop
+            }
+            // When the checkbox is checked, add a blue background - stop
+            // Hide the browser's default checkbox -start
+            & > input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                margin: 0;
+                height: 20px;
+                width: 20px;
+                z-index: 1;
+            }
+            & > input[type="checkbox"][disabled] {
+                cursor: not-allowed;
+            }
+            & > input[type="checkbox"][disabled] + span {
+                opacity: 0.4;
+            }
+            // Hide the browser's default checkbox -stop
+
+            // Create a custom checkbox - start
+            & > span {
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 20px;
+                width: 20px;
+                border: 2px solid $Label;
+                display: block;
+            }
+            // Create a custom checkbox - stop
+        }
+        // o_checkbox - stop
+
+        // o_checkbox with toggle - [start]
+        .o_checkbox.o_boolean_toggle {
+            & > input:checked + .slider {
+                background-color: $brand-primary;
+            }
+        }
+        // o_checkbox with toggle - [stop]
+    }
+}

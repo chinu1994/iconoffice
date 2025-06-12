@@ -1,0 +1,360 @@
+@media screen and (max-width: $screen-xs-max) {
+    body.o_web_client:not(.ad_mobile) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        @include control-panel-xs();
+        @include kanban-xs();
+        @include menu-xs();
+        @include list-xs();
+        @include configration-xs();
+        @include mail-xs();
+        @include oe-pivot();
+        @include chat-window();
+        @include left-menu();
+        &.oe_base_menu{
+            @include base-control-panel-xs();
+        }
+        // Form view - [start]
+        .o_main {
+            .o_main_content.ad_rightbar {
+                & > .o_content {
+                    .o_view_controller, .o_reconciliation {
+                        .o_form_view {
+                            @include form_view_mobile();
+                            .toggle_btn_chatter{
+                                display: none;
+                            }
+                        }
+                        .o_kanban_view{
+                            .oe_kanban_card{
+                                flex: 1 1 100%;
+                            }
+                        }
+                    }
+                    .o_form_view{
+                        @include form_project_view();
+                    }
+                }
+            }
+        }
+        // Form view - [start]
+
+        // Wizard form view - [stop]
+        .modal-dialog, .modal.o_technical_modal.o_modal_full .modal-dialog {
+            margin: 0;
+            max-width: 100%;
+            height: 100%;
+            .modal-content {
+                height: 100%;
+                .modal-header{
+                    background-color: $brand-secondary;
+                    border-radius: 0;
+                    padding: 5px;
+                    .modal-title, .close{
+                        color: $white;
+                    }
+                }
+                @include wizard_search_view();
+                .modal-body {
+                    &.o_act_window {
+                        height: 100%;
+                        overflow-y: auto;
+                        .o_form_view {
+                            @include form_view_mobile();
+                            .toggle_btn_chatter{
+                                display: none;
+                            }
+                        }
+                    }
+                    &.o_export{
+                        .o_export_panel{
+                            flex-wrap: wrap;
+                            .o_left_panel, .o_center_panel, .o_right_panel{
+                                margin-bottom: 10px;
+                            }
+                            .o_left_panel{
+                                overflow: auto;
+                                height: 300px;
+                            }
+                        }
+                    }
+                }
+                .modal-footer {
+                    padding: 5px;
+                    button {
+                        margin: 2px;
+                        padding: 4px 8px;
+                    }
+                }
+                &.o_select_media_dialog{
+                    max-width: 100%;
+                    margin: 0px;
+                    .modal-body{
+                        .nav.nav-tabs{
+                            .nav-item.ml-auto.search{
+                                width: 100%;
+                            }
+                            .nav-item.search:not(.ml-auto){
+                                text-align: center;
+                            }
+                        }
+                        .tab-content{
+                            .tab-pane{
+                                .form-inline{
+                                    .card{
+                                        .card-body{
+                                            .form-inline{
+                                                .btn-group{
+                                                    margin: 0px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // Wizard form view - [stop]
+    }
+
+    body.o_web_client {
+        .o_main {
+            .ad_rightbar {
+                .o_content > .o_view_controller, .o_view_controller {
+                    .o_kanban_view {
+                        &.o_kanban_grouped {
+                            .o_kanban_mobile_tabs {
+                                .o_kanban_mobile_tab {
+                                    max-width: 150px;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    padding: 10px 4px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        header{
+            .o_main_navbar{
+                #o_menu_apps.o_menu_apps{
+                    .main_menu{
+                        .oe_apps_menu{
+                            padding: 0 10px;
+                            a.o_app{
+                                width: 33%;
+                                &:hover{
+                                    background-color:transparent;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        @include customize_theme_view();
+    }
+    .o_planner_dialog > .modal-dialog{
+        padding: 0px;
+    }
+
+    .o_planner_dialog > .modal-dialog > .modal-content {
+        & > .modal-body{
+            overflow: auto;
+            width: 100%;
+            border-bottom: 1px solid $border;
+            padding-bottom: 15px;
+            .o_planner_menu{
+                width: 100%;
+                padding-bottom: 15px;
+                margin: 0;
+            }
+            .o_planner_page{
+                width: 100%;
+                border-top: 1px solid $border;
+                margin: 0px;
+            }
+        }
+        & > .modal-header{
+            .modal-title{
+                text-align: center;
+                .o_page_name{
+                    width: 100%;
+                    padding-bottom: 15px;
+                }
+            }
+        }
+    }
+    .o_web_client.ad_full_view{
+        @include mail-xs-full();
+    }
+    // field view problem
+}
+
+@media screen and(min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    .o_web_client:not(.ad_mobile) {
+        @include menu-xs();
+        @include list-xs();
+        @include configration-xs();
+        // Form view - [start]
+        .o_main {
+            .o_main_content.ad_rightbar {
+                & > .o_content {
+                    .o_view_controller, .o_reconciliation {
+                        .o_form_view {
+                            @include form_view_mobile();
+                            .toggle_btn_chatter{
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                .o_control_panel{
+                    ol.breadcrumb{
+                        li.active{
+                            &:before{
+                                display:none;
+                            }
+                        }
+                        li:nth-last-child(2){
+                            font-size: 0px;
+                            justify-content: center;
+                            display: flex;
+                            height: 100%;
+                            align-items: center;
+                            padding: 0 5px;
+                            float: left;
+                            margin: 0;
+                            color: $brand-secondary;
+                            &:before{
+                                content: '\f053';
+                                font-size: 14px;
+                                display: inline-block;
+                                font: normal normal normal 14px/1 FontAwesome;
+                                color: #a25e5e;
+                                padding: 0;
+                            }
+                        }
+                        li:not(:nth-last-child(2)):not(.active){
+                            display: none;
+                        }
+                    }
+                    &.no_ad_has_search{
+                        .o_search_options{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+        // Form view - [start]
+
+        // Wizard form view - [stop]
+        .modal-dialog, .modal.o_technical_modal.o_modal_full .modal-dialog{
+            .modal-content {
+                .modal-body.o_act_window {
+                    @include wizard_search_view();
+                    .o_form_view {
+                        @include form_view_mobile();
+                        .toggle_btn_chatter{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+        // Wizard form view - [stop]
+
+        // Account Deshboard
+        .o_account_dashboard_header {
+            margin: 0px;
+            .o_form_statusbar {
+                .o_statusbar_status {
+                    text-align: left;
+                    & > h4 {
+                        margin-bottom: 25px;
+                        float: left;
+                        text-align: left;
+                        width: 100%;
+                        padding-left: 5px;
+                    }
+                    .o_arrow_button {
+                        margin-bottom: 5px;
+                    }
+                }
+                & > .pull-right {
+                    position: absolute;
+                    right: 0;
+                }
+            }
+        }
+        // Account Deshboard
+        .o_main .o_main_content.ad_rightbar .o_content > .o_view_controller .o_form_view.oe_form_configuration.o_base_settings .o_setting_container .settings_tab, .o_main .o_main_content.ad_rightbar .o_view_controller .o_form_view.oe_form_configuration.o_base_settings .o_setting_container .settings_tab{
+            background: $white;
+            border-right: 1px solid $border;
+            .tab{
+                max-width: 150px;
+                &:hover{
+                    background-color: $tr-hover;
+                }
+                .app_name{
+                    color: $Label;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+        @include customize_theme_view();
+    }
+    body.o_web_client {
+        header{
+            .o_main_navbar{
+                #o_menu_apps.o_menu_apps{
+                    .main_menu{
+                        .oe_apps_menu{
+                            padding: 0 10px;
+                            a.o_app{
+                                width: 25%;
+                                &:hover{
+                                    background-color:transparent;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.o_web_client:not(.ad_mobile) {
+    /* width */
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #FFFFFF;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    ::-webkit-scrollbar-thumb:increment, ::-webkit-scrollbar-thumb:decrement {
+        background: #000;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}

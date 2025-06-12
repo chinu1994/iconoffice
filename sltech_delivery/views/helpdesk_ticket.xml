@@ -1,0 +1,102 @@
+<odoo>
+    <data>
+        <record id="sltech_helpdesk_ticket_view_views" model="ir.ui.view">
+            <field name="name">inherited service desk</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="gt_helpdesk_support_ticket.helpdesk_form_views"></field>
+            <field name="arch" type="xml">
+                <div name="button_box" position="inside">
+                    <button groups="base.group_system" class="oe_stat_button" type="object" name="view_delivery_list"
+                            attrs="{'invisible': [('delivery_count', '=', 0)]}"
+                            icon="fa-history">
+                        <field string="Delivery Count" name="delivery_count" widget="statinfo"/>
+                    </button>
+                </div>
+
+                <button name="open_timesheet" position="after">
+                    <field name="is_deliver" invisible="1"/>
+                    <button name="sltech_action_deliver_items"
+                            type="object"
+                            attrs="{'invisible': [('is_deliver', '=', True)]}"
+                            groups="base.group_system"
+                            string="Deliver"/>
+                </button>
+            </field>
+        </record>
+
+        <record id="helpdesk_form_views_ext_sltech" model="ir.ui.view">
+            <field name="name">helpdesk.form.View</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="custom_module.helpdesk_form_views_ext"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[4]" position="after">
+                    <field name="is_deliver" invisible="1"/>
+                    <page string="Machines" groups="base.group_system">
+                        <field name="machine_ids" nolabel="1"
+                                widget="section_and_note_one2many"
+                                attrs="{'readonly': [('is_deliver', '=', True)]}"
+                                mode="tree,kanban">
+                            <tree editable="bottom">
+                                <field name="product_id" required="1"/>
+                                <field name="serial_no_id" options="{'no_create': True}" required="1"/>
+                                <field name="qty"/>
+                            </tree>
+                            <form string="Machines">
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="product_id"/>
+                                        </group>
+                                        <group>
+                                            <field name="qty"/>
+                                        </group>
+                                    </group>
+                                </sheet>
+                            </form>
+                            <kanban class="o_kanban_mobile">
+                                <field name="product_id"/>
+                                <field name="qty"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                            <!--<t t-if="!record.display_type.raw_value">-->
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <strong>
+                                                        <span>
+                                                            <t t-esc="record.product_id.value"/>
+                                                        </span>
+                                                    </strong>
+                                                </div>
+                                            </div>
+                                            <t t-if="record.qty.value">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <strong>
+                                                            <span>
+                                                                <t t-esc="record.qty.value"/>
+                                                            </span>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='sparepart_ids']/tree//field[@name='product_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='sparepart_ids']/tree//field[@name='product_id']" position="after">
+                    <field name="serial_no_id" options="{'no_create': True}" required="1"/>
+                </xpath>
+                <xpath expr="//field[@name='sparepart_ids']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('is_deliver', '=', True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

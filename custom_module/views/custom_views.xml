@@ -1,0 +1,798 @@
+<odoo>
+    <data>
+
+        <record id="sltech_invoice_tree_with_onboarding" model="ir.ui.view">
+            <field name="name">account.invoice.tree.with.onboarding</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-success">state == 'paid'</attribute>
+                    <attribute name="decoration-warning">send_and_print == True</attribute>
+                </xpath>
+                <field name="partner_id" position="after">
+                    <field name="ticket_title"/>
+                    <field name="send_and_print" invisible="1"/>
+                </field>
+                <field name="origin" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="user_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="residual_signed" position="after">
+                    <field name="due_amount"/>
+                </field>
+                <field name="residual_signed" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="sltech_invoice_form_with_onboarding" model="ir.ui.view">
+            <field name="name">account.invoice.form.with.onboarding</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="ticket_title" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="consolidated_invoice_line"/>
+                    <field name="consolidated_invoice_note"/>
+                </field>
+                <field name="residual" position="after">
+                    <field name="due_amount" class="oe_subtotal_footer_separator"/>
+                </field>
+                <field name="residual" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="helpdesk_ticket_resolution_form">
+            <field name="name">helpdesk.ticket.resolution.form</field>
+            <field name="model">helpdesk.ticket.resolution</field>
+            <field name="arch" type="xml">
+                <form string="Resolution" create="false" edit="false">
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <footer>
+                        <button name="save_record" string="Save" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="helpdesk_ticket_account_invoice_form">
+            <field name="name">helpdesk.ticket.account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_due']" position="after">
+                        <field name="consolidated_invoice_line"/>
+                        <field name="consolidated_invoice_note"/>
+                        <field name="sltech_months"/>
+                        <field name="sltech_years"/>
+                 </xpath>
+<!--                <xpath expr="//button[@name='action_invoice_open']" position="after">-->
+<!--                    <button name="generate_invoice_xlsx" class="oe_highlight" string="Print XLSX" type="object"/>-->
+<!--                </xpath>-->
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="helpdesk_timesheet_form">
+            <field name="name">helpdesk.timesheet.form</field>
+            <field name="model">helpdesk.timesheet</field>
+            <field name="arch" type="xml">
+                <form string="Timesheet &amp; Resolution" create="false" edit="false">
+                    <group>
+                        <field name="timesheet_date" required='1'/>
+                        <field name="users" required='1'/>
+                        <field name="product_id" required="True"/>
+                        <field name="timesheet_description"/>
+                        <field name="bil_lable"/>
+                        <field name="hours" widget="float_time"/>
+                        <field name="sh_resolution" required="1"/>
+                    </group>
+                    <footer>
+                        <button name="add_another" string="Add Another" type="object" class="btn-primary"/>
+                        <button name="save_record" string="Save &amp; Close" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="gt_helpdesk_support_ticket.helpdesk_ticket_tree_views" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.views.tree</field>
+            <field name="model">helpdesk.ticket</field>
+            <!--<field name="inherit_id" ref="gt_helpdesk_support_ticket.helpdesk_ticket_tree_views"/>-->
+            <field name="arch" type="xml">
+                <tree string="ServiceDesk"
+                      delete="false"
+                      decoration-info="state == 'work_in'"
+                      decoration-primary="state == 'reopend'"
+                      decoration-warning="state == 'solution'"
+                      decoration-success="state == 'assigned'"
+                      decoration-danger="state == 'assigned' and priority == '2'"
+                      decoration-bf="state == 'closed' and is_email_send == False"
+                >
+                    <field name="is_email_send" invisible="1"/>
+                    <field name="ticket_no"/>
+
+                    <field name="tpartner_name"/>
+                    <field name="sltech_state_id" context="{'sltech_state_code': 'sltech_state_code'}"/>
+                    <field name="ticket_title"/>
+                    <field name="date_time_assigned_date" widget="date"/>
+                    <field name="tref"/>
+                    <field name="fault_area"/>
+                    <!--<field name="parent_ticket"/>-->
+                    <!--<field name="ticket_title"/>-->
+
+                    <field name="assi_to"/>
+                    <field name="state"/>
+                    <field name="ticket_state_created" invisible="1"/>
+                    <field name="close_date"/>
+                    <!--<field name="create_date"/>-->
+
+
+                    <!--<field name="email_id" />-->
+                    <!--<field name="phone" />-->
+                    <!--<field name="t_email"/>-->
+                    <field name="priority" invisible="1"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="tf_helpdesk_ticket_tree_views_tf" model="ir.ui.view">
+            <field name="name">inherited service desk</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="gt_helpdesk_support_ticket.helpdesk_ticket_tree_views"></field>
+            <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="class">tf_custom_hide_column_tf_tree</attribute>
+                </tree>
+                <field name="fault_area" position="attributes">
+                    <attribute name="class">tf_custom_hide_column_tf</attribute>
+                </field>
+                <field name="ticket_state_created" position="attributes">
+                    <attribute name="class">tf_custom_hide_column_tf</attribute>
+                </field>
+                <field name="close_date" position="attributes">
+                    <attribute name="class">tf_custom_hide_column_tf</attribute>
+                </field>
+                <field name="date_time_assigned_date" position="attributes">
+                    <attribute name="class">tf_custom_date_column_short</attribute>
+                </field>
+
+
+                <field name="tpartner_name" position="attributes">
+                    <attribute name="class">tf_custom_hide_column_adjust_letter</attribute>
+                </field>
+                <field name="tref" position="attributes">
+                    <attribute name="class">tf_custom_tref</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="gt_helpdesk_product_timesheet_list" model="ir.ui.view">
+            <field name="name">product.product.views.tree</field>
+            <field name="model">product.product</field>
+            <field name="mode">primary</field>
+            <field name="priority">0</field>
+            <field name="arch" type="xml">
+                <tree string="Product">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="helpdesk_form_views_ext" model="ir.ui.view">
+            <field name="name">helpdesk.form.View</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="gt_helpdesk_support_ticket.helpdesk_form_views"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+<!--                    <field name="hide_action_button" invisible="1"/>-->
+<!--                    <button name="open_resolution" string="Resolution" attrs="{'invisible': ['|', ('hide_action_button', '=', 'resolution'), ('state', '=', 'closed')]}"-->
+<!--                            type="object"/>-->
+                    <button name="open_timesheet" string="Timesheet &amp; Resolution" attrs="{'invisible': [('state', '!=', 'assigned')]}"
+                            type="object" groups="!base.group_system"/>
+                    <button name="open_timesheet" string="Timesheet &amp; Resolution" attrs="{'invisible': [('state', 'not in', ['assigned', 'work_in'])]}"
+                            type="object" groups="base.group_system"/>
+                </xpath>
+
+                <xpath expr="//form" position="attributes">
+                    <attribute name="delete">false</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='reopen_ticket']" position="replace">
+                    <button type="object" class="oe_highlight o_wow" name="reopen_ticket" string="Re Open"
+                            attrs="{'invisible': [('state', '!=', 'closed')]}"
+                            groups="base.group_system">
+<!--                            groups="base.group_system,custom_module.hd_support_team_leader_access">-->
+                        <!--<field string="Appointments" name="app_count" widget="statinfo" modifiers="{'readonly': true}"/>-->
+                    </button>
+                </xpath>
+
+
+                <xpath expr="//button[@name='task_create']" position="replace">
+                </xpath>
+                <!--<xpath expr="//field[@name='phone']" position="after">-->
+                <!--<field name="assigned_date"/>-->
+                <!--</xpath>-->
+                <xpath expr="//field[@name='state']" position="replace">
+                    <!--<field name="state" widget="statusbar"-->
+                    <!--statusbar_visible="new,assigned,work_in,need_info,needs_reply,reopend,solution,closed"-->
+                    <!--clickable="True"-->
+                    <!--context="{'mera_id': active_id}"/>-->
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="new,assigned,work_in,reopend,closed"
+                           clickable="True"
+                           groups="base.group_system"
+                           context="{'mera_id': active_id}"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="new,assigned,work_in,reopend,closed"
+                           clickable="True"
+                           groups="!base.group_system"
+                           context="{'mera_id': active_id}" attrs="{'invisible': [('state', '=', 'closed')]}"/>
+                    <field name="sltech_state" widget="statusbar"
+                           statusbar_visible="assigned,work_in,closed"
+                           groups="!base.group_system"
+                           context="{'mera_id': active_id, 'sltech_state_code': 'sltech_state_code'}" attrs="{'invisible': [('state', '!=', 'closed')]}"/>
+                </xpath>
+
+                <xpath expr="//header//field[@name='state']" position="before">
+                    <field name="parent_ticket" invisible="1"/>
+                    <button type="object" class="oe_highlight o_wow" name="create_sub_ticket"
+                            string="Create Sub Ticket"
+                            groups="base.group_system"
+                            attrs="{'invisible': ['|',('parent_ticket', '!=', False),('state', '!=', 'closed')]}"/>
+                </xpath>
+                <xpath expr="//header" position="after">
+                    <button name="action_closed_ticket_email_mobile" groups="base.group_system" class="oe_highlight o_wow oe_left" string="Submitted"
+                            type="object" attrs="{'invisible': [('state', '!=', 'closed')]}"/>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <button name="action_closed_ticket_email" groups="base.group_system" class="oe_highlight o_wow" string="Submitted"
+                            type="object" attrs="{'invisible': [('state', '!=', 'closed')]}"/>
+                </xpath>
+<!--                <xpath expr="//header//field[@name='state']" position="before">-->
+<!--                    <field name="parent_ticket" invisible="1"/>-->
+<!--                    <button type="object" class="oe_highlight o_wow" name="create_sub_ticket"-->
+<!--                            string="Create Sub Ticket"-->
+<!--                            attrs="{'invisible': ['|',('parent_ticket', '!=', False),('state', '!=', 'closed')]}"/>-->
+<!--                </xpath>-->
+
+                <xpath expr="//button[@name='helpdesk_invoice']" position="replace">
+                    <!--<button type="object" class="btn btn-sm oe_stat_button" name="helpdesk_invoice"-->
+                    <!--icon="fa-pencil-square-o" string="Create Invoice"-->
+                    <!--attrs="{'invisible': ['|',('invoice_id', '!=', False),('state', '!=', 'closed')]}"-->
+                    <!--groups="gt_helpdesk_support_ticket.hd_support_manager_access">-->
+                    <!--</button>-->
+                </xpath>
+
+                <xpath expr="//field[@name='priority']" position="before">
+                    <field name="parent_ticket"/>
+                </xpath>
+
+                <xpath expr="//field[@name='project']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='department']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='analytic_account']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='create_date']" position="replace">
+                    <field name="create_date" readonly="1"/>
+                    <field name="t_email"/>
+                </xpath>
+
+                <xpath expr="//field[@name='sheet_ids']" position="replace">
+                    <field name="sheet_ids" mode="tree,kanban">
+                        <tree string="Timesheet" editable="bottom">
+                            <field name="timesheet_date" required='1'/>
+                            <field name="users" required='1'/>
+                            <!--<field name="project"/>-->
+                            <field name="product_id" required="True"
+                                   context="{'tree_view_ref': 'custom_module.gt_helpdesk_product_timesheet_list'}"/>
+                            <field name="timesheet_description"/>
+                            <field name="bil_lable"/>
+                            <field name="hours" widget="float_time"/>
+                            <field name="sh_resolution"/>
+                        </tree>
+                        <form string="Timesheet">
+                            <group>
+                                <field name="timesheet_date" required='1'/>
+                                <field name="users" required='1'/>
+                                <field name="product_id" required="True"/>
+                                <field name="timesheet_description"/>
+                                <field name="bil_lable"/>
+                                <field name="hours" widget="float_time"/>
+                                <field name="sh_resolution"/>
+                            </group>
+                        </form>
+                        <kanban class="o_kanban_mobile">
+                            <field name="product_id"/>
+                            <field name="timesheet_date"/>
+                            <field name="hours"/>
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                        <!--<t t-if="!record.display_type.raw_value">-->
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <strong>
+                                                    <span>
+                                                        <t t-esc="record.product_id.value"/>
+                                                    </span>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                        <t t-if="record.timesheet_date.value">
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <strong>
+                                                        <span>
+                                                            <t t-esc="record.timesheet_date.value"/>
+                                                        </span>
+                                                    </strong>
+                                                </div>
+                                            </div>
+                                        </t>
+                                        <t t-if="record.hours.value">
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <strong>
+                                                        <span>
+                                                            <t t-esc="record.hours.value"/>
+                                                        </span>
+                                                    </strong>
+                                                </div>
+                                            </div>
+                                        </t>
+
+                                        <!--</t>-->
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                    </field>
+                </xpath>
+
+                <xpath expr="//page[2]" position="after">
+                    <page string="Ticket Email Detail">
+                        <group>
+                            <group>
+                                <field name="temail_from"/>
+                                <field name="tpartner_name"/>
+                                <field name="tref"/>
+                                <field name="serial_no"/>
+                                <field name="fault_area"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Spare Parts">
+
+                        <field
+                                name="sparepart_ids"
+                                nolabel="1"
+                                widget="section_and_note_one2many"
+                                mode="tree,kanban"
+                        >
+                            <tree string="Spare Parts Used" editable="bottom">
+                                <field name="product_id" context="{'spareparts': True}"/>
+                                <field name="qty_used"/>
+                                <field name="state"/>
+                            </tree>
+                            <form string="Spare Parts Used">
+                                <group>
+                                    <field name="product_id"/>
+                                    <field name="qty_used"/>
+                                    <field name="state"/>
+                                </group>
+                            </form>
+                            <kanban class="o_kanban_mobile">
+                                <field name="product_id"/>
+                                <field name="qty_used"/>
+                                <field name="state"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                            <!--<t t-if="!record.display_type.raw_value">-->
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <strong>
+                                                        <span>
+                                                            <t t-esc="record.product_id.value"/>
+                                                        </span>
+                                                    </strong>
+                                                </div>
+                                            </div>
+                                            <t t-if="record.qty_used.value">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <strong>
+                                                            <span>
+                                                                <t t-esc="record.qty_used.value"/>
+                                                            </span>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                            <t t-if="record.state.value">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <strong>
+                                                            <span>
+                                                                <t t-esc="record.state.value"/>
+                                                            </span>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </t>
+
+                                            <!--</t>-->
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+
+                    </page>
+                </xpath>
+
+                <xpath expr="//page[5]" position="replace">
+                    <!--<attribute name="invisible">0</attribute>-->
+                    <!--<attribute name="groups">gt_helpdesk_support_ticket.hd_support_manager_access</attribute>-->
+                    <page string="Add Invoice Lines" groups="base.group_system">
+                        <field
+                                name="tsk_inv_line_ids"
+                                nolabel="1"
+                                widget="section_and_note_one2many"
+                                mode="tree,kanban"
+                        >
+                            <tree string="Invoice line" editable="bottom" create="0">
+                                <field name="product_id" required='1' readonly="1"/>
+                                <field name="description" required='1' readonly="1"/>
+                                <!--<field name="ac_analytic_id"/>-->
+                                <field name="qty" required='1' readonly="1"/>
+                                <field name="uom" readonly="1"/>
+                                <field name="sltech_resolution" readonly="1"/>
+                                <field name="unit_price" required='1'/>
+                                <field name="inv_tax" readonly="1"/>
+                                <field name="amt" readonly="1"/>
+                            </tree>
+                            <kanban class="o_kanban_mobile">
+                                <field name="product_id"/>
+                                <field name="description"/>
+                                <field name="qty"/>
+                                <field name="uom"/>
+                                <field name="unit_price"/>
+                                <field name="inv_tax"/>
+                                <field name="amt"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                            <!--<t t-if="!record.display_type.raw_value">-->
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <strong>
+                                                        <span>
+                                                            <t t-esc="record.product_id.value"/>
+                                                        </span>
+                                                    </strong>
+                                                </div>
+                                            </div>
+                                            <t t-if="record.description.value">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <strong>
+                                                            <span>
+                                                                <t t-esc="record.description.value"/>
+                                                            </span>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                            <t t-if="record.qty.value">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <strong>
+                                                            <span>
+                                                                <t t-esc="record.qty.value"/>
+                                                            </span>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                            <t t-if="record.uom.value">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <strong>
+                                                            <span>
+                                                                <t t-esc="record.uom.value"/>
+                                                            </span>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                            <t t-if="record.unit_price.value">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <strong>
+                                                            <span>
+                                                                <t t-esc="record.unit_price.value"/>
+                                                            </span>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                            <t t-if="record.inv_tax.value">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <strong>
+                                                            <span>
+                                                                <t t-esc="record.inv_tax.value"/>
+                                                            </span>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                            <t t-if="record.amt.value">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <strong>
+                                                            <span>
+                                                                <t t-esc="record.amt.value"/>
+                                                            </span>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </t>
+
+                                            <!--</t>-->
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </page>
+                </xpath>
+
+                <!--Invisible customer feedback page-->
+                <xpath expr="//page[6]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[5]" position="after">
+                    <page string="Resolution">
+                        <group>
+                            <field name="resolution" readonly="1"/>
+                        </group>
+                    </page>
+                    <page string="Assigned Date">
+                        <group>
+                            <field name="event_button_show" invisible="1"/>
+                            <button name="open_calendarEvent_form"
+                                    string="Add"
+                                    class="btn-primary"
+                                    type="object"
+                                    groups="base.group_system"
+                                    attrs="{'invisible': [('event_button_show', '=', True)]}"/>
+                            <field name="event_id" attrs="{'invisible': [('event_button_show', '=', False)]}"
+                                   domain="[('ticket_id', '=', active_id)]"
+                                   options='{"no_create": True}'/>
+                        </group>
+                    </page>
+                </xpath>
+
+                <xpath expr="//field[@name='create_date']" position="after">
+                     <field name="ticket_state_created" readonly="True"/>
+                    <field name="tf_created_by"/>
+                    <field name="model_no"/>
+                    <field name="sltech_state_id" context="{'sltech_state_code': 'sltech_state_code'}"/>
+                </xpath>
+                <xpath expr="//field[@name='assi_to']" position="after">
+                    <field name="date_time_assigned_date"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="helpdesk_ticket_search_view" model="ir.ui.view">
+            <field name="name">search.helpdesk.form.View</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="arch" type="xml">
+                <search string="Service Ticket">
+                    <filter string="New or Closed" name="status" domain="[('state', 'in', ['new', 'closed'])]"/>
+                    <filter string="Non-Closed" name="non_closed_status" domain="[('state', 'not in', ['closed'])]"/>
+                    <filter string="Last week Closed" name="last_seven_day"
+                            domain="[('close_date','&lt;',time.strftime('%Y-%m-%d 23:59:59')),('close_date','&gt;',(datetime.date.today()-datetime.timedelta(days=6)).strftime('%Y-%m-%d 00:00:00')), ('state', '=', 'closed')]"/>
+                    <filter string="Last month Closed" name="last_seven_day"
+                            domain="[('close_date','&lt;',time.strftime('%Y-%m-%d 23:59:59')),('close_date','&gt;',(datetime.date.today()-datetime.timedelta(days=30)).strftime('%Y-%m-%d 00:00:00')), ('state', '=', 'closed')]"/>
+                    <!--<group expand="0" string="Group By">-->
+                    <!--<filter string="Closed Date Day Wise" name="close_date" domain="[('state', 'in', ['closed'])]" context="{'group_by':'close_date:day'}"/>-->
+                    <!--</group>-->
+                </search>
+            </field>
+        </record>
+
+        <record id="service_desk_calander_view" model="ir.ui.view">
+            <field name="name">service.calendar</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="arch" type="xml">
+                <calendar date_start="assigned_date_from" color='customer' date_stop='assigned_date_to'
+                          string="Service Desk"
+                          mode="month" quick_add="false" event_open_popup="true">
+                    <field name="ticket_no"/>
+                    <field name="customer"/>
+                    <!--<field name="assigned_date"/>-->
+                    <field name="state"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="gt_helpdesk_support_ticket.helpdesk_ticket_action">
+            <field name="name">Service Desk ticket action</field>
+            <field name="res_model">helpdesk.ticket</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="groups_id" eval="[(4, ref('gt_helpdesk_support_ticket.hd_support_manager_access'))]"/>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="context">{'default_search_view': 'custom_module.helpdesk_ticket_search_view',
+                'search_default_non_closed_status': 1}
+            </field>
+            <!--<field name="view_id" eval="helpdesk_team_tree_views" />-->
+        </record>
+
+        <record id="invoice_line_service_tickets_tree" model="ir.ui.view">
+            <field name="name">helpdesk.invoice.line.views.tree</field>
+            <field name="model">helpdesk.invoice.line</field>
+            <!--<field name="inherit_id" ref="gt_helpdesk_support_ticket.helpdesk_ticket_tree_views"/>-->
+            <field name="arch" type="xml">
+                <tree string="ServiceDesk Invoice Line" create="false" delete="false"
+                      decoration-danger="status == True">
+                    <field name="helpdesk_inv_ids"/>
+                    <field name="ticket_title"/>
+                    <field name="product_id"/>
+                    <field name="description"/>
+                    <field name="ac_analytic_id"/>
+                    <field name="qty"/>
+                    <field name="uom"/>
+                    <field name="resolution"/>
+<!--                    <field name="unit_price"/>-->
+                    <field name="inv_tax"/>
+
+                    <field name="sltech_net_amount"/>
+                    <field name="tax_amt"/>
+
+                    <field name="amt"/>
+                    <field name="ticket_create_date"/>
+                    <field name="status" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="helpdesk_invoice_line_view_search" model="ir.ui.view">
+        <field name="name">helpdesk.invoice.line.view</field>
+        <field name="model">helpdesk.invoice.line</field>
+        <field name="arch" type="xml">
+            <search string="ServiceDesk Invoice Line">
+                <group expand="0" string="Group By">
+                    <filter name="Ticket Title" string="Ticket Title" domain="[]" context="{'group_by':'ticket_title'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+        <record model="ir.actions.act_window" id="invoice_line_service_tickets_action">
+            <field name="name">Service Desk ticket Invoice Line action</field>
+            <field name="res_model">helpdesk.invoice.line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="limit">10000</field>
+            <field name="domain">[]</field>
+            <field name="groups_id" eval="[(4, ref('base.group_system'))]"/>
+            <field name="domain">[('helpdesk_inv_ids', '!=', False)]</field>
+        </record>
+
+        <menuitem id="service_ticket_invoice_line" name="Service Ticket Invoice Line"
+                  action="invoice_line_service_tickets_action"
+                  groups="base.group_system,base.group_erp_manager"
+                  parent="gt_helpdesk_support_ticket.helpdesk_ticket_menu_id"/>
+
+        <record id="action_multi_helpdesk_inv_linefghfhg" model="ir.actions.act_window">
+            <field name="name">Multi Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">multi.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="groups_id"
+                   eval="[(4, ref('account.group_account_manager')), (4, ref('account.group_account_invoice'))]"/>
+            <field name="binding_model_id" ref="model_helpdesk_invoice_line"/>
+        </record>
+
+<!--&lt;!&ndash;        This code is added by sltech ======================================================&ndash;&gt;-->
+
+<!--        <record model="ir.actions.act_window" id="helpdesk_daily_closed_ticket_action">-->
+<!--            <field name="name">Daily Closed Ticket</field>-->
+<!--            <field name="res_model">helpdesk.ticket</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="view_type">form</field>-->
+<!--            <field name="domain">[('is_email_send', '=', False),('state', '=', 'closed')]</field>-->
+<!--&lt;!&ndash;            <field name="groups_id" eval="[(4, ref('gt_helpdesk_support_ticket.hd_support_manager_access'))]"/>&ndash;&gt;-->
+<!--            <field name="view_mode">tree,form,calendar</field>-->
+<!--&lt;!&ndash;            <field name="context">{'default_search_view': 'custom_module.helpdesk_ticket_search_view',&ndash;&gt;-->
+<!--&lt;!&ndash;                'search_default_non_closed_status': 1}&ndash;&gt;-->
+<!--&lt;!&ndash;            </field>&ndash;&gt;-->
+<!--            <field name="view_id" ref="gt_helpdesk_support_ticket.helpdesk_ticket_tree_views" />-->
+<!--        </record>-->
+
+<!--        <menuitem-->
+<!--                id="helpdesk_daily_closed_ticket_menu"-->
+<!--                name="Daily Closed Ticket"-->
+<!--                sequence="3"-->
+<!--                parent="gt_helpdesk_support_ticket.helpdesk_ticket_report_id"-->
+<!--                action="custom_module.helpdesk_daily_closed_ticket_action"/>-->
+<!--&lt;!&ndash;                groups="gt_helpdesk_support_ticket.hd_support_manager_access,custom_module.hd_support_team_leader_access"/>&ndash;&gt;-->
+
+<!--          <record model="ir.actions.act_window" id="helpdesk_submitted_closed_ticket_action">-->
+<!--            <field name="name">Submitted Closed Ticket</field>-->
+<!--            <field name="res_model">helpdesk.ticket</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="view_type">form</field>-->
+<!--            <field name="domain">[('is_email_send', '=', True),('state', '=', 'closed')]</field>-->
+<!--&lt;!&ndash;            <field name="groups_id" eval="[(4, ref('gt_helpdesk_support_ticket.hd_support_manager_access'))]"/>&ndash;&gt;-->
+<!--            <field name="view_mode">tree,form,calendar</field>-->
+<!--&lt;!&ndash;            <field name="context">{'default_search_view': 'custom_module.helpdesk_ticket_search_view',&ndash;&gt;-->
+<!--&lt;!&ndash;                'search_default_non_closed_status': 1}&ndash;&gt;-->
+<!--&lt;!&ndash;            </field>&ndash;&gt;-->
+<!--            <field name="view_id" ref="gt_helpdesk_support_ticket.helpdesk_ticket_tree_views" />-->
+<!--        </record>-->
+
+<!--        <menuitem-->
+<!--                id="helpdesk_submitted_closed_ticket_menu"-->
+<!--                name="Submitted Closed Ticket"-->
+<!--                sequence="4"-->
+<!--                parent="gt_helpdesk_support_ticket.helpdesk_ticket_report_id"-->
+<!--                action="custom_module.helpdesk_submitted_closed_ticket_action"/>-->
+<!--&lt;!&ndash;                groups="gt_helpdesk_support_ticket.hd_support_manager_access,custom_module.hd_support_team_leader_access"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        ================================== end ========================================================&ndash;&gt;-->
+
+        <menuitem
+                id="calendar.mail_menu_calendar"
+                name="Calendar"
+                sequence="2"
+                action="calendar.action_calendar_event"
+                web_icon="calendar,static/description/icon.png"
+                groups="gt_helpdesk_support_ticket.hd_support_manager_access,custom_module.hd_support_team_leader_access"/>
+        <menuitem name="Contacts"
+                  id="contacts.menu_contacts"
+                  sequence="4"
+                  web_icon="contacts,static/description/icon.png"
+                  groups="base.group_partner_manager"/>
+        <menuitem name="Website"
+                  id="website.menu_website_configuration"
+                  sequence="9"
+                  groups="base.group_system,base.group_erp_manager"
+                  web_icon="website,static/description/icon.png"/>
+        <menuitem
+                id="hr.menu_hr_root"
+                name="Employees"
+                groups="hr.group_hr_manager,hr.group_hr_user"
+                web_icon="hr,static/description/icon.png"
+                sequence="75"/>
+    </data>
+</odoo>

@@ -1,0 +1,12 @@
+@mixin graph_view() {
+    .o_graph {
+        padding: $main-padding;
+        background-color: $white;
+        .o_graph_svg_container {
+            border: 0;
+            .nvd3-svg{
+                background-color: $body-bg;
+            }
+        }
+    }
+}

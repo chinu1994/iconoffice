@@ -1,0 +1,443 @@
+@mixin button-primary() {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    visibility: visible;
+    vertical-align: middle;
+    background-color: $brand-secondary;
+    border: 1px solid $brand-secondary;
+    text-align: center;
+    margin: auto;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    font-size: large;
+    padding: 0;
+    font-family: 'fontawesome';
+    border-radius: 50%;
+}
+
+@mixin button-secondary() {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    visibility: visible;
+    vertical-align: middle;
+    color: $brand-secondary;
+    background-color: $white;
+    border: 1px solid $brand-secondary;
+    text-align: center;
+    margin: auto;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    color: $brand-secondary;
+    font-size: 14px;
+    padding: 0;
+    font-family: 'fontawesome';
+    border-radius: 50%;
+}
+
+@mixin control-panel-xs() {
+    .o_main {
+        .o_main_content.ad_rightbar {
+            & > .o_control_panel {
+                flex-flow: nowrap;
+                .ad_bottom_panel {
+                    padding-left: 0px;
+                    left: 0;
+                    @include slide-animation();
+                    .o_cp_left {
+                        position: absolute;
+                        display: flex;
+                        flex-wrap: wrap-reverse;
+                        width: auto;
+                        padding: 0;
+                        right: 0;
+                        bottom: 0;
+                        z-index: 10;
+                        @include slide-animation();
+                        .o_main_cp_buttons{
+                            position: fixed !important;
+                            bottom: 80px;
+                            right: 30px;
+                            border-radius: 50%;
+                            height: 40px;
+                            width: 40px;
+                            font-size: 0;
+                            display: block;
+                            padding: 5px;
+                            transition: right 0.4s ease-in-out;
+                            &:before{
+                                font-size: 14px;
+                            }
+                        }
+                        .o_cp_buttons{
+                            display: none;
+                        }
+                        &.cp_open{
+                            left: 45px;
+                            right: 45px;
+                            width: auto;
+                            padding: 5px;
+                            transition-duration: unset;
+                            .o_cp_buttons{
+                                display: flex;
+                                position: fixed;
+                                width: 100%;
+                                background-color: $white;
+                                bottom: 45px;
+                                padding: 5px;
+                                left: 0;
+                                right: 0;
+                                border: 1px solid $border;
+                                flex-direction: column;
+                                z-index: 9;
+                                div{
+                                    width: 100%;
+                                    a, button{
+                                        width: 100%;
+                                        margin-bottom: 5px;
+                                    }
+                                }
+                                button{
+                                    margin-bottom: 5px;
+                                }
+                                .o_calendar_buttons{
+                                    & > .btn-group{
+                                        width: 100%;
+                                        display: flex;
+                                        flex-direction: column;
+                                    }
+                                }
+                                .o_discuss_buttons{
+                                    position: relative;
+                                    bottom: auto;
+                                }
+                            }
+                            .o_main_cp_buttons{
+                                position: relative !important;
+                                font-size: $font-size-1;
+                                font-family: 'roboto';
+                                height: 30px;
+                                width: 100%;
+                                border-radius: inherit;
+                                top: auto;
+                                right: auto;
+                                left: auto;
+                                bottom: auto;
+                                &:before{
+                                    font-size: 0;
+                                }
+                            }
+                        }
+                        .oe_no_button + .o_main_cp_buttons{
+                            display: none;
+                        }
+                    }
+                    .o_cp_right {
+                        padding: 5px;
+                        margin: auto;
+                        width: 100%;
+                        .o_cp_pager {
+                            float: none;
+                            text-align: center;
+                        }
+                        .o_calendar_button_today {
+                            padding: 0;
+                        }
+                    }
+                }
+                &.no_ad_has_search{
+                    .o_search_options{
+                        display: none;
+                    }
+                    .o_cp_searchview {
+                        .d-none.d-md-inline-flex , .d-none.d-md-inline-block{
+                            display: none !important;
+                        }
+                    }
+                }
+                .o_mobile_search{
+                    @include slide-animation();
+                    .o_searchview_input_container{
+                        .o_searchview_facet{
+                            margin-bottom: 5px;
+                        }
+                    }
+                }
+                .o_mobile_search_show_result{
+                    transition: inherit;
+                }
+                .o_search_options {
+                    .o_filters_menu {
+                        .o_filter_condition {
+                            max-width: 100%;
+                        }
+                    }
+                    .o_favorites_menu {
+                        .o_save_name, .o_add_to_dashboard {
+                            max-width: 100%;
+                        }
+                    }
+                }
+                &.o_breadcrumb_full {
+                    ol.breadcrumb {
+                        li.active {
+                            max-width: 80%;
+                        }
+                    }
+                }
+                ol.breadcrumb {
+                    flex: 1 1 100%;
+                    flex-direction: row;
+                    padding: 0px 0px 0px 25px;
+                    li:not(:nth-last-child(2)):not(.active) {
+                        display: none;
+                    }
+                    li:nth-last-child(2) {
+                        font-size: $font-size-n;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 0 5px;
+                        height: 100%;
+                        float: left;
+                        margin: 0;
+                        color: $brand-secondary;
+                        &:before {
+                            content: '\f053';
+                            font-size: 14px;
+                            display: inline-block;
+                            font: normal normal normal 14px/1 FontAwesome;
+                            color: $brand-secondary;
+                            padding: 0;
+                        }
+                    }
+                    li.active {
+                        padding-left: 0px;
+                        position: absolute;
+                        left: 50px;
+                        right: 65px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        text-align: center;
+                        @include slide-animation();
+                        &:before {
+                            display: none;
+                        }
+                    }
+                }
+                .o_cp_searchview {
+                    margin: 0px;
+                    padding: 0px;
+                    min-height: 100%;
+                    width: auto;
+                    padding: 0 5px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 40px;
+                    flex: 1;
+                    .fa.fa-search{
+                        font-size: $font-size-8;
+                    }
+                    .o_searchview{
+                        padding: 0;
+                        margin: 0;
+                        width: auto;
+                        height: 100%;
+                        display: inline-flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        .o_enable_searchview{
+                            border: 0;
+                            background-color: $body-bg;
+                            &:hover{
+                                color: $brand-secondary;
+                            }
+                        }
+                        &.active{
+                            background: none;
+                        }
+                    }
+                }
+                & > .ad_mobile_searchview {
+                    display: none;
+                }
+                .ad_mobile_searchview {
+                    border: 0;
+                }
+                .o_cp_switch_buttons{
+                    display: flex;
+                    padding: 0 12px;
+                    .btn.btn-link.btn-sm{
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+                & > .o_cp_switch_buttons {
+                    &.show {
+                        .dropdown-menu {
+                            position: fixed !important;
+                            transform: none !important;
+                            min-width: 100%;
+                            top: 41px !important;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            margin-top: 0;
+                            z-index: 9999;
+                            border: 0;
+                            button:before {
+                                font-size: $font-size-9;
+                            }
+                            li {
+                                button {
+                                    &:hover{
+                                        background: unset;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .o_cp_sidebar {
+                    .o_drw_in {
+                        right: 0px;
+                        left: 20px;
+                        width: auto;
+                        @include slide-animation();
+                    }
+                }
+            }
+            &.ad_open_search {
+                .o_view_controller{
+                    left: 0;
+                    right: 0;
+                }
+                .o_content{
+                    margin-right: 0px;
+                }
+            }
+            &.o_open_sidebar {
+                .o_view_controller {
+                    right: 100%;
+                    left: -100%;
+                }
+            }
+        }
+    }
+    &:not(.ad_full_view) {
+        .o_main {
+            .o_main_content.ad_rightbar {
+                & > .o_control_panel {
+                    .ad_bottom_panel {
+                        left: 50px;
+                        @include slide-animation();
+                        .o_cp_left{
+                            .o_main_cp_buttons{
+                                right: -20px;
+                            }
+                        }
+                    }
+                    .o_cp_sidebar {
+                        .o_drw_in {
+                            right: -50px;
+                            left: 70px;
+                            @include slide-animation();
+                        }
+                    }
+                    .breadcrumb-item.active{
+                        left: 105px;
+                        right: 0px;
+                        @include slide-animation()
+                    }
+                }
+                .o_control_panel {
+                    .o_mobile_search, .o_mobile_search_show_result{
+                        left: 50px;
+                        @include slide-animation();
+                    }
+                    .o_mobile_search_show_result{
+                        right: -50px;
+                    }
+                    .ad_bottom_panel {
+                        left: 50px;
+                        @include slide-animation();
+                        .o_cp_left {
+                            right: -50px;
+                            @include slide-animation();
+                            .o_cp_buttons {
+                                .o_calendar_buttons {
+                                    left: 50px;
+                                    right: -50px;
+                                    @include slide-animation();
+                                }
+                                & > div.btn-group:first-child {
+                                    right: -50px;
+                                    @include slide-animation();
+                                }
+                                & > div.btn-group:last-child {
+                                    left: 80px;
+                                    @include slide-animation();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@mixin base-control-panel-xs(){
+    .o_main{
+        .o_main_content.ad_rightbar{
+            .o_control_panel{
+                .o_cp_switch_buttons{
+                    .dropdown-menu-right{
+                        top: 76px !important;
+                    }
+                }
+                .breadcrumb{
+                    padding-left: 15px;
+                }
+            }
+        }
+    }
+}
+body.o_web_client.ad_mobile {
+    @include control-panel-xs();
+    &.oe_base_menu{
+        @include base-control-panel-xs();
+    }
+    -webkit-overflow-scrolling: touch;
+    background-color: $white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes overflow-search {
+    from {
+        overflow: hidden;
+    }
+    to {
+        overflow: hidden;
+    }
+}
+
+/* Standard syntax */
+@keyframes overflow-search {
+    from {
+        overflow: hidden;
+    }
+    to {
+        overflow: hidden;
+    }
+}

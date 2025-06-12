@@ -1,0 +1,60 @@
+.o_web_client {
+    &.o_rtl {
+        & > .o_main {
+            main.o_main_content.ad_rightbar {
+                .o_content {
+                    .o_view_controller {
+                        .o_kanban_view {
+                            &.o_kanban_grouped {
+                                .o_kanban_mobile_tabs {
+                                    .o_kanban_mobile_tab{
+                                        transform: translateX(50%);
+                                        left: auto;
+                                    }
+                                }
+                                .o_kanban_has_progressbar {
+                                    left: auto !important;
+                                }
+                            }
+                        }
+                        .o_form_view.oe_form_configuration.o_base_settings {
+                            .o_setting_container{
+                                .settings_tab{
+                                    .tab.current{
+                                        right: 50%;
+                                        left: auto;
+                                    }
+                                    .tab.before, .tab.previous {
+                                        right: -3%;
+                                        left: auto;
+                                    }
+                                    .tab.after, .tab.next {
+                                        right: 103%;
+                                        left: auto;
+                                    }
+                                }
+                            }
+                        }
+                        .o_form_view {
+                            .o_form_sheet_bg {
+                                .o_form_sheet {
+                                    .o_notebook {
+                                        .panel-ul {
+                                            & > li {
+                                                & > a {
+                                                    &:before {
+                                                        float: left;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

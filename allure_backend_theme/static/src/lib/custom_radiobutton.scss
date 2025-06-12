@@ -1,0 +1,44 @@
+body.o_web_client {
+    .o_main .o_main_content.ad_rightbar, &.modal-open .modal-dialog .modal-content, .modal-dialog .modal-content {
+        // Radio button view - [start]
+        .custom-radio {
+            padding-left: 26px;
+            .o_radio_input {
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                height: 20px;
+                width: 20px;
+                & + label {
+                    &:before {
+                        height: 20px;
+                        width: 20px;
+                        border: 2px solid $Label;
+                        left: -26px;
+                        top: 0;
+                        background-color: transparent;
+                    }
+                    &:after {
+                        top: 0;
+                        left: -26px;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                    }
+                }
+                &:checked + label:after {
+                    background-image: none;
+                    border: 2px solid;
+                    top: 6px;
+                    left: -20px;
+                    width: 8px;
+                    height: 8px;
+                    background: #0b3a49;
+                    border-radius: 50%;
+                }
+            }
+        }
+        // Radio button view - [stop]
+    }
+}

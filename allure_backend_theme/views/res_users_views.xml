@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_form" model="ir.ui.view">
+        <field name="name">res.users.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='access_rights']" position="after">
+                <page string="Theme">
+                    <group>
+                        <field name="display_density"/>
+                        <field name="tab_type"/>
+                        <field name="base_menu"/>
+                        <field name="font_type_values"/>
+                        <field name="tab_configration"
+                               attrs="{'invisible': [('tab_type', '!=', 'vertical_tabs')]}"/>
+                        <field name="mode"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

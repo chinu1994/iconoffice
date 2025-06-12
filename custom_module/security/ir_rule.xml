@@ -1,0 +1,51 @@
+<odoo>
+    <data noupdate="0">
+        <record model="ir.rule" id="helpdesk_ticket_rule">
+            <field name="name">Helpdesk Ticket</field>
+            <field name="model_id" ref="model_helpdesk_ticket"></field>
+            <field name="groups" eval="[(4,ref('gt_helpdesk_support_ticket.hd_support_manager_access'))]"></field>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field eval="1" name="perm_read"></field>
+            <field eval="1" name="perm_write"></field>
+            <field eval="1" name="perm_unlink"></field>
+            <field eval="1" name="perm_create"></field>
+        </record>
+
+        <record id="gt_helpdesk_support_ticket.support_user_ticket_rule" model="ir.rule">
+            <field name="name">Support User ticket</field>
+            <field ref="model_helpdesk_ticket" name="model_id"/>
+            <!--<field name="domain_force">['|',('assi_to','=',user.id),('assi_to','=',False)]</field>-->
+            <field name="domain_force">[('assi_to','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('gt_helpdesk_support_ticket.hd_support_user_access'))]"/>
+        </record>
+
+        <record id="hd_support_team_leader_access" model="res.groups">
+            <field name="name">Service Desk Team Leader</field>
+        </record>
+
+        <record id="team_leader_ticket_rule" model="ir.rule">
+            <field name="name">Team Leader ticket</field>
+            <field ref="model_helpdesk_ticket" name="model_id"/>
+            <!--<field name="domain_force">['|',('assi_to','=',user.id),('assi_to','=',False)]</field>-->
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('custom_module.hd_support_team_leader_access'))]"/>
+        </record>
+
+        <record id="hd_support_contractor_access" model="res.groups">
+            <field name="name">Service Desk Contractor</field>
+        </record>
+
+        <record id="contractor_ticket_rule" model="ir.rule">
+            <field name="name">Contractor ticket</field>
+            <field ref="model_helpdesk_ticket" name="model_id"/>
+            <field name="domain_force">['|',('assi_to','=',user.id),('assi_to','=',False)]</field>
+            <!--<field name="domain_force">[(1,'=',1)]</field>-->
+            <field name="groups" eval="[(4, ref('custom_module.hd_support_contractor_access'))]"/>
+            <!--<field name="perm_read" eval="True"/>-->
+            <!--<field name="perm_write" eval="False"/>-->
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

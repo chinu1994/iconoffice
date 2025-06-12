@@ -1,0 +1,303 @@
+<odoo>
+    <data>
+
+      <record id="paperformat_invoices" model="report.paperformat">
+           <field name="name">Tax Invoice</field>
+           <field name="default" eval="True" />
+           <field name="format">custom</field>
+           <field name="page_height">297</field>
+           <field name="page_width">210</field>
+           <field name="orientation">Portrait</field>
+           <field name="margin_top">20</field>
+           <field name="margin_bottom">50</field>
+           <field name="margin_left">7</field>
+           <field name="margin_right">7</field>
+           <field name="header_line" eval="False" />
+           <field name="header_spacing">35</field>
+           <field name="dpi">90</field>
+       </record>
+        <report
+                id="report_account_invoices_custom"
+                model="account.invoice"
+                string="Print To PDF"
+                report_type="qweb-pdf"
+                name="custom_invoice.custom_icon_invoice"
+                file="custom_invoice.custom_icon_invoice"
+                menu="True"
+        />
+        <record id="report_account_invoices_custom" model="ir.actions.report">
+            <field name="paperformat_id" eval="ref('custom_invoice.paperformat_invoices')"/>
+        </record>
+
+        <template id="custom_icon_invoice">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="10"/>
+                <t t-set="data_report_header_spacing" t-value="9"/>
+                <t t-foreach="docs" t-as="o">
+                    <!--<table width="100%">-->
+                    <!--<tr>-->
+                    <!--<td style="float:left;font-size:25px;">-->
+                    <!--<h2>Tax Invoice</h2>-->
+                    <!--</td>-->
+                    <!--<t t-if="res_company.logo">-->
+                    <!--<td style="float:right">-->
+                    <!--<img t-att-src="'data:image/png;base64,%s' % to_text(res_company.logo)"-->
+                    <!--width="100"-->
+                    <!--height="100"/>-->
+                    <!--</td>-->
+                    <!--</t>-->
+                    <!--</tr>-->
+                    <!--</table>-->
+                    <table width="100%">
+                        <div class="row">
+                            <div class="col-md-6" style="float:left;font-size:25px;">
+                                <h2>Tax Invoice</h2>
+                            </div>
+                            <t t-if="res_company.logo">
+                                <div class="col-md-6" style="float:right">
+                                    <img t-att-src="'data:image/png;base64,%s' % to_text(res_company.logo)"
+                                         width="180"
+                                         height="180"/>
+                                </div>
+                            </t>
+                        </div>
+                    </table>
+                    <table style="margin-top:40px;">
+                        <div width="50%">
+                            <table style="width:47%;float: left;">
+                                <tbody>
+                                    <tr>
+                                        <td style="width:30%;text-align: left;">
+                                            Attention:
+                                        </td>
+                                        <td style="width:40%;">
+                                            ACCOUNTS PAYABLE
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left;">Company:
+                                        </td>
+                                        <td>
+                                            <t t-esc="o.partner_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left;">Address:
+                                        </td>
+                                        <td>
+                                            <t t-if="o.partner_id.street">
+                                                <t t-esc="o.partner_id.street"/>
+                                            </t>
+                                            <t t-if="o.partner_id.street2">
+                                                ,&amp;nbsp;<t t-esc="o.partner_id.street2"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left;">
+                                        </td>
+                                        <td>
+                                            <t t-esc="o.partner_id.city"/>&amp;nbsp;<t t-esc="o.partner_id.zip"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div width="50%">
+                            <table style="width:47%;float: left;">
+                                <tbody>
+                                    <tr>
+                                        <td style="width:30%;float: right;text-align: left;">
+                                            ABN:
+                                        </td>
+                                        <td style="width:40%;text-align: right;">
+                                            <t t-if="o.partner_id.vat"><t t-esc="o.partner_id.vat"/></t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left;">Invoice Date:
+                                        </td>
+                                        <td style="text-align: right;">
+                                            <t t-esc="o.date_invoice"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left;">Invoice No:
+                                        </td>
+                                        <td style="text-align: right;">
+                                            <t t-esc="o.number"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </table>
+
+                    <!--<style>
+                    tr:nth-child(even) {
+                      background-color: #dddddd;
+                    }
+                    </style>-->
+
+                    <t t-set="amt_total" t-value="0"/>
+                    <t t-set="gst_total" t-value="0"/>
+                    <t t-set="total" t-value="0"/>
+                    <div class="footer">
+                        <p style="">Payment Terms: <t t-if="o.payment_term_id"><t t-esc="(o.payment_term_id.name)"/></t></p>
+                        <p style="">Payment Method:</p>
+                        <p style="">Direct Deposit:</p>
+                        <p style="text-align:center">Thank You</p>
+                        <!--<div class="row">-->
+                            <!--<div>-->
+                                <small style="text-align:right">
+                                    <span>Page</span>
+                                    <span class="page"/>
+                                    of
+                                    <span class="topage"/>
+                                </small>
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+
+
+                    <table style="border-bottom:2px solid black;margin-top:120px;border-collapse:collapse" width="100%">
+                        <tr style="border-bottom: 1px solid black;">
+                            <td style="width:40%">Description</td>
+                            <td style="width:25%">Customer Product</td>
+                            <td style="width:5%">Unit</td>
+                            <td style="width:5%">Rate</td>
+                            <td style="width:10%">Amount</td>
+                            <td style="width:5%">GST</td>
+                            <td style="width:10%">Gross</td>
+                        </tr>
+
+                        <t t-foreach="o.get_data()" t-as="a">
+
+                            <tr style="">
+                                <td colspan="7" style="font-weight:bold">
+                                    <u>
+                                        <t t-esc="a.get('tpartner_name')"/>
+                                    </u>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" style="background-color: #dddddd;">
+                                    <pre/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="7">
+                                    <b>JOB NO.</b>
+                                    ‬‬<![CDATA[&nbsp;]]>‬‬<![CDATA[&nbsp;]]> <b>SERIAL NO.</b> ‬‬<![CDATA[&nbsp;]]>‬‬
+                                    <![CDATA[&nbsp;]]>
+                                    <b>CUSTOMER</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" style="background-color: #dddddd;">
+                                    <span style="text-align:left"><t t-esc="a.get('job')"/></span>
+
+                                    <span style="text-align:left;padding-left:55px">  <t t-esc="a.get('s_no')"/></span>
+
+                                    <span style="text-align:left;padding-left:55px"><t t-esc="a.get('c_name')"/></span>
+                                </td>
+                            </tr>
+                            <t t-set="temp_var" t-value="0"/>
+                            <t t-foreach="a.get('val')" t-as="b">
+
+
+                                <t t-if="temp_var%2 == 0">
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <t t-esc="b.get('product_name')"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="b.get('qty')"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="b.get('price')"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="b.get('amt')"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="b.get('tax')"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="b.get('total')"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="background-color: #dddddd;">
+                                        <td></td>
+                                        <td>
+                                            <t t-esc="b.get('product_name')"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="b.get('qty')"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="b.get('price')"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="b.get('amt')"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="b.get('tax')"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="b.get('total')"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-set="temp_var" t-value="temp_var+1"/>
+                                <t t-set="amt_total" t-value="amt_total + b.get('amt')"/>
+                                <t t-set="gst_total" t-value="gst_total + b.get('tax')"/>
+                                <t t-set="total" t-value="total + b.get('total')"/>
+                            </t>
+                            <tr>
+                                <td colspan="7">
+                                    <!--<pre/>-->
+                                </td>
+                            </tr>
+                        </t>
+                        <tr style="border-top:1px solid black;">
+                            <td style="width:10%"></td>
+                            <td style="width:5%"></td>
+                            <td style="width:5%"></td>
+                            <td style="width:10%"></td>
+
+                            <td colspan="2" style="text-align:right;width:50%;">Total (Ex GST)</td>
+                            <td style="width:10%;border-bottom-style: dotted;">
+                                <t t-esc="'%.2f'%(amt_total)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%"></td>
+                            <td style="width:5%"></td>
+                            <td style="width:5%"></td>
+                            <td style="width:10%"></td>
+                            <td colspan="2" style="text-align:right;width:50%">GST Amount</td>
+                            <td style="width:10%;border-bottom:1px solid black;">
+                                <t t-esc="'%.2f'%(gst_total)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%"></td>
+                            <td style="width:5%"></td>
+                            <td style="width:5%"></td>
+                            <td colspan="3" style="text-align:right;width:50%">Total Amount Payable</td>
+                            <td style="width:10%">
+                                <t t-esc="'%.2f'%(total)"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

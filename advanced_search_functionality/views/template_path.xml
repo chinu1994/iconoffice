@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<template id="web_assets_backend" name="advanced_search_functionality assets" inherit_id="web.assets_backend">
+		    <xpath expr="." position="inside">
+				<!--<script type="text/javascript" language="javascript"
+						src="/web/static/lib/tempusdominus/tempusdominus.js"/>-->
+				<link rel="stylesheet" type="text/css" href="/advanced_search_functionality/static/src/scss/thead_search.scss"/>
+				<link rel="stylesheet" type="text/css" href="/advanced_search_functionality/static/src/css/search.css"/>
+				<script type="text/javascript" language="javascript"
+						src="/advanced_search_functionality/static/src/js/list_controller.js"/>
+				<script type="text/javascript" language="javascript"
+						src="/advanced_search_functionality/static/src/js/list_renderer.js"/>
+				<script type="text/javascript" language="javascript"
+						src="/advanced_search_functionality/static/src/js/search_view.js"/>
+				<script type="text/javascript" language="javascript"
+						src="/advanced_search_functionality/static/src/js/search_view_common.js"/>
+			</xpath>
+		</template>
+	</data>
+</odoo>
+

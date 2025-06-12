@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_use_spareparts,access_use_spareparts,model_use_spareparts,,1,1,1,1
+access_custom_popup,access_custom_popup,model_custom_popup,,1,1,1,1

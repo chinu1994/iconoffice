@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+
+
+    <record id="hd_support_manager_access" model="res.groups">
+        <field name="name">Support Manager</field>
+    </record>
+
+    <record id="hd_customer_access" model="res.groups">
+        <field name="name">Service Desk Customer</field>
+    </record>
+
+    <record id="hd_support_user_access" model="res.groups">
+        <field name="name">Support User</field>
+    </record>
+
+
+    <record id="support_user_ticket_rule" model="ir.rule">
+        <field name="name">Support User ticket</field>
+        <field ref="model_helpdesk_ticket" name="model_id"/>
+        <!--<field name="domain_force">['|',('assi_to','=',user.id),('assi_to','=',False)]</field>-->
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('gt_helpdesk_support_ticket.hd_support_user_access'))]"/>
+    </record>
+
+
+    <record id="support_manager_ticket_rule" model="ir.rule">
+        <field name="name">Support Manager ticket</field>
+        <field ref="model_helpdesk_ticket" name="model_id"/>
+        <field name="domain_force">[('1','=',1)]</field>
+        <field name="groups" eval="[(4, ref('gt_helpdesk_support_ticket.hd_support_manager_access'))]"/>
+    </record>
+
+    <record id="customer_ticket_rule" model="ir.rule">
+        <field name="name">Customer ticket</field>
+        <field ref="model_helpdesk_ticket" name="model_id"/>
+        <field name="domain_force">[('customer','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('gt_helpdesk_support_ticket.hd_customer_access'))]"/>
+    </record>
+
+
+
+
+
+
+
+
+</data>
+</openerp>

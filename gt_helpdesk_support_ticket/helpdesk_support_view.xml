@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+
+        <record id="helpdesk_team_tree_views" model="ir.ui.view">
+            <field name="name">helpdesk.team.tree.views.tree</field>
+            <field name="model">helpdesk.team</field>
+            <field name="arch" type="xml">
+                <tree string="Helpedesk Team">
+                    <field name="name"/>
+                    <field name="leader"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="helpdesk_team_form_views" model="ir.ui.view">
+            <field name="name">helpdesk.team.form.View</field>
+            <field name="model">helpdesk.team</field>
+            <field name="arch" type="xml">
+                <form string="Service Desk Team Form Views">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" placeholder="Name" required="True"/>
+                                <field name="is_default"/>
+                            </group>
+                            <group>
+                                <field name="leader"/>
+                            </group>
+                            <field name="help_members_line">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="login_user"/>
+                                    <field name="language"/>
+                                    <field name="last_conn"/>
+                                </tree>
+                            </field>
+
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="helpdesk_team_action">
+            <field name="name">helpdesk team actiom</field>
+            <field name="res_model">helpdesk.team</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="helpdesk_team_tree_views"/>
+        </record>
+
+
+        <menuitem id="helpdesk_menu_id"
+                  web_icon="gt_helpdesk_support_ticket,static/description/image/helpdesk-icon-1.png"
+                  name="Service Desk"/>
+        <menuitem id="helpdesk_config_menu_id" name="Configuration" parent="helpdesk_menu_id" sequence="2"
+                  groups="gt_helpdesk_support_ticket.hd_support_manager_access"/>
+        <menuitem id="helpdesk_team_menu_id" name="Service Desk Team" parent="helpdesk_config_menu_id"
+                  action="helpdesk_team_action" groups="gt_helpdesk_support_ticket.hd_support_manager_access"/>
+
+
+        <record id="helpdesk_ticket_tree_views" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.views.tree</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="arch" type="xml">
+                <tree string="Service Desk">
+                    <field name="ticket_no"/>
+                    <field name="ticket_title"/>
+                    <field name="email_id"/>
+                    <field name="phone"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="helpdesk_form_views" model="ir.ui.view">
+            <field name="name">helpdesk.form.View</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="arch" type="xml">
+                <form string="Service Desk Form Views">
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="new,assigned,work_in,need_info,needs_reply,reopend,solution,closed"
+                               clickable="True"/>
+                        <button type="object" class="oe_highlight o_wow" name="reopen_ticket" string="Re Open"
+                                attrs="{'invisible': [('state', '!=', 'closed')]}">
+                            <!--<field string="Appointments" name="app_count" widget="statinfo" modifiers="{'readonly': true}"/>-->
+                        </button>
+                    </header>
+
+                    <sheet>
+
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" class="btn btn-sm oe_stat_button" name="helpdesk_invoice"
+                                    icon="fa-pencil-square-o" string="Create Invoice"
+                                    attrs="{'invisible': [('invoice_id', '!=', False)]}">
+                                <!--<field string="Appointments" name="app_count" widget="statinfo" modifiers="{'readonly': true}"/>-->
+                            </button>
+
+                            <button type="object" class="btn btn-sm oe_stat_button" name="view_helpdesk_invoice"
+                                    icon="fa-tasks" string="View Invoice"
+                                    attrs="{'invisible': [('invoice_id', '==', False)]}">
+                                <!--<field string="Appointments" name="app_count" widget="statinfo" modifiers="{'readonly': true}"/>-->
+                            </button>
+
+                            <button type="object" class="btn btn-sm oe_stat_button" name="task_create" icon="fa-edit"
+                                    string="Create Task" attrs="{'invisible': [('tsk_id', '!=', False)]}">
+                                <!--<field string="Appointments" name="app_count" widget="statinfo" modifiers="{'readonly': true}"/>-->
+                            </button>
+                            <button type="object" class="btn btn-sm oe_stat_button" string="View Task" icon="fa-tasks"
+                                    name="view_created_task" attrs="{'invisible': [('tsk_id', '==', False)]}">
+                                <!--<field string="Appointments" name="app_count" widget="statinfo" modifiers="{'readonly': true}"/>-->
+                            </button>
+                        </div>
+                        <h1>
+                            <field name="ticket_no" placeholder="Ticket Number"/>
+                        </h1>
+                        <h1>
+                            <field name="ticket_title"/>
+                        </h1>
+
+                        <group name="main_info">
+                            <group string="Ticket Information">
+                                <field name="priority"/>
+                                 <field name="company"/>
+                                <field name="create_date"/>
+
+
+
+                            </group>
+                               <group string="Assignment Information">
+                                <field name="assi_to" required="True" options="{'no_create': True}"/>
+
+                                  <field name="email_id"/>
+                                <field name="helpdesk_team"/>
+                                <field name="team_leader"/>
+                                <field name="ticket_close"/>
+                                <field name="close_date"/>
+                                <field name="total_hours" widget="float_time"/>
+                                <field name="tsk_id" invisible="1"/>
+                                <field name="invoice_id" invisible="1"/>
+                                <field name="department"/>
+                                 <field name="analytic_account"/>
+                                <field name="project"/>
+
+                            </group>
+                            <group string="Customer Information">
+                                <field name="customer"/>
+                                <field name="phone"/>
+                            </group>
+
+                        </group>
+
+
+
+
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <field name="assi_to" required="True" options="{'no_create': True}"/>-->
+<!--                                <field name="email_id"/>-->
+<!--                                <field name="company"/>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <field name="customer"/>-->
+<!--                                <field name="phone"/>-->
+<!--                            </group>-->
+<!--                        </group>-->
+
+
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <field name="helpdesk_team"/>-->
+<!--                                <field name="project"/>-->
+<!--                                <field name="department"/>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <field name="team_leader"/>-->
+<!--                                <field name="analytic_account"/>-->
+<!--                                <field name="priority"/>-->
+
+<!--                            </group>-->
+<!--                        </group>-->
+
+
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <field name="create_date"/>-->
+<!--                                <field name="ticket_close"/>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <field name="close_date"/>-->
+<!--                                <field name="total_hours" widget="float_time"/>-->
+<!--                                -->
+<!--                            </group>-->
+<!--                        </group>-->
+
+
+                        <notebook colspan="4">
+                            <page string="Description">
+                                <field name="description"/>
+                            </page>
+                            <page string="Timesheet">
+                                <field name="sheet_ids">
+                                    <tree string="Timesheet" editable="bottom">
+                                        <field name="timesheet_date" required='1'/>
+                                        <field name="users" required='1'/>
+                                        <field name="project"/>
+                                        <field name="timesheet_description"/>
+                                        <field name="bil_lable"/>
+                                        <field name="hours" widget="float_time"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="Add Invoice Lines" invisible="1">
+                                <field name="tsk_inv_line_ids">
+                                    <tree string="Invoice line" editable="bottom">
+                                        <field name="product_id" required='1'/>
+                                        <field name="description" required='1'/>
+                                        <!--<field name="ac_analytic_id"/>-->
+                                        <field name="qty" required='1'/>
+                                        <field name="uom"/>
+                                        <field name="unit_price" required='1'/>
+                                        <field name="inv_tax"/>
+                                        <field name="amt"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+
+                            <page string="Customer Feedback">
+                                <group>
+                                    <!--<field name="feedback_ids">-->
+                                    <!--<tree string="Chat Details" editable="bottom">-->
+                                    <!--<field name="cust_id" invisible='1'/>-->
+                                    <!--<field name="cust_nm"/>-->
+                                    <!--<field name="msg"/>-->
+                                    <field name="rating_val"/>
+                                    <field name="rating_msg"/>
+
+                                    <!--</tree>-->
+                                    <!--</field>-->
+                                </group>
+                            </page>
+
+
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="helpdesk_ticket_action">
+            <field name="name">Service Desk ticket action</field>
+            <field name="res_model">helpdesk.ticket</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="groups_id" eval="[(4, ref('gt_helpdesk_support_ticket.hd_support_manager_access'))]"/>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="view_id" eval="helpdesk_team_tree_views" />-->
+        </record>
+
+
+        <menuitem id="helpdesk_ticket_menu_id" name="Service Desk" parent="helpdesk_menu_id" sequence="1"/>
+        <menuitem id="helpdesk_ticket_menu_sub_i" name="Service Desk Tickets" parent="helpdesk_ticket_menu_id"
+                  action="helpdesk_ticket_action"/>
+
+
+        <record id="helpdesk_case_pivot_view" model="ir.ui.view">
+            <field name="name">helpdesk.pivot.view</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="arch" type="xml">
+                <pivot string="Service Desk Analysis" display_quantity="true">
+                    <field name="ticket_no" type="row"/>
+                    <!--<field name="ticket_title" type="measure"/>-->
+                    <!--<field name="assi_to" type="measure"/>-->
+                    <!--<field name="customer" type="measure"/>-->
+                    <!--<field name="company" type="measure"/>-->
+                    <!--<field name="helpdesk_team" type="measure"/>-->
+                    <!--<field name="team_leader" type="measure"/>-->
+                    <!--<field name="project" type="measure"/>-->
+                    <!--<field name="analytic_account" type="measure"/>-->
+                    <!--<field name="category" type="measure"/>-->
+                    <!--<field name="subject" type="measure"/>-->
+                    <!--<field name="department" type="measure"/>-->
+                    <!--<field name="priority" type="measure"/>-->
+                    <!--<field name="create_date" type="measure"/>-->
+                    <!--<field name="close_date" type="measure"/>-->
+                    <field name="total_hours" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+        <record id="helpdesk_view_graph" model="ir.ui.view">
+            <field name="name">helpdesk.graph.view</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="arch" type="xml">
+                <graph string="Graph Analysis" stacked="True">
+                    <field name="ticket_no" type="row"/>
+                    <field name="ticket_title" type="row"/>
+                    <field name="create_date" type="row" interval="month"/>
+                    <field name="subject" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="helpdesk_analysis_action">
+            <field name="name">helpdesk ticket analysis actiom</field>
+            <field name="res_model">helpdesk.ticket</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">pivot,graph</field>
+            <field name="view_id" eval="helpdesk_view_graph"/>
+            <field name="view_id" eval="helpdesk_case_pivot_view"/>
+
+        </record>
+
+
+        <menuitem id="helpdesk_ticket_report_id" name="Reports" parent="helpdesk_menu_id" sequence="3"
+                  groups="base.group_system"/>
+        <!--<menuitem id="helpdesk_ticket_pivot_sub" name="Service Desk Analysis" parent="helpdesk_ticket_report_id" action="helpdesk_analysis_action" groups="gt_helpdesk_support_ticket.hd_support_manager_access"/>-->
+        <menuitem id="helpdesk_ticket_pivot_sub" name="Service Desk Analysis" parent="helpdesk_ticket_report_id"
+                  action="helpdesk_analysis_action" groups="base.group_system"/>
+
+
+        <!--  Auto Ticket Sequance no  -->
+        <record id="seq_ticket_no" model="ir.sequence">
+            <field name="name">TICKET No</field>
+            <field name="code">ticket.no</field>
+            <field name="prefix">SR-</field>
+            <field name="padding">6</field>
+        </record>
+
+        <record id="tf_view_partner_category_form" model="ir.ui.view">
+            <field name="name">Contact Tags</field>
+            <field name="model">res.partner.category</field>
+            <field name="inherit_id" ref="base.view_partner_category_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="tf_ticket_title"/>
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

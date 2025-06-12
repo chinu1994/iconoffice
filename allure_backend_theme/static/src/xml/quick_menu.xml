@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+     <t t-name="menu.GlobalSearch">
+        <li class="o_gb_search" data-toggle="tooltip" title="Global Search">
+            <a aria-expanded="true" data-toggle="dropdown" href="#" title="Global Search">
+                <i class="fa fa-search"/>
+            </a>
+            <ul class="dropdown-menu o_global_search_dropdown" role="menu">
+                <li/>
+            </ul>
+        </li>
+    </t>
+</templates>

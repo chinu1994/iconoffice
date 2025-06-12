@@ -1,0 +1,41 @@
+<teplates>
+    <t t-extend="PaymentScreenWidget">
+        <t t-jquery="div.payment-buttons" t-operation="append">
+            <div class='button js_set_full_amt'>
+                <i class='fa fa-user' role="img" aria-label="Customer" title="Customer"/>
+                <span class='js_full_amt'>
+                    Select Full Amount
+                </span>
+            </div>
+        </t>
+    </t>
+
+    <t t-extend="Product">
+        <t t-jquery=".product-img" t-operation="replace">
+            <t t-debug="pdb"/>
+            <div class="product-img">
+                <img t-att-src='image_url' alt="Product image"/>
+                <t t-if="!product.to_weight">
+                    <span class="price-tag">
+                        <t t-esc="widget.sltech_remove_halala(product.get_price(pricelist, 1))"/>
+                    </span>
+                </t>
+                <t t-if="product.to_weight">
+                    <span class="price-tag">
+                        <t t-esc="widget.sltech_remove_halala(product.get_price(pricelist, 1))+'/'+widget.pos.units_by_id[product.uom_id[0]].name"/>
+                    </span>
+                </t>
+            </div>
+        </t>
+    </t>
+
+<!--    <t t-extend="OrderWidget">-->
+<!--        <t t-jquery="div.total" t-operation="replace">-->
+<!--            <div class='entry total'>-->
+<!--&lt;!&ndash;                <div class='discount' style="font-size: 16px; font-weight: normal; text-align: center;">Discount: <span class="value">0.00€</span></div>&ndash;&gt;-->
+<!--                <div class='subentry'>Taxes: <span class="value">0.00€</span></div>-->
+<!--                <span class="badge">Total: </span> <span class="value">0.00 €</span>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </t>-->
+</teplates>

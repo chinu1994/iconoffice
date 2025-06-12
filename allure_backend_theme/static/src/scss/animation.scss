@@ -1,0 +1,161 @@
+// base [start]
+@mixin o-flex-flow($direction, $wrap) {
+    -ms-flex-flow: $direction $wrap;
+    -moz-flex-flow: $direction $wrap;
+    -webkit-flex-flow: $direction $wrap;
+    flex-flow: $direction $wrap;
+}
+@mixin o-flex($grow, $schrink, $basis) {
+    -ms-flex: $grow $schrink $basis;
+    -moz-flex: $grow $schrink $basis;
+    -webkit-box-flex: $grow;
+    -webkit-flex: $grow $schrink $basis;
+    flex: $grow $schrink $basis;
+}
+@mixin o-justify-content($justify) {
+    -moz-justify-content: $justify;
+    -webkit-justify-content: $justify;
+    justify-content: $justify;
+}
+// base [stop]
+
+@mixin slide-animation() {
+    transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+}
+
+@mixin active-menu() {
+    content: '\f0d9';
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    right: -12px;
+    font-size: 26px;
+    top: 5px;
+}
+
+@mixin border-animation-white() {
+    background: repeating-linear-gradient(to right, $white 0%, $white 100%) left bottom transparent no-repeat;
+    background-size: 100% 1px;
+    background-position: center bottom;
+    -webkit-animation: line-animate .5s 1;
+    -moz-animation: line-animate .5s 1;
+    animation: line-animate .5s 1;
+}
+
+@mixin round-border() {
+    border: 1px solid $brand-secondary;
+    border-radius: 50%;
+}
+
+@mixin border-animation() {
+    background: repeating-linear-gradient(to right, $brand-primary 0%, $brand-primary 100%) left bottom transparent no-repeat;
+    background-size: 100% 1px;
+    background-position: center bottom;
+    -webkit-animation: line-animate .5s 1;
+    -moz-animation: line-animate .5s 1;
+    animation: line-animate .5s 1;
+}
+
+@mixin fa-fa-font($size) {
+    font: normal normal normal 14px/1 FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: $size;
+}
+
+@-webkit-keyframes line-animate {
+    0% {
+        background-size: 0 1px;
+    }
+    100% {
+        background-size: 100% 1px;
+    }
+}
+
+@-moz-keyframes line-animate {
+    0% {
+        background-size: 0 1px;
+    }
+    100% {
+        background-size: 100% 1px;
+    }
+}
+
+@keyframes line-animate {
+    0% {
+        background-size: 0 1px;
+    }
+    100% {
+        background-size: 100% 1px;
+    }
+}
+
+@-webkit-keyframes line-animate-4 {
+    0% {
+        background-size: 0 4px;
+    }
+    100% {
+        background-size: 100% 4px;
+    }
+}
+
+@-moz-keyframes line-animate-4 {
+    0% {
+        background-size: 0 4px;
+    }
+    100% {
+        background-size: 100% 4px;
+    }
+}
+
+@keyframes line-animate-4 {
+    0% {
+        background-size: 0 4px;
+    }
+    100% {
+        background-size: 100% 4px;
+    }
+}
+
+// indicater view
+@-webkit-keyframes indicators {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 40px;
+    }
+}
+
+/* Standard syntax */
+@keyframes indicators {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 40px;
+    }
+}
+
+@keyframes indicators-top {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: 40px;
+    }
+}
+
+@keyframes indicators-top {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: 40px;
+    }
+}
+
+// indicater view

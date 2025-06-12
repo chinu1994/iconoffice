@@ -1,0 +1,26 @@
+.o_web_client{
+    .o_main{
+        .o_main_content.ad_rightbar{
+            .o_content{
+                .o_view_nocontent{
+                    .o_nocontent_help{
+                        .o_view_nocontent_smiling_face, .o_view_nocontent_empty_folder, .o_view_nocontent_neutral_face{
+                            &:before{
+                                content: "\f0f6";
+                                position: relative;
+                                display: block;
+                                width: 100%;
+                                height: 100%;
+                                background: none;
+                                color: $text-muted;
+                                margin: auto;
+                                margin-bottom: 10px;
+                                @include fa-fa-font(120px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
