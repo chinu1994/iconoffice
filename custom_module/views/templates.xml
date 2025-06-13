@@ -178,7 +178,11 @@
                     <p>Hi,</p>
                     <p>
                         % set website_url = object.env['ir.config_parameter'].sudo().get_param('web.base.url')
-                     ${object.ticket_no} has been Closed.
+                        ${object.ticket_no}
+                        % if object.tref:
+                        / ${object.tref}
+                        % endif
+                        has been Closed.
                     </br>
                     </p>
 
@@ -201,7 +205,7 @@
                      <tbody>
                      % for sheet in object.sheet_ids:
                         <tr>
-                            <td style="border: 1px solid black;">${sheet.create_date.date()}</td>
+                            <td style="border: 1px solid black;">${sheet.create_date.date().strftime("%d-%m-%Y")}</td>
                             <td style="border: 1px solid black;">${sheet.sh_resolution}</td>
                          </tr>
                     % endfor
@@ -231,7 +235,11 @@
                 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
                     <p>Hi,</p>
                     <p>
-                     ${object.ticket_no} has been assigned to ${object.assi_to.name} <br>
+                     ${object.ticket_no}
+                      % if object.tref:
+                        / ${object.tref}
+                      % endif
+                      has been assigned to ${object.assi_to.name} <br>
                     </br>
                     </p>
                     </br>
@@ -258,7 +266,11 @@
 
                     <p>Hi,</p>
                     <p>
-                     Your Service Desk ticket generated and your ticket number is ${ctx.get('ticket_nm')|safe}
+                     Your Service Desk ticket generated and your ticket number is
+                     ${ctx.get('ticket_nm')|safe}
+                      % if object.tref:
+                        / ${object.tref}
+                      % endif
                     </br>
                     </p>
 
@@ -288,7 +300,11 @@
                 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
                     <p>Hi,</p>
                     <p>
-                     ${object.ticket_no} has been assigned to technician. <br>
+                     ${object.ticket_no}
+                     % if object.tref:
+                        / ${object.tref}
+                     % endif
+                     has been assigned to technician. <br>
                     </br>
                     </p>
                     <h3>Description : </h3>
@@ -320,7 +336,11 @@
                 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
                     <p>Hi,</p>
                     <p>
-                     ${object.ticket_no} has been unallocated <br>
+                     ${object.ticket_no}
+                      % if object.tref:
+                        / ${object.tref}
+                      % endif
+                      has been unallocated <br>
                     </br>
 
                     <p></br>Best Regards,    </p>
@@ -389,7 +409,12 @@
                     <p>Hi,</p>
                     <p>
                         % set website_url = object.env['ir.config_parameter'].sudo().get_param('web.base.url')
-                  Status of ticket number ${object.ticket_no} is "Work in Progress" now.
+                  Status of ticket number
+                  ${object.ticket_no}
+                  % if object.tref:
+                    / ${object.tref}
+                  % endif
+                   is "Work in Progress" now.
                     </br>
                     </p>
 
@@ -412,7 +437,7 @@
                      <tbody>
                      % for sheet in object.sheet_ids:
                         <tr>
-                            <td style="border: 1px solid black;">${sheet.create_date.date()}</td>
+                            <td style="border: 1px solid black;">${sheet.create_date.date().strftime("%d-%m-%Y")}</td>
                             <td style="border: 1px solid black;">${sheet.sh_resolution}</td>
                          </tr>
                     % endfor
