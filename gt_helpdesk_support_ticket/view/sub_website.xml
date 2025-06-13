@@ -192,6 +192,9 @@
                                         </thead>
                                         <tbody id="myTable" t-foreach="ticket_lines" t-as="tc_line">
                                             <tr>
+                                                <td style="display:none;">
+                                                    <span t-esc="tc_line.tpartner_name"/>
+                                                </td>
                                                 <td>
                                                     <span t-esc="tc_line.ticket_no"/>
                                                 </td>
