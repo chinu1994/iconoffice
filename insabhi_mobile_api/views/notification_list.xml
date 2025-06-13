@@ -1,0 +1,39 @@
+<odoo>
+    <record id="view_notification_list_tree" model="ir.ui.view">
+        <field name="name">notification.list.tree</field>
+        <field name="model">notification.list</field>
+        <field name="arch" type="xml">
+            <tree string="Notifications">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="state"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_notification_list_form" model="ir.ui.view">
+        <field name="name">notification.list.form</field>
+        <field name="model">notification.list</field>
+        <field name="arch" type="xml">
+            <form string="Notification">
+                <group>
+                    <field name="name"/>
+                    <field name="body"/>
+                    <field name="partner_id"/>
+                    <field name="token"/>
+                    <field name="state"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_notification_list" model="ir.actions.act_window">
+        <field name="name">Notifications</field>
+        <field name="res_model">notification.list</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_notification_list_root" name="Notifications" parent="mail.menu_root_discuss" action="action_notification_list"
+    groups="base.group_user"/>
+</odoo>
