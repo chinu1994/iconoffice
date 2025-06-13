@@ -1,0 +1,49 @@
+<odoo>
+  <template id="privacy_policy_template" name="Privacy Policy">
+    <t t-call="website.layout">
+      <div class="container mt32 mb32">
+        <h1 class="text-center">Privacy Policy</h1>
+        <p>
+          At IConnect, we are committed to protecting your personal information and your right to privacy.
+          This Privacy Policy outlines how we collect, use, and safeguard your information when you use our application.
+        </p>
+
+        <h3>Information We Collect</h3>
+        <ul>
+          <li>Personal information such as name, email, and phone number</li>
+          <li>Service request and ticketing data</li>
+          <li>Communication logs between you and our technicians</li>
+        </ul>
+
+        <h3>How We Use Your Information</h3>
+        <ul>
+          <li>To manage service tickets and assign technicians</li>
+          <li>To improve the performance and functionality of the app</li>
+          <li>To respond to customer service requests and provide support</li>
+        </ul>
+
+        <h3>Data Security</h3>
+        <p>
+          We implement appropriate technical and organizational measures to protect the security of your personal information.
+        </p>
+
+        <h3>Sharing of Information</h3>
+        <p>
+          We do not sell or rent your personal information to third parties. We may share data with trusted partners strictly for the purpose of service fulfillment and maintenance.
+        </p>
+
+        <h3>Your Rights</h3>
+        <ul>
+          <li>Access, update, or delete your personal information</li>
+          <li>Withdraw your consent at any time</li>
+        </ul>
+
+        <h3>Contact Us</h3>
+        <p>
+          If you have any questions or concerns about our privacy practices, please contact us at: <br />
+          <strong>Email:</strong> admin@iconofficesolutions.com.au
+        </p>
+      </div>
+    </t>
+  </template>
+</odoo>
