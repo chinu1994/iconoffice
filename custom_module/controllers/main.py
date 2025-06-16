@@ -4,6 +4,7 @@ from openerp.http import request
 import werkzeug
 from dateutil import tz
 from datetime import datetime, tzinfo
+from odoo.http import Response
 
 class MainController(http.Controller):
 
@@ -24,6 +25,19 @@ class MainController(http.Controller):
 
     @http.route('/iconmobileverify', auth='public', website=True)
     def helpdesk_iconmobileverify(self, **kw):
+        # Define your HTML content
+        html_content = """
+                google-site-verification: googlef2b408ca7c1f7526.html
+                """
+
+        # Return the HTML file as a downloadable attachment
+        return Response(
+            html_content,
+            content_type='text/html',
+            headers=[
+                ('Content-Disposition', 'attachment; filename="googlef2b408ca7c1f7526.html"')
+            ]
+        )
         return http.request.render('custom_module.iconmobileverify')
 
 
