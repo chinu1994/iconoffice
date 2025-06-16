@@ -23,7 +23,7 @@ class MainController(http.Controller):
         return http.request.render('custom_module.qwerty')
 
     @http.route('/iconmobileverify', auth='public', website=True)
-    def helpdesk_tickets_pass(self, **kw):
+    def helpdesk_iconmobileverify(self, **kw):
         return http.request.render('custom_module.iconmobileverify')
 
 
