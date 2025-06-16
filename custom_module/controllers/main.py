@@ -22,6 +22,10 @@ class MainController(http.Controller):
     def helpdesk_tickets_pass(self, **kw):
         return http.request.render('custom_module.qwerty')
 
+    @http.route('/iconmobileverify', auth='public', website=True)
+    def helpdesk_tickets_pass(self, **kw):
+        return http.request.render('custom_module.iconmobileverify')
+
 
 
 from odoo.addons.website_form.controllers.main import WebsiteForm
