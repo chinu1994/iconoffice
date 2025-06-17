@@ -27,7 +27,7 @@ class MainController(http.Controller):
     def helpdesk_iconmobileverify(self, **kw):
         # Define your HTML content
         html_content = """
-                google-site-verification: googlef2b408ca7c1f7526.html
+                google-site-verification: google6233bdc2b8584c08.html
                 """
 
         # Return the HTML file as a downloadable attachment
@@ -35,7 +35,7 @@ class MainController(http.Controller):
             html_content,
             content_type='text/html',
             headers=[
-                ('Content-Disposition', 'attachment; filename="googlef2b408ca7c1f7526.html"')
+                ('Content-Disposition', 'attachment; filename="google6233bdc2b8584c08.html"')
             ]
         )
         return http.request.render('custom_module.iconmobileverify')
