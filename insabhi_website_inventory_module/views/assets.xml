@@ -1,0 +1,7 @@
+<odoo>
+    <template id="pagination_assets" name="test modulo assets" inherit_id="web.assets_frontend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/insabhi_website_inventory_module/static/src/js/custom.js"/>
+        </xpath>
+    </template>
+</odoo>
