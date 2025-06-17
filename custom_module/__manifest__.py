@@ -39,7 +39,7 @@
         'static/src/views/assets.xml',
         'qweb_view/qweb_pdf.xml',
         'views/custom_popup.xml',
-
+        'views/privacy_policy.xml'
     ],
     
 }
