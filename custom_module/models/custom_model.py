@@ -12,6 +12,8 @@ from odoo.exceptions import UserError, AccessError
 import json, sys, base64, pytz
 import logging
 from odoo.addons import decimal_precision as dp
+import pdfplumber
+import io
 _logger = logging.getLogger(__name__)
 
 class HelpDeskTicket(models.Model):
@@ -440,6 +442,7 @@ class HelpDeskTicket(models.Model):
         defaults = {
             'ticket_title': msg.get('subject')}  # {'support_email': msg.get('to'), 'ticket_title': msg.get('subject')}
 
+        part_id = False
         # Extract the name from the from email if you can
         if "<" in msg.get('from') and ">" in msg.get('from'):
             start = msg.get('from').rindex("<") + 1
@@ -525,7 +528,60 @@ class HelpDeskTicket(models.Model):
         # if setting_email_default_category_id:
         #     defaults['category_id'] = setting_email_default_category_id
 
+        # Extract attachment if present
+        attachment = msg['attachments'][0].content if msg.get('attachments') else False
+        if attachment and part_id.is_mail_attachment_access:
+            pdf_data = self.pdf_template_five_parser(attachment)
+            defaults.update(pdf_data)
+
         return super(HelpDeskTicket, self).message_new(msg, custom_values=defaults)
+
+    def pdf_template_five_parser(self, attachment):
+        """Parse PDF attachment using pdfplumber and extract text."""
+        try:
+            # Create a BytesIO object from the attachment content
+            attachment_content = io.BytesIO(attachment)
+
+            # Initialize a variable to hold extracted text
+            extracted_text = ""
+
+            # Open and parse the PDF with pdfplumber
+            with pdfplumber.open(attachment_content) as pdf:
+                num_pages = len(pdf.pages)
+                print(f'The PDF has {num_pages} pages.')
+
+                # Loop through each page and extract text
+                for page in pdf.pages:
+                    text = page.extract_text() or ""
+                    extracted_text += text + "\n"
+
+            # Process the extracted text as needed
+            print(extracted_text)  # For demonstration, print the extracted text
+
+            # Placeholder for parsed data (customize based on PDF structure)
+            parsed_data = {
+                'tref': None,
+                'serial_no': None,
+                'model_no': None,
+                'fault_area': None,
+                # Add other fields as needed
+            }
+
+            # Example parsing logic (adjust based on your PDF structure)
+            for line in extracted_text.split('\n'):
+                if 'Serial No:' in line:
+                    parsed_data['serial_no'] = line.split('Serial No:')[1].strip()
+                if 'Service Call No:' in line:
+                    parsed_data['tref'] = line.split('Service Call No:')[1].strip()
+                if 'Make/Model:' in line:
+                    parsed_data['model_no'] = line.split('Make/Model:')[1].strip()
+                if 'Description:' in line:
+                    parsed_data['fault_area'] = line.split('Description:')[1].strip()
+
+            return parsed_data  # Return parsed data instead of None
+        except Exception as e:
+            print(f"Error parsing PDF: {e}")
+            return None
 
     @api.multi
     def create_sub_ticket(self):
